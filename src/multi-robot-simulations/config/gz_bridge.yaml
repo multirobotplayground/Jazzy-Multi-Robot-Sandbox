@@ -1,0 +1,46 @@
+- ros_topic_name: "/robot_0/cmd_vel"
+  gz_topic_name: "/model/robot_0/cmd_vel"
+  ros_type_name: "geometry_msgs/msg/Twist"
+  gz_type_name: "gz.msgs.Twist"
+  subscriber_queue: 1       # Default 10
+  publisher_queue: 1        # Default 10
+  lazy: false               # Default "false"
+  direction: ROS_TO_GZ      # Default "BIDIRECTIONAL" - Bridge both directions
+                            # "GZ_TO_ROS" - Bridge Ignition topic to ROS
+                            # "ROS_TO_GZ" - Bridge ROS topic to Ignition
+
+- ros_topic_name: "/robot_0/lidar/points"
+  gz_topic_name: "/world/empty/model/robot_0/link/sensor_rack/sensor/front_lidar/scan/points"
+  ros_type_name: "sensor_msgs/msg/PointCloud2"
+  gz_type_name: "gz.msgs.PointCloudPacked"
+  subscriber_queue: 1
+  publisher_queue: 1
+  lazy: false
+  direction: GZ_TO_ROS
+
+- ros_topic_name: "/robot_0/lidar/scan"
+  gz_topic_name: "/world/empty/model/robot_0/link/sensor_rack/sensor/front_lidar/scan"
+  ros_type_name: "sensor_msgs/msg/LaserScan"
+  gz_type_name: "gz.msgs.LaserScan"
+  subscriber_queue: 1
+  publisher_queue: 1
+  lazy: false
+  direction: GZ_TO_ROS
+
+- ros_topic_name: "/robot_0/imu"
+  gz_topic_name: "/world/empty/model/robot_0/link/sensor_rack/sensor/imu_sensor/imu"
+  ros_type_name: "sensor_msgs/msg/Imu"
+  gz_type_name: "gz.msgs.IMU"
+  subscriber_queue: 1
+  publisher_queue: 1
+  lazy: false
+  direction: GZ_TO_ROS  
+
+- ros_topic_name: "/robot_0/odom"
+  gz_topic_name: "/model/robot_0/odometry"
+  ros_type_name: "nav_msgs/msg/Odometry"
+  gz_type_name: "gz.msgs.Odometry"
+  subscriber_queue: 1
+  publisher_queue: 1
+  lazy: false
+  direction: GZ_TO_ROS
