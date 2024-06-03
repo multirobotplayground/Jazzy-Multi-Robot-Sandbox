@@ -1,9 +1,9 @@
-- ros_topic_name: "ros_chatter"
-  gz_topic_name: "ign_chatter"
-  ros_type_name: "std_msgs/msg/String"
-  gz_type_name: "ignition.msgs.StringMsg"
-  subscriber_queue: 5       # Default 10
-  publisher_queue: 6        # Default 10
+- ros_topic_name: "/husky_0/cmd_vel"
+  gz_topic_name: "/model/husky_0/cmd_vel"
+  ros_type_name: "geometry_msgs/msg/Twist"
+  gz_type_name: "gz.msgs.Twist"
+  subscriber_queue: 1       # Default 10
+  publisher_queue: 1        # Default 10
   lazy: true                # Default "false"
   direction: BIDIRECTIONAL  # Default "BIDIRECTIONAL" - Bridge both directions
                             # "GZ_TO_ROS" - Bridge Ignition topic to ROS

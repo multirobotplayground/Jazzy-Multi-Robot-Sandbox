@@ -39,7 +39,7 @@ def generate_launch_description():
     gz_sim_launch = include_another_launch_file(
         load_python_launch_file(gazebo_launch_path),
         launch_arguments={
-            'gz_args': concatenate_strings([project_package_dir, 'worlds', get_set_argument_val('world')]),
+            'gz_args': concatenate_strings(['worlds', get_set_argument_val('world')]),
             'render_engine': 'ogre'
             }.items()
     )
