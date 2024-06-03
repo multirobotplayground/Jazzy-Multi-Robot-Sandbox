@@ -64,7 +64,8 @@ def generate_launch_description():
         robot_description = input_file.read()
 
     # create a parameter to hold the robot description from the file
-    params = {'use_sim_time': True, 'robot_description': robot_description}
+    params = {'use_sim_time': True, 
+              'robot_description': robot_description}
     robot_state_publisher = create_node_description(
                 package='robot_state_publisher',
                 namespace='husky',
@@ -72,6 +73,18 @@ def generate_launch_description():
                 name='robot_state_publisher',
                 output='screen',
                 parameters=[params],
+                arguments=[])
+    
+    robot_joint_state_publisher = create_node_description(
+                package='joint_state_publisher',
+                namespace='husky',
+                executable='joint_state_publisher',
+                name='jont_state_publisher',
+                output='screen',
+                remappings=[
+                    ('/robot_description', '/husky/robot_description')
+                ],
+                parameters=[],
                 arguments=[])
 
     spawn = create_node_description(
@@ -94,5 +107,6 @@ def generate_launch_description():
         gz_sim_launch,
         ros_bridge_node,
         robot_state_publisher,
+        robot_joint_state_publisher,
         spawn
     ])
