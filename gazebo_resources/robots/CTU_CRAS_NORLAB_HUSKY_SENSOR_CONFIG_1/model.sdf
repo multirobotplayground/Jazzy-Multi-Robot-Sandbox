@@ -1,6 +1,16 @@
 <?xml version='1.0' encoding='utf-8'?>
 <sdf version="1.6">
-  <model name="marble_husky_sensor_config_1">
+  <model name="marble_husky_sensor_config_1">    
+
+    <link name="dummy">
+      <pose frame="">0 0 0 0 -0 0</pose>
+      <inertial></inertial>
+    </link>
+    <joint name='dummy_joint' type='fixed'>
+      <parent>dummy</parent>
+      <child>base_link</child>
+      <pose frame=''>0 0 0 0 -0 0</pose>
+    </joint>
     <link name="base_link">
       <pose frame="">0 0 0 0 -0 0</pose>
       <inertial>
@@ -45,7 +55,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>meshes/base_link.dae</uri>
+            <uri>robots/CTU_CRAS_NORLAB_HUSKY_SENSOR_CONFIG_1/meshes/base_link.dae</uri>
           </mesh>
         </geometry>
       </visual>
@@ -54,7 +64,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>meshes/bumper.dae</uri>
+            <uri>robots/CTU_CRAS_NORLAB_HUSKY_SENSOR_CONFIG_1/meshes/bumper.dae</uri>
           </mesh>
         </geometry>
       </visual>
@@ -63,7 +73,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>meshes/bumper.dae</uri>
+            <uri>robots/CTU_CRAS_NORLAB_HUSKY_SENSOR_CONFIG_1/meshes/bumper.dae</uri>
           </mesh>
         </geometry>
       </visual>
@@ -72,7 +82,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>meshes/top_chassis.dae</uri>
+            <uri>robots/CTU_CRAS_NORLAB_HUSKY_SENSOR_CONFIG_1/meshes/top_chassis.dae</uri>
           </mesh>
         </geometry>
       </visual>
@@ -105,7 +115,7 @@
         <pose frame=''>0 0 0 0 -0 0</pose>
         <geometry>
           <mesh>
-            <uri>meshes/sensor_rack_lowres_shallow_laser.dae</uri>
+            <uri>robots/CTU_CRAS_NORLAB_HUSKY_SENSOR_CONFIG_1/meshes/sensor_rack_lowres_shallow_laser.dae</uri>
             <scale>1 1 1</scale>
           </mesh>
         </geometry>
@@ -799,7 +809,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>meshes/wheel.dae</uri>
+            <uri>robots/CTU_CRAS_NORLAB_HUSKY_SENSOR_CONFIG_1/meshes/wheel.dae</uri>
           </mesh>
         </geometry>
       </visual>
@@ -867,7 +877,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>meshes/wheel.dae</uri>
+            <uri>robots/CTU_CRAS_NORLAB_HUSKY_SENSOR_CONFIG_1/meshes/wheel.dae</uri>
           </mesh>
         </geometry>
       </visual>
@@ -935,7 +945,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>meshes/wheel.dae</uri>
+            <uri>robots/CTU_CRAS_NORLAB_HUSKY_SENSOR_CONFIG_1/meshes/wheel.dae</uri>
           </mesh>
         </geometry>
       </visual>
@@ -1003,7 +1013,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>meshes/wheel.dae</uri>
+            <uri>robots/CTU_CRAS_NORLAB_HUSKY_SENSOR_CONFIG_1/meshes/wheel.dae</uri>
           </mesh>
         </geometry>
       </visual>

@@ -59,7 +59,7 @@ def generate_launch_description():
                     )
     
     # read robot description file
-    husky_sdf_file = os.path.join(project_package_dir, 'robots', 'CTU_CRAS_NORLAB_HUSKY_SENSOR_CONFIG_1', 'model.sdf')
+    husky_sdf_file = os.path.join(os.getenv('GZ_SIM_RESOURCE_PATH'), 'robots', 'CTU_CRAS_NORLAB_HUSKY_SENSOR_CONFIG_1', 'model.sdf')
     with open(husky_sdf_file, 'r') as input_file:
         robot_description = input_file.read()
 
@@ -67,7 +67,7 @@ def generate_launch_description():
     params = {'use_sim_time': True, 'robot_description': robot_description}
     robot_state_publisher = create_node_description(
                 package='robot_state_publisher',
-                namespace='robot_0',
+                namespace='husky',
                 executable='robot_state_publisher',
                 name='robot_state_publisher',
                 output='screen',
@@ -81,9 +81,9 @@ def generate_launch_description():
                 parameters=[{
                     'name': 'husky_0',
                     'x': 0.0,
-                    'z': 0.0,
+                    'z': 0.5,
                     'Y': 0.0,
-                    'topic': '/robot_description'}],
+                    'topic': '/husky/robot_description'}],
                  output='screen')
 
 
