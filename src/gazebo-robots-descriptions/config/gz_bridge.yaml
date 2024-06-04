@@ -1,10 +1,10 @@
-- ros_topic_name: "/husky_0/cmd_vel"
-  gz_topic_name: "/model/husky_0/cmd_vel"
+- ros_topic_name: "/robot_0/cmd_vel"
+  gz_topic_name: "/model/robot_0/cmd_vel"
   ros_type_name: "geometry_msgs/msg/Twist"
   gz_type_name: "gz.msgs.Twist"
   subscriber_queue: 1       # Default 10
   publisher_queue: 1        # Default 10
-  lazy: true                # Default "false"
+  lazy: false               # Default "false"
   direction: BIDIRECTIONAL  # Default "BIDIRECTIONAL" - Bridge both directions
                             # "GZ_TO_ROS" - Bridge Ignition topic to ROS
                             # "ROS_TO_GZ" - Bridge ROS topic to Ignition

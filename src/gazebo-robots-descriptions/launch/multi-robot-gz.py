@@ -51,7 +51,7 @@ def generate_launch_description():
                         executable='parameter_bridge',
                         name='sim',
                         remappings=[
-                            ('/input/pose', '/turtlesim1/turtle1/pose')
+                            # ('/input/pose', '/turtlesim1/turtle1/pose')
                         ],
                         parameters=[
                             {'config_file': concatenate_strings([project_package_dir, 'config', get_set_argument_val('config_file')])}
@@ -68,7 +68,7 @@ def generate_launch_description():
               'robot_description': robot_description}
     robot_state_publisher = create_node_description(
                 package='robot_state_publisher',
-                namespace='husky',
+                namespace='robot_0',
                 executable='robot_state_publisher',
                 name='robot_state_publisher',
                 output='screen',
@@ -77,12 +77,12 @@ def generate_launch_description():
     
     robot_joint_state_publisher = create_node_description(
                 package='joint_state_publisher',
-                namespace='husky',
+                namespace='robot_0',
                 executable='joint_state_publisher',
                 name='jont_state_publisher',
                 output='screen',
                 remappings=[
-                    ('/robot_description', '/husky/robot_description')
+                    ('/robot_description', '/robot_0/robot_description')
                 ],
                 parameters=[],
                 arguments=[])
@@ -92,12 +92,20 @@ def generate_launch_description():
                 namespace='ros_gz_sim',
                 executable='create',
                 parameters=[{
-                    'name': 'husky_0',
+                    'name': 'robot_0',
                     'x': 0.0,
                     'z': 0.5,
                     'Y': 0.0,
-                    'topic': '/husky/robot_description'}],
+                    'topic': '/robot_0/robot_description'}],
                  output='screen')
+
+    teleop_launch_path = os.path.join(project_package_dir, 'launch', 'teleop-robot-id.py')
+    teleop_launch = include_another_launch_file(
+        load_python_launch_file(teleop_launch_path),
+        launch_arguments={
+            'namespace': 'robot_0'
+        }.items()
+    )
 
 
     return LaunchDescription([
@@ -108,5 +116,6 @@ def generate_launch_description():
         ros_bridge_node,
         robot_state_publisher,
         robot_joint_state_publisher,
-        spawn
+        spawn,
+        teleop_launch
     ])
