@@ -299,7 +299,116 @@
         </imu>
       </sensor>
 
-      <sensor name="camera_0" type="camera">
+      <!-- MY CAMERAS -->
+      <!--<sensor name="camera_0" type="camera">
+        <camera>
+            <horizontal_fov>1.047</horizontal_fov>
+            <image>
+              <width>320</width>
+              <height>240</height>
+            </image>
+            <clip>
+              <near>0.1</near>
+              <far>100</far>
+            </clip>
+        </camera>
+        <always_on>1</always_on>
+        <update_rate>9</update_rate>
+        <visualize>1</visualize>
+        <pose frame="">0.34655 0.07561 0.08992 0 -0.26 -0.58</pose>
+      </sensor>
+
+      <sensor name="camera_1" type="camera">
+        <camera>
+            <horizontal_fov>1.047</horizontal_fov>
+            <image>
+              <width>320</width>
+              <height>240</height>
+            </image>
+            <clip>
+              <near>0.1</near>
+              <far>100</far>
+            </clip>
+        </camera>
+        <always_on>1</always_on>
+        <update_rate>9</update_rate>
+        <visualize>1</visualize>
+        <pose frame="">0.16082 0.10326 0.08992 0 -0.26 -1.88</pose>
+      </sensor>
+
+      <sensor name="camera_2" type="camera">
+        <camera>
+            <horizontal_fov>1.047</horizontal_fov>
+            <image>
+              <width>320</width>
+              <height>240</height>
+            </image>
+            <clip>
+              <near>0.1</near>
+              <far>100</far>
+            </clip>
+        </camera>
+        <always_on>1</always_on>
+        <update_rate>9</update_rate>
+        <pose frame="">0.08658 0.2358 0.08992 0 -0.26 -3.14</pose>
+        <visualize>1</visualize>
+      </sensor>
+
+      <sensor name="camera_3" type="camera">
+        <camera>
+            <horizontal_fov>1.047</horizontal_fov>
+            <image>
+              <width>320</width>
+              <height>240</height>
+            </image>
+            <clip>
+              <near>0.1</near>
+              <far>100</far>
+            </clip>
+        </camera>
+        <always_on>1</always_on>
+        <update_rate>9</update_rate>
+        <pose frame="">0.22978 0.31824 0.08992 0 -0.26 1.88</pose>
+        <visualize>1</visualize>
+      </sensor>
+
+      <sensor name="camera_4" type="camera">
+        <camera>
+            <horizontal_fov>1.047</horizontal_fov>
+            <image>
+              <width>320</width>
+              <height>240</height>
+            </image>
+            <clip>
+              <near>0.1</near>
+              <far>100</far>
+            </clip>
+        </camera>
+        <always_on>1</always_on>
+        <update_rate>9</update_rate>
+        <pose frame="">0.38916 0.26483 0.08992 0 -0.26 0.58</pose>
+        <visualize>1</visualize>
+      </sensor>
+
+      <sensor name="camera_5" type="camera">
+        <camera>
+            <horizontal_fov>1.047</horizontal_fov>
+            <image>
+              <width>320</width>
+              <height>240</height>
+            </image>
+            <clip>
+              <near>0.1</near>
+              <far>100</far>
+            </clip>
+        </camera>
+        <always_on>1</always_on>
+        <update_rate>9</update_rate>
+        <pose frame="">0.16561 0.19955 0.20529 0 -1.57 0.0</pose>
+        <visualize>1</visualize>
+      </sensor>-->
+
+      <!-- <sensor name="camera_0" type="camera">
         <camera name="camera_0">
           <horizontal_fov>1.50971</horizontal_fov>
           <image>
@@ -507,9 +616,9 @@
         <update_rate>9</update_rate>
         <pose frame="">0.16561 0.19955 0.20529 0 -1.57 0.0</pose>
         <visualize>1</visualize>
-      </sensor>
+      </sensor> -->
 
-      <sensor name="camera_realsense" type="rgbd_camera">
+      <!-- <sensor name="camera_realsense" type="rgbd_camera">
         <camera name="camera_realsense">
           <horizontal_fov>1.5184</horizontal_fov>
           <lens>
@@ -553,7 +662,7 @@
         <always_on>1</always_on>
         <update_rate>30</update_rate>
         <pose frame="">0.01923 0.18205 0.200 0.0 0.35 -3.14</pose>
-      </sensor>
+      </sensor> -->
 
       <!-- Robosense RS-LiDAR-16 or Leishen C16 Series -->
 
@@ -772,6 +881,13 @@
     <joint name='front_lidar_JOINT' type='fixed'>
       <parent>sensor_rack</parent>
       <child>sensor_rack/front_lidar</child>
+      <pose frame=''>0 0 0 0 -0 0</pose>
+    </joint>
+
+    <link name='sensor_rack/imu_sensor'/>
+    <joint name='imu_sensor_JOINT' type='fixed'>
+      <parent>sensor_rack</parent>
+      <child>sensor_rack/imu_sensor</child>
       <pose frame=''>0 0 0 0 -0 0</pose>
     </joint>
     
