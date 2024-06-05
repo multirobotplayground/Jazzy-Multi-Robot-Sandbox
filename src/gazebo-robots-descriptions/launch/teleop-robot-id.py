@@ -13,7 +13,7 @@ from launch.substitutions import LaunchConfiguration as get_set_argument_val
 from launch.actions import DeclareLaunchArgument as create_input_argument
 
 def generate_launch_description(): 
-    robot_namespace = create_input_argument('namespace', default_value='robot_0')
+    robot_namespace = create_input_argument('namespace', default_value='')
     get_set_argument_val('namespace')
 
     teleop_node = create_node_description(

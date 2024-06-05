@@ -1,3 +1,4 @@
+import sys
 import os
 
 from ament_index_python.packages import get_package_share_directory
@@ -23,7 +24,7 @@ def generate_launch_description():
     ####################################################################################
     # create all arguments for this launch file
     launch_args = create_input_argument('expand_gz_topic_names', default_value='True')
-    world_name_arg = create_input_argument('world', default_value='empty.sdf')
+    world_name_arg = create_input_argument('world', default_value='worlds/low-end/empty.sdf')
     bridge_config_arg = create_input_argument('config_file', default_value='gz_bridge.yaml')
 
     # setup all configurations in it so you can grab the values when launching the nodes
@@ -38,7 +39,7 @@ def generate_launch_description():
     gz_sim_launch = include_another_launch_file(
         load_python_launch_file(gazebo_launch_path),
         launch_arguments={
-            'gz_args': concatenate_strings(['worlds', get_set_argument_val('world')]),
+            'gz_args': get_set_argument_val('world'),
             'render_engine': 'ogre2'
             }.items()
     )
@@ -50,7 +51,7 @@ def generate_launch_description():
                         executable='parameter_bridge',
                         name='sim',
                         remappings=[
-                            # ('/input/pose', '/turtlesim1/turtle1/pose') THIS IS A EXAMPLE CALL
+                            # ('/input/pose', '/turtlesim1/turtle1/pose')
                         ],
                         parameters=[
                             {'config_file': concatenate_strings([project_package_dir, 'config', get_set_argument_val('config_file')])}
@@ -63,15 +64,15 @@ def generate_launch_description():
         robot_description = input_file.read()
 
     # create a parameter to hold the robot description from the file
-    params = {'use_sim_time': True, 
-              'robot_description': robot_description}
     robot_state_publisher = create_node_description(
                 package='robot_state_publisher',
                 namespace='robot_0',
                 executable='robot_state_publisher',
                 name='robot_state_publisher',
                 output='screen',
-                parameters=[params],
+                parameters=[{'use_sim_time': True, 
+                             'robot_description': robot_description,
+                             'frame_prefix': 'robot_0/'}],
                 arguments=[])
     
     robot_joint_state_publisher = create_node_description(
@@ -83,7 +84,7 @@ def generate_launch_description():
                 remappings=[
                     ('/robot_description', '/robot_0/robot_description')
                 ],
-                parameters=[],
+                parameters=[{'frame_prefix': 'robot_0/'}],
                 arguments=[])
 
     spawn = create_node_description(

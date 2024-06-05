@@ -2,14 +2,10 @@
 <sdf version="1.6">
   <model name="marble_husky_sensor_config_1">    
 
-    <link name="dummy">
-      <pose frame="">0 0 0 0 -0 0</pose>
-      <inertial></inertial>
-    </link>
+    <link name="dummy"/>
     <joint name='dummy_joint' type='fixed'>
       <parent>dummy</parent>
       <child>base_link</child>
-      <pose frame=''>0 0 0 0 -0 0</pose>
     </joint>
     <link name="base_link">
       <pose frame="">0 0 0 0 -0 0</pose>
@@ -303,7 +299,7 @@
         </imu>
       </sensor>
 
-      <!-- <sensor name="camera_0" type="camera">
+      <sensor name="camera_0" type="camera">
         <camera name="camera_0">
           <horizontal_fov>1.50971</horizontal_fov>
           <image>
@@ -511,7 +507,7 @@
         <update_rate>9</update_rate>
         <pose frame="">0.16561 0.19955 0.20529 0 -1.57 0.0</pose>
         <visualize>1</visualize>
-      </sensor> -->
+      </sensor>
 
       <sensor name="camera_realsense" type="rgbd_camera">
         <camera name="camera_realsense">
@@ -770,6 +766,13 @@
           </suspension>
         </ode>
       </physics>
+    </joint>
+
+    <link name='sensor_rack/front_lidar'/>
+    <joint name='front_lidar_JOINT' type='fixed'>
+      <parent>sensor_rack</parent>
+      <child>sensor_rack/front_lidar</child>
+      <pose frame=''>0 0 0 0 -0 0</pose>
     </joint>
     
     <link name="front_left_wheel_link">
