@@ -60,31 +60,9 @@ def generate_launch_description():
         }.items()
     )
 
-    spawn_husky_3 = include_another_launch_file(
-        load_python_launch_file(husky_launch_path),
-        launch_arguments={
-            'namespace': 'robot_3',
-            'x': '-0.6',
-            'y': '0.6',
-            'z': '0.2'
-        }.items()
-    )
-
-    spawn_husky_4 = include_another_launch_file(
-        load_python_launch_file(husky_launch_path),
-        launch_arguments={
-            'namespace': 'robot_4',
-            'x': '0.6',
-            'y': '0.6',
-            'z': '0.2'
-        }.items()
-    )
-
     return LaunchDescription([
         world_name_arg,
         gz_sim_launch,
         spawn_husky_1,
-        spawn_husky_2,
-        spawn_husky_3,
-        spawn_husky_4
+        spawn_husky_2
     ])

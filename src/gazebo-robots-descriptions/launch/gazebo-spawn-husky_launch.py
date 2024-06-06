@@ -33,6 +33,7 @@ def SingleSubstitution(string, token, substitution_obj):
             cmd_list.append(before)
             cmd_list.append(substitution_obj)
             cmd_list.append(after)
+
     return cmd_list
 
 
