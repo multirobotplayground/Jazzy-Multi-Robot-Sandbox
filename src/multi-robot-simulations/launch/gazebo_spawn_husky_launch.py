@@ -72,7 +72,7 @@ def generate_launch_description():
                         package='ros_gz_bridge',
                         namespace='ros_gz_bridge',
                         executable='parameter_bridge',
-                        name='sim',
+                        name=pyexp(SingleSubstitution('{@}_gz_bridge', '{@}', ns)),
                         parameters=[],
                         arguments=[pyexp(cmd_vel_bridge),
                                    pyexp(point_cloud_bridge),
@@ -90,8 +90,8 @@ def generate_launch_description():
     )
 
     # read robot description file
-    husky_sdf_file = os.path.join(os.getenv('GZ_SIM_RESOURCE_PATH'), 'robots', 'CTU_CRAS_NORLAB_HUSKY_SENSOR_CONFIG_1', 'model.sdf')
-    with open(husky_sdf_file, 'r') as input_file:
+    sdf_file = os.path.join(os.getenv('GZ_SIM_RESOURCE_PATH'), 'robots', 'CTU_CRAS_NORLAB_HUSKY_SENSOR_CONFIG_1', 'model.sdf')
+    with open(sdf_file, 'r') as input_file:
         robot_description = input_file.read()
 
     # create a parameter to hold the robot description from the file

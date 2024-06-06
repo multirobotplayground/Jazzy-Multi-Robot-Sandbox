@@ -698,7 +698,7 @@
         <pose frame="">0.507 0.19955 0.20879 0 0.17 0</pose>
       </sensor>
 
-      <light name="light_0" type="spot">
+      <!-- <light name="light_0" type="spot">
         <pose>0.40354 0.11441 0.09843 0 -1.83 -0.58</pose>
         <cast_shadows>1</cast_shadows >
         <visualize>false</visualize>
@@ -711,7 +711,7 @@
         <diffuse>0.5 0.5 0.4 1</diffuse>
         <specular>0.5 0.5 0.4 1</specular>
         <spot>
-          <inner_angle>1.4</inner_angle> <!-- Matching the lens FOV -->
+          <inner_angle>1.4</inner_angle> 
           <outer_angle>1.5</outer_angle>
           <falloff>1</falloff>
         </spot>
@@ -856,7 +856,7 @@
           <falloff>1</falloff>
         </spot>
         <direction>0 0 -1</direction>
-      </light>
+      </light> -->
 
     </link>
     <joint name='base_link_JOINT_0' type='fixed'>

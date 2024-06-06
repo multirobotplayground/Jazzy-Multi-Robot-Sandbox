@@ -44,8 +44,8 @@ def generate_launch_description():
         load_python_launch_file(husky_launch_path),
         launch_arguments={
             'namespace': 'robot_1',
-            'x': '-0.6',
-            'y': '-0.6',
+            'x': '0.0',
+            'y': '0.0',
             'z': '0.2'
         }.items()
     )
@@ -54,15 +54,51 @@ def generate_launch_description():
         load_python_launch_file(husky_launch_path),
         launch_arguments={
             'namespace': 'robot_2',
-            'x': '0.6',
-            'y': '-0.6',
+            'x': '0.0',
+            'y': '1.0',
             'z': '0.2'
         }.items()
     )
 
+    x2_launch_path = os.path.join(project_dir, 'launch', 'gazebo_spawn_x2_launch.py')
+    spawn_x2 = include_another_launch_file(
+        load_python_launch_file(x2_launch_path),
+        launch_arguments={
+            'namespace': 'robot_3',
+            'x': '0.0',
+            'y': '2.0',
+            'z': '0.2'
+        }.items()
+    )
+
+    spot_mini_launch_path = os.path.join(project_dir, 'launch', 'gazebo_spawn_spot_mini_launch.py')
+    spawn_spot_mini = include_another_launch_file(
+        load_python_launch_file(spot_mini_launch_path),
+        launch_arguments={
+            'namespace': 'robot_4',
+            'x': '0.0',
+            'y': '3.0',
+            'z': '1.0'
+        }.items()
+    )
+
+    x4_drone_launch_path = os.path.join(project_dir, 'launch', 'gazebo_spawn_drone_x4_launch.py')
+    pawn_x4_drone = include_another_launch_file(
+        load_python_launch_file(x4_drone_launch_path),
+        launch_arguments={
+            'namespace': 'robot_5',
+            'x': '0.0',
+            'y': '4.0',
+            'z': '1.0'
+        }.items()
+    )   
+
     return LaunchDescription([
         world_name_arg,
         gz_sim_launch,
-        spawn_husky_1,
-        spawn_husky_2
+        #spawn_husky_1,
+        #spawn_husky_2,
+        #spawn_x2,
+        #spawn_spot_mini,
+        pawn_x4_drone
     ])
