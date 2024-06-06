@@ -16,7 +16,7 @@ def generate_launch_description():
     ####################################################################################
     # get paths for gazebo simulator
     gazebo_package_dir = get_package_share_directory('ros_gz_sim')
-    project_dir = get_package_share_directory('gazebo-robots-descriptions')
+    project_dir = get_package_share_directory('multi-robot-simulations')
     ####################################################################################
 
 
