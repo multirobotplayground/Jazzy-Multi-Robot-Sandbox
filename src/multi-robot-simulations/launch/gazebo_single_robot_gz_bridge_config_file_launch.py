@@ -99,7 +99,7 @@ def generate_launch_description():
                     'topic': '/robot_0/robot_description'}],
                  output='screen')
 
-    teleop_launch_path = os.path.join(project_package_dir, 'launch', 'teleop_robot_id_launch.py')
+    teleop_launch_path = os.path.join(project_package_dir, 'launch', 'keyboard_teleop_robot_id_launch.py')
     teleop_launch = include_another_launch_file(
         load_python_launch_file(teleop_launch_path),
         launch_arguments={
