@@ -33,7 +33,7 @@ def SingleSubstitution(string, token, substitution_obj):
             cmd_list.append(before)
             cmd_list.append(substitution_obj)
             cmd_list.append(after)
-
+    print(cmd_list)
     return cmd_list
 
 
@@ -93,6 +93,7 @@ def generate_launch_description():
     sdf_file = os.path.join(os.getenv('GZ_SIM_RESOURCE_PATH'), 'robots', 'X4_GPS_RGBD', 'model.sdf')
     with open(sdf_file, 'r') as input_file:
         robot_description = input_file.read()
+    robot_description = robot_description.replace(' ', '').replace('\n', '').replace('\t', '').replace('\r', '')
 
     # create a parameter to hold the robot description from the file
     robot_state_publisher = create_node_description(
@@ -102,7 +103,7 @@ def generate_launch_description():
                 name='robot_state_publisher',
                 output='screen',
                 parameters=[{'use_sim_time': True, 
-                             'robot_description': robot_description,
+                             'robot_description': pyexp(SingleSubstitution(robot_description, 'REPLACE_THIS_NAMESPACE', ns)),
                              'frame_prefix': pyexp(SingleSubstitution('{@}/', "{@}", ns))}],
                 arguments=[])
     
