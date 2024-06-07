@@ -49,24 +49,24 @@ def generate_launch_description():
 
     # GZ TOPIC BRIDGE WITH SUBSTITUTION
     cmd_vel_bridge = SingleSubstitution("/model/{@}/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist", 
-                                        "{@}", 
+                                        "{@}",
                                         ns)
-    point_cloud_bridge = SingleSubstitution("/world/empty/model/{@}/link/sensor_rack/sensor/front_lidar/scan/points@"\
+    point_cloud_bridge = SingleSubstitution("/world/empty/model/{@}/link/base_link/sensor/front_laser/scan/points@"\
                                             "sensor_msgs/msg/PointCloud2[gz.msgs.PointCloudPacked", 
-                                            "{@}", 
+                                            "{@}",
                                             ns)
-    lidar_scan_bridge = SingleSubstitution("/world/empty/model/{@}/link/sensor_rack/sensor/front_lidar/scan@"\
+    lidar_scan_bridge = SingleSubstitution("/world/empty/model/{@}/link/base_link/sensor/front_laser/scan@"\
                                            "sensor_msgs/msg/LaserScan[gz.msgs.LaserScan",
-                                           "{@}", 
+                                           "{@}",
                                             ns)
-    imu_bridge = SingleSubstitution("/world/empty/model/{@}/link/sensor_rack/sensor/imu_sensor/imu@"\
+    imu_bridge = SingleSubstitution("/world/empty/model/{@}/link/base_link/sensor/imu_sensor/imu@"\
                                     "sensor_msgs/msg/Imu[gz.msgs.IMU",
-                                    "{@}", 
+                                    "{@}",
                                     ns)
     odometry_bridge = SingleSubstitution("/model/{@}/odometry@nav_msgs/msg/Odometry[gz.msgs.Odometry",
-                                         "{@}", 
+                                         "{@}",
                                          ns)
-    
+
     # Setup gz_bridge node
     ros_bridge_node = create_node_description(
                         package='ros_gz_bridge',
@@ -82,9 +82,9 @@ def generate_launch_description():
                                 ],
                         remappings=[
                             (pyexp(SingleSubstitution('/model/{@}/cmd_vel', '{@}', ns)), pyexp(SingleSubstitution('/{@}/cmd_vel', '{@}', ns))),
-                            (pyexp(SingleSubstitution('/world/empty/model/{@}/link/sensor_rack/sensor/front_lidar/scan/points', '{@}', ns)), pyexp(SingleSubstitution('/{@}/lidar/points', "{@}", ns))),
-                            (pyexp(SingleSubstitution('/world/empty/model/{@}/link/sensor_rack/sensor/front_lidar/scan', "{@}", ns)), pyexp(SingleSubstitution('/{@}/lidar/scan', "{@}", ns))),
-                            (pyexp(SingleSubstitution('/world/empty/model/{@}/link/sensor_rack/sensor/imu_sensor/imu', "{@}", ns)), pyexp(SingleSubstitution('/{@}/imu', "{@}", ns))),
+                            (pyexp(SingleSubstitution('/world/empty/model/{@}/link/base_link/sensor/front_laser/scan/points', '{@}', ns)), pyexp(SingleSubstitution('/{@}/lidar/points', "{@}", ns))),
+                            (pyexp(SingleSubstitution('/world/empty/model/{@}/link/base_link/sensor/front_laser/scan', "{@}", ns)), pyexp(SingleSubstitution('/{@}/lidar/scan', "{@}", ns))),
+                            (pyexp(SingleSubstitution('/world/empty/model/{@}/link/base_link/sensor/imu_sensor/imu', "{@}", ns)), pyexp(SingleSubstitution('/{@}/imu', "{@}", ns))),
                             (pyexp(SingleSubstitution('/model/{@}/odometry', "{@}", ns)), pyexp(SingleSubstitution('/{@}/odometry', "{@}", ns)))
                         ],
     )
@@ -136,7 +136,7 @@ def generate_launch_description():
         z,
         robot_namespace,
         robot_state_publisher,
-        #robot_joint_state_publisher,
-        # ros_bridge_node,
+        robot_joint_state_publisher,
+        ros_bridge_node,
         spawn
     ])

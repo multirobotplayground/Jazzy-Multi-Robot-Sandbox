@@ -433,7 +433,7 @@
                 </geometry>
             </visual>
             <sensor name="camera_front" type="rgbd_camera">
-                <pose>0.2 0 0 0 +.785 0 
+                <pose>0.2 0 0 0 0 0 
                 </pose>
                 <always_on>1
                 </always_on>
@@ -1073,7 +1073,7 @@
         
         <!-- now some plugins -->
         <plugin filename="ignition-gazebo-multicopter-motor-model-system" name="ignition::gazebo::systems::MulticopterMotorModel">
-            <robotNamespace>REPLACE_THIS_NAMESPACE</robotNamespace>
+            <robotNamespace>model/REPLACE_THIS_NAMESPACE</robotNamespace>
             <jointName>rotor_0_joint</jointName>
             <linkName>rotor_0</linkName>
             <turningDirection>ccw</turningDirection>
@@ -1093,7 +1093,7 @@
         </plugin>
 
         <plugin filename="ignition-gazebo-multicopter-motor-model-system"  name="ignition::gazebo::systems::MulticopterMotorModel">
-            <robotNamespace>REPLACE_THIS_NAMESPACE</robotNamespace>
+            <robotNamespace>model/REPLACE_THIS_NAMESPACE</robotNamespace>
             <jointName>rotor_1_joint</jointName>
             <linkName>rotor_1</linkName>
             <turningDirection>cw</turningDirection>
@@ -1113,7 +1113,7 @@
         </plugin>
 
         <plugin filename="ignition-gazebo-multicopter-motor-model-system" name="ignition::gazebo::systems::MulticopterMotorModel">
-            <robotNamespace>REPLACE_THIS_NAMESPACE</robotNamespace>
+            <robotNamespace>model/REPLACE_THIS_NAMESPACE</robotNamespace>
             <jointName>rotor_2_joint</jointName>
             <linkName>rotor_2</linkName>
             <turningDirection>ccw</turningDirection>
@@ -1133,7 +1133,7 @@
         </plugin>
 
         <plugin filename="ignition-gazebo-multicopter-motor-model-system" name="ignition::gazebo::systems::MulticopterMotorModel">
-            <robotNamespace>REPLACE_THIS_NAMESPACE</robotNamespace>
+            <robotNamespace>model/REPLACE_THIS_NAMESPACE</robotNamespace>
             <jointName>rotor_3_joint</jointName>
             <linkName>rotor_3</linkName>
             <turningDirection>cw</turningDirection>
@@ -1153,7 +1153,7 @@
         </plugin>
 
         <plugin filename="ignition-gazebo-multicopter-motor-model-system" name="ignition::gazebo::systems::MulticopterMotorModel">
-            <robotNamespace>REPLACE_THIS_NAMESPACE</robotNamespace>
+            <robotNamespace>model/REPLACE_THIS_NAMESPACE</robotNamespace>
             <jointName>rotor_4_joint</jointName>
             <linkName>rotor_4</linkName>
             <turningDirection>ccw</turningDirection>
@@ -1173,7 +1173,7 @@
         </plugin>
 
         <plugin filename="ignition-gazebo-multicopter-motor-model-system" name="ignition::gazebo::systems::MulticopterMotorModel">
-            <robotNamespace>REPLACE_THIS_NAMESPACE</robotNamespace>
+            <robotNamespace>model/REPLACE_THIS_NAMESPACE</robotNamespace>
             <jointName>rotor_5_joint</jointName>
             <linkName>rotor_5</linkName>
             <turningDirection>cw</turningDirection>
@@ -1193,7 +1193,7 @@
         </plugin>
 
         <plugin filename="ignition-gazebo-multicopter-control-system"   name="ignition::gazebo::systems::MulticopterVelocityControl">
-            <robotNamespace>REPLACE_THIS_NAMESPACE</robotNamespace>
+            <robotNamespace>model/REPLACE_THIS_NAMESPACE</robotNamespace>
             <commandSubTopic>cmd_vel</commandSubTopic>
             <enableSubTopic>enable</enableSubTopic>
             <comLinkName>base_link</comLinkName>
@@ -1253,11 +1253,11 @@
             </rotorConfiguration>
         </plugin>
 
-        <!-- <plugin  filename="ignition-gazebo-odometry-publisher-system"  name="ignition::gazebo::systems::OdometryPublisher">
+        <plugin  filename="ignition-gazebo-odometry-publisher-system"  name="ignition::gazebo::systems::OdometryPublisher">
             <dimensions>3</dimensions>
-            <odom_frame>X4/odom</odom_frame>
-            <robot_base_frame>X4/base_footprint</robot_base_frame>
-        </plugin> -->
+            <odom_frame>odom</odom_frame>
+            <robot_base_frame>base_footprint</robot_base_frame>
+        </plugin>
 
         <plugin filename="ignition-gazebo-navsat-system"  name="ignition::gazebo::systems::NavSat"></plugin>
         

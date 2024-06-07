@@ -876,12 +876,12 @@
         </ode>
       </physics>
     </joint>
-
+    
     <link name='sensor_rack/front_lidar'/>
     <joint name='front_lidar_JOINT' type='fixed'>
       <parent>sensor_rack</parent>
       <child>sensor_rack/front_lidar</child>
-      <pose frame=''>0 0 0 0 -0 0</pose>
+      <pose frame="">0.507 0.0 0.6029 0 0.17 0</pose>
     </joint>
 
     <link name='sensor_rack/imu_sensor'/>

@@ -51,15 +51,23 @@ def generate_launch_description():
     cmd_vel_bridge = SingleSubstitution("/model/{@}/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist", 
                                         "{@}", 
                                         ns)
-    point_cloud_bridge = SingleSubstitution("/world/empty/model/{@}/link/sensor_rack/sensor/front_lidar/scan/points@"\
+    point_cloud_bridge = SingleSubstitution("/world/empty/model/{@}/link/base_link/sensor/camera_front/points@"\
                                             "sensor_msgs/msg/PointCloud2[gz.msgs.PointCloudPacked", 
                                             "{@}", 
                                             ns)
-    lidar_scan_bridge = SingleSubstitution("/world/empty/model/{@}/link/sensor_rack/sensor/front_lidar/scan@"\
-                                           "sensor_msgs/msg/LaserScan[gz.msgs.LaserScan",
-                                           "{@}", 
+    camera_depth_image_bridge = SingleSubstitution("/world/empty/model/{@}/link/base_link/sensor/camera_front/depth_image@"\
+                                             "sensor_msgs/msg/Image[gz.msgs.Image",
+                                             "{@}",
+                                             ns)
+    camera_image_bridge = SingleSubstitution("/world/empty/model/{@}/link/base_link/sensor/camera_front/image@"\
+                                             "sensor_msgs/msg/Image[gz.msgs.Image",
+                                             "{@}",
+                                             ns)
+    camera_info_bridge = SingleSubstitution("/world/empty/model/{@}/link/base_link/sensor/camera_front/camera_info@"
+                                            "sensor_msgs/msg/CameraInfo[gz.msgs.CameraInfo",
+                                            "{@}",
                                             ns)
-    imu_bridge = SingleSubstitution("/world/empty/model/{@}/link/sensor_rack/sensor/imu_sensor/imu@"\
+    imu_bridge = SingleSubstitution("/world/empty/model/{@}/link/base_link/sensor/imu_sensor/imu@"\
                                     "sensor_msgs/msg/Imu[gz.msgs.IMU",
                                     "{@}", 
                                     ns)
@@ -76,15 +84,19 @@ def generate_launch_description():
                         parameters=[],
                         arguments=[pyexp(cmd_vel_bridge),
                                    pyexp(point_cloud_bridge),
-                                   pyexp(lidar_scan_bridge),
+                                   pyexp(camera_depth_image_bridge),
+                                   pyexp(camera_image_bridge),
+                                   pyexp(camera_info_bridge),
                                    pyexp(imu_bridge),
                                    pyexp(odometry_bridge)
                                 ],
                         remappings=[
                             (pyexp(SingleSubstitution('/model/{@}/cmd_vel', '{@}', ns)), pyexp(SingleSubstitution('/{@}/cmd_vel', '{@}', ns))),
-                            (pyexp(SingleSubstitution('/world/empty/model/{@}/link/sensor_rack/sensor/front_lidar/scan/points', '{@}', ns)), pyexp(SingleSubstitution('/{@}/lidar/points', "{@}", ns))),
-                            (pyexp(SingleSubstitution('/world/empty/model/{@}/link/sensor_rack/sensor/front_lidar/scan', "{@}", ns)), pyexp(SingleSubstitution('/{@}/lidar/scan', "{@}", ns))),
-                            (pyexp(SingleSubstitution('/world/empty/model/{@}/link/sensor_rack/sensor/imu_sensor/imu', "{@}", ns)), pyexp(SingleSubstitution('/{@}/imu', "{@}", ns))),
+                            (pyexp(SingleSubstitution('/world/empty/model/{@}/link/base_link/sensor/camera_front/depth_image', '{@}', ns)), pyexp(SingleSubstitution('/{@}/camera/depth_image', "{@}", ns))),
+                            (pyexp(SingleSubstitution('/world/empty/model/{@}/link/base_link/sensor/camera_front/image', '{@}', ns)), pyexp(SingleSubstitution('/{@}/camera/image', "{@}", ns))),
+                            (pyexp(SingleSubstitution('/world/empty/model/{@}/link/base_link/sensor/camera_front/camera_info', '{@}', ns)), pyexp(SingleSubstitution('/{@}/camera/camera_info', "{@}", ns))),
+                            (pyexp(SingleSubstitution('/world/empty/model/{@}/link/base_link/sensor/camera_front/points', '{@}', ns)), pyexp(SingleSubstitution('/{@}/camera/points', "{@}", ns))),
+                            (pyexp(SingleSubstitution('/world/empty/model/{@}/link/base_link/sensor/imu_sensor/imu', "{@}", ns)), pyexp(SingleSubstitution('/{@}/imu', "{@}", ns))),
                             (pyexp(SingleSubstitution('/model/{@}/odometry', "{@}", ns)), pyexp(SingleSubstitution('/{@}/odometry', "{@}", ns)))
                         ],
     )
@@ -137,7 +149,7 @@ def generate_launch_description():
         z,
         robot_namespace,
         robot_state_publisher,
-        #robot_joint_state_publisher,
-        # ros_bridge_node,
+        robot_joint_state_publisher,
+        ros_bridge_node,
         spawn
     ])
