@@ -2,11 +2,6 @@
 <sdf version="1.6">
   <model name="marble_husky_sensor_config_1">    
 
-    <link name="dummy"/>
-    <joint name='dummy_joint' type='fixed'>
-      <parent>dummy</parent>
-      <child>base_link</child>
-    </joint>
     <link name="base_link">
       <pose frame="">0 0 0 0 -0 0</pose>
       <inertial>
