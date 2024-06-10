@@ -102,46 +102,6 @@ def generate_launch_description():
         }.items()
     )   
 
-    pawn_x4_drone_3 = include_another_launch_file(
-        load_python_launch_file(x4_drone_launch_path),
-        launch_arguments={
-            'namespace': 'robot_7',
-            'x': '0.0',
-            'y': '3.0',
-            'z': '0.15'
-        }.items()
-    )   
-
-    pawn_x4_drone_4 = include_another_launch_file(
-        load_python_launch_file(x4_drone_launch_path),
-        launch_arguments={
-            'namespace': 'robot_8',
-            'x': '-1.0',
-            'y': '3.0',
-            'z': '0.15'
-        }.items()
-    )   
-
-    pawn_x4_drone_5 = include_another_launch_file(
-        load_python_launch_file(x4_drone_launch_path),
-        launch_arguments={
-            'namespace': 'robot_9',
-            'x': '0.0',
-            'y': '4.0',
-            'z': '0.15'
-        }.items()
-    )   
-
-    pawn_x4_drone_6 = include_another_launch_file(
-        load_python_launch_file(x4_drone_launch_path),
-        launch_arguments={
-            'namespace': 'robot_10',
-            'x': '-1.0',
-            'y': '4.0',
-            'z': '0.15'
-        }.items()
-    )   
-
     return LaunchDescription([
         world_name_arg,
         gz_sim_launch,
@@ -150,9 +110,5 @@ def generate_launch_description():
         spawn_x2_1,
         spawn_x2_2,
         pawn_x4_drone_1,
-        pawn_x4_drone_2,
-        pawn_x4_drone_3,
-        pawn_x4_drone_4,
-        pawn_x4_drone_5,
-        pawn_x4_drone_6
+        pawn_x4_drone_2
     ])
