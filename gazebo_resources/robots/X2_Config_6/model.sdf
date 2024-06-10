@@ -566,7 +566,7 @@
         <plugin filename="ignition-gazebo-navsat-system"  name="ignition::gazebo::systems::NavSat"></plugin>
         
         <plugin name="ignition::gazebo::systems::PosePublisher" filename="ignition-gazebo-pose-publisher-system">
-            <publish_link_pose>true</publish_link_pose>
+            <publish_link_pose>false</publish_link_pose>
             <publish_collision_pose>false</publish_collision_pose>
             <publish_visual_pose>false</publish_visual_pose>
             <publish_nested_model_pose>true</publish_nested_model_pose>

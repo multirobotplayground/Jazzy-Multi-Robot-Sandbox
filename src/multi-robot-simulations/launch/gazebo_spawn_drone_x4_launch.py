@@ -74,7 +74,10 @@ def generate_launch_description():
     odometry_bridge = SingleSubstitution("/model/{@}/odometry@nav_msgs/msg/Odometry[gz.msgs.Odometry",
                                          "{@}", 
                                          ns)
-    
+    global_localization_bridge = SingleSubstitution("/model/{@}/pose@geometry_msgs/msg/Pose[gz.msgs.Pose",
+                                                    "{@}",
+                                                    ns)
+        
     # Setup gz_bridge node
     ros_bridge_node = create_node_description(
                         package='ros_gz_bridge',
@@ -88,7 +91,8 @@ def generate_launch_description():
                                    pyexp(camera_image_bridge),
                                    pyexp(camera_info_bridge),
                                    pyexp(imu_bridge),
-                                   pyexp(odometry_bridge)
+                                   pyexp(odometry_bridge),
+                                   pyexp(global_localization_bridge)
                                 ],
                         remappings=[
                             (pyexp(SingleSubstitution('/model/{@}/cmd_vel', '{@}', ns)), pyexp(SingleSubstitution('/{@}/cmd_vel', '{@}', ns))),
@@ -97,7 +101,8 @@ def generate_launch_description():
                             (pyexp(SingleSubstitution('/world/empty/model/{@}/link/base_link/sensor/camera_front/camera_info', '{@}', ns)), pyexp(SingleSubstitution('/{@}/camera/camera_info', "{@}", ns))),
                             (pyexp(SingleSubstitution('/world/empty/model/{@}/link/base_link/sensor/camera_front/points', '{@}', ns)), pyexp(SingleSubstitution('/{@}/camera/points', "{@}", ns))),
                             (pyexp(SingleSubstitution('/world/empty/model/{@}/link/base_link/sensor/imu_sensor/imu', "{@}", ns)), pyexp(SingleSubstitution('/{@}/imu', "{@}", ns))),
-                            (pyexp(SingleSubstitution('/model/{@}/odometry', "{@}", ns)), pyexp(SingleSubstitution('/{@}/odometry', "{@}", ns)))
+                            (pyexp(SingleSubstitution('/model/{@}/odometry', "{@}", ns)), pyexp(SingleSubstitution('/{@}/odometry', "{@}", ns))),
+                            (pyexp(SingleSubstitution('/model/{@}/pose', "{@}", ns)), pyexp(SingleSubstitution('/{@}/pose', "{@}", ns)))
                         ],
     )
 
