@@ -37,7 +37,7 @@ PoseTFPublisher::PoseTFPublisher() : Node("pose_tf_publisher") {
     RCLCPP_INFO(get_logger(), "update hz and period in ms: %d %d", aFrequency, ms);
     
     apTimer = create_wall_timer(std::chrono::milliseconds(ms), std::bind(&PoseTFPublisher::Update, this));
-    aTFBroadcaster = std::make_unique<tf2_ros::TransformBroadcaster>(*this);
+    aTFBroadcaster = std::make_shared<tf2_ros::StaticTransformBroadcaster>(*this);
     aHasPose = false;
 }
 

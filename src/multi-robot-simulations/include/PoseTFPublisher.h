@@ -1,7 +1,7 @@
 #include "rclcpp/rclcpp.hpp"
 #include "std_msgs/msg/string.hpp"
 #include "geometry_msgs/msg/pose.hpp"
-#include "tf2_ros/transform_broadcaster.h"
+#include "tf2_ros/static_transform_broadcaster.h"
 
 class PoseTFPublisher : public rclcpp::Node {
     public:
@@ -21,5 +21,5 @@ class PoseTFPublisher : public rclcpp::Node {
         std::string aAbsoluteTopicPath;
         rclcpp::TimerBase::SharedPtr apTimer;
         rclcpp::Subscription<geometry_msgs::msg::Pose>::SharedPtr apPoseSubscriber;
-        std::unique_ptr<tf2_ros::TransformBroadcaster> aTFBroadcaster;
+        std::shared_ptr<tf2_ros::StaticTransformBroadcaster> aTFBroadcaster;
 };

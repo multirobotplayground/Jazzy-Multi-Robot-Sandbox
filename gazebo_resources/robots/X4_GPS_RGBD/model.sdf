@@ -807,21 +807,9 @@
             </inertial>
         </link>
 
-        <joint name="camera_front_JOINT" type="revolute">
+        <joint name="camera_front_JOINT" type="fixed">
             <child>base_link/camera_front</child>
             <parent>base_link</parent>
-            <axis>
-                <xyz>0 0 1</xyz>
-                <limit>
-                    <lower>-1e+16</lower>
-                    <upper>1e+16</upper>
-                </limit>
-                <dynamics>
-                    <spring_reference>0</spring_reference>
-                    <spring_stiffness>0</spring_stiffness>
-                </dynamics>
-                <use_parent_model_frame>1</use_parent_model_frame>
-            </axis>
         </joint>
         
         <!-- now some plugins -->
