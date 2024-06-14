@@ -46,10 +46,7 @@ PoseTFPublisher::~PoseTFPublisher() {
 }
 
 void PoseTFPublisher::Update() {
-    if(!aHasPose) {
-        RCLCPP_INFO(get_logger(), "Waiting for pose in topic %s.", aAbsoluteTopicPath.c_str());
-        return;
-    }
+    if(!aHasPose) return;
 
     geometry_msgs::msg::TransformStamped transform;
 
