@@ -26,7 +26,7 @@
                 <pose>0 0 -0.0655 1.5708 0 -1.5708</pose>
                 <geometry>
                     <mesh>
-                        <uri>robots/X2_Config_6/meshes/x2_chassis.dae</uri>
+                        <uri>file://REPLACE_RESOURCE_PATH/robots/X2_Config_6/meshes/x2_chassis.dae</uri>
                     </mesh>
                 </geometry>
             </visual>
@@ -43,7 +43,7 @@
                 <pose>0.22 0.05 0.0845 0 -0 -3.14159</pose>
                 <geometry>
                     <mesh>
-                        <uri>robots/X2_Config_6/meshes/headlight.dae</uri>
+                        <uri>file://REPLACE_RESOURCE_PATH/robots/X2_Config_6/meshes/headlight.dae</uri>
                     </mesh>
                 </geometry>
             </visual>
@@ -51,7 +51,7 @@
                 <pose>0.22 0.145 0.0845 0 -0 -3.14159</pose>
                 <geometry>
                     <mesh>
-                        <uri>robots/X2_Config_6/meshes/headlight.dae</uri>
+                        <uri>file://REPLACE_RESOURCE_PATH/robots/X2_Config_6/meshes/headlight.dae</uri>
                     </mesh>
                 </geometry>
             </visual>
@@ -59,7 +59,7 @@
                 <pose>0.22 -0.05 0.0845 0 -0 -3.14159</pose>
                 <geometry>
                     <mesh>
-                        <uri>robots/X2_Config_6/meshes/headlight.dae</uri>
+                        <uri>file://REPLACE_RESOURCE_PATH/robots/X2_Config_6/meshes/headlight.dae</uri>
                     </mesh>
                 </geometry>
             </visual>
@@ -67,7 +67,7 @@
                 <pose>0.22 -0.145 0.0845 0 -0 -3.14159</pose>
                 <geometry>
                     <mesh>
-                        <uri>robots/X2_Config_6/meshes/headlight.dae</uri>
+                        <uri>file://REPLACE_RESOURCE_PATH/robots/X2_Config_6/meshes/headlight.dae</uri>
                     </mesh>
                 </geometry>
             </visual>
@@ -275,7 +275,7 @@
                 </camera>
             </sensor> -->
             <visual name="laser_visual">
-                <pose>0.0 0 0.23 0 -0 0</pose>
+                <pose>0 0 0.23 0 -0 0</pose>
                 <geometry>
                     <cylinder>
                         <radius>0.03</radius>
@@ -284,7 +284,7 @@
                 </geometry>
             </visual>
             <sensor name="front_laser" type="gpu_ray">
-                <pose>0.0 0 0.27 0 -0 0</pose>
+                <pose>0 0 0.27 0 -0 0</pose>
                 <update_rate>15</update_rate>
                 <lidar>
                     <scan>
@@ -354,7 +354,7 @@
                 <pose>0 0 0 1.5708 -0 0</pose>
                 <geometry>
                     <mesh>
-                        <uri>robots/X2_Config_6/meshes/x2_wheel_left.dae</uri>
+                        <uri>file://REPLACE_RESOURCE_PATH/robots/X2_Config_6/meshes/x2_wheel_left.dae</uri>
                     </mesh>
                 </geometry>
             </visual>
@@ -397,7 +397,7 @@
                 <pose>0 0 0 1.5708 -0 0</pose>
                 <geometry>
                     <mesh>
-                        <uri>robots/X2_Config_6/meshes/x2_wheel_right.dae</uri>
+                        <uri>file://REPLACE_RESOURCE_PATH/robots/X2_Config_6/meshes/x2_wheel_right.dae</uri>
                     </mesh>
                 </geometry>
             </visual>
@@ -440,7 +440,7 @@
                 <pose>0 0 0 1.5708 -0 0</pose>
                 <geometry>
                     <mesh>
-                        <uri>robots/X2_Config_6/meshes/x2_wheel_left.dae</uri>
+                        <uri>file://REPLACE_RESOURCE_PATH/robots/X2_Config_6/meshes/x2_wheel_left.dae</uri>
                     </mesh>
                 </geometry>
             </visual>
@@ -483,7 +483,7 @@
                 <pose>0 0 0 1.5708 -0 0</pose>
                 <geometry>
                     <mesh>
-                        <uri>robots/X2_Config_6/meshes/x2_wheel_right.dae</uri>
+                        <uri>file://REPLACE_RESOURCE_PATH/robots/X2_Config_6/meshes/x2_wheel_right.dae</uri>
                     </mesh>
                 </geometry>
             </visual>
@@ -539,7 +539,7 @@
         </joint>
 
         <link name="base_link/front_laser">
-            <pose>0.0 0 0.327 0 0 0</pose>
+            <pose>0 0 0.27 0 0 0</pose>
         </link>
         <joint name="base_link_front_laser_JOINT" type="fixed">
             <parent>base_link</parent>

@@ -105,10 +105,10 @@ def generate_launch_description():
     return LaunchDescription([
         world_name_arg,
         gz_sim_launch,
-        #spawn_husky_1,
-        #spawn_husky_2,
-        #spawn_x2_1,
-        #spawn_x2_2,
-        #spawn_x4_drone_1,
+        spawn_husky_1,
+        spawn_husky_2,
+        spawn_x2_1,
+        spawn_x2_2,
+        spawn_x4_drone_1,
         spawn_x4_drone_2
     ])

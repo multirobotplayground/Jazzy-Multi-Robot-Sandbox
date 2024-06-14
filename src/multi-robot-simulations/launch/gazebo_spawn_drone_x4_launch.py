@@ -110,7 +110,12 @@ def generate_launch_description():
     sdf_file = os.path.join(os.getenv('GZ_SIM_RESOURCE_PATH'), 'robots', 'X4_GPS_RGBD', 'model.sdf')
     with open(sdf_file, 'r') as input_file:
         robot_description = input_file.read()
+
+    # clear description from unwanted characters
     robot_description = robot_description.replace('\n', '').replace('\t', '').replace('\r', '').replace('\'','')
+
+    # replace the resource path since I've installed the models manually
+    robot_description = robot_description.replace('REPLACE_RESOURCE_PATH', os.getenv('GZ_SIM_RESOURCE_PATH'))
 
     # create a parameter to hold the robot description from the file
     robot_state_publisher = create_node_description(
@@ -120,6 +125,7 @@ def generate_launch_description():
                 name='robot_state_publisher',
                 output='screen',
                 parameters=[{'use_sim_time': True, 
+                             # replace namespace dynamically
                              'robot_description': pyexp(SingleSubstitution(robot_description, 'REPLACE_THIS_NAMESPACE', ns)),
                              'frame_prefix': pyexp(SingleSubstitution('{@}/', "{@}", ns))}],
                 arguments=[])

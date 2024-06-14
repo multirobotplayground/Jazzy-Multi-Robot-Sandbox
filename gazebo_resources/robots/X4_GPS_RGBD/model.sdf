@@ -28,7 +28,7 @@
                 <geometry>
                     <mesh>
                         <scale>1 1 1</scale>
-                        <uri>robots/X4_GPS_RGBD/meshes/x4.dae</uri>
+                        <uri>file://REPLACE_RESOURCE_PATH/robots/X4_GPS_RGBD/meshes/x4.dae</uri>
                     </mesh>
                 </geometry>
             </visual>
@@ -37,7 +37,7 @@
                 <geometry>
                     <mesh>
                         <scale>1 1 1</scale>
-                        <uri>robots/X4_GPS_RGBD/meshes/led.dae</uri>
+                        <uri>file://REPLACE_RESOURCE_PATH/robots/X4_GPS_RGBD/meshes/led.dae</uri>
                     </mesh>
                 </geometry>
             </visual>
@@ -46,7 +46,7 @@
                 <geometry>
                     <mesh>
                         <scale>1 1 1</scale>
-                        <uri>robots/X4_GPS_RGBD/meshes/led.dae</uri>
+                        <uri>file://REPLACE_RESOURCE_PATH/robots/X4_GPS_RGBD/meshes/led.dae</uri>
                     </mesh>
                 </geometry>
             </visual>
@@ -55,7 +55,7 @@
                 <geometry>
                     <mesh>
                         <scale>1 1 1</scale>
-                        <uri>robots/X4_GPS_RGBD/meshes/led.dae</uri>
+                        <uri>file://REPLACE_RESOURCE_PATH/robots/X4_GPS_RGBD/meshes/led.dae</uri>
                     </mesh>
                 </geometry>
             </visual>
@@ -64,7 +64,7 @@
                 <geometry>
                     <mesh>
                         <scale>0.01 0.01 0.01</scale>
-                        <uri>robots/X4_GPS_RGBD/meshes/spotlight.dae</uri>
+                        <uri>file://REPLACE_RESOURCE_PATH/robots/X4_GPS_RGBD/meshes/spotlight.dae</uri>
                     </mesh>
                 </geometry>
             </visual>
@@ -73,7 +73,7 @@
                 <geometry>
                     <mesh>
                         <scale>0.01 0.01 0.01</scale>
-                        <uri>robots/X4_GPS_RGBD/meshes/spotlight.dae</uri>
+                        <uri>file://REPLACE_RESOURCE_PATH/robots/X4_GPS_RGBD/meshes/spotlight.dae</uri>
                     </mesh>
                 </geometry>
             </visual>
@@ -82,7 +82,7 @@
                 <geometry>
                     <mesh>
                         <scale>0.01 0.01 0.01</scale>
-                        <uri>robots/X4_GPS_RGBD/meshes/spotlight.dae</uri>
+                        <uri>file://REPLACE_RESOURCE_PATH/robots/X4_GPS_RGBD/meshes/spotlight.dae</uri>
                     </mesh>
                 </geometry>
             </visual>
@@ -420,7 +420,7 @@
                 <geometry>
                     <mesh>
                         <scale>1 1 1</scale>
-                        <uri>robots/X4_GPS_RGBD/meshes/neo11_propeller_ccw.dae</uri>
+                        <uri>file://REPLACE_RESOURCE_PATH/robots/X4_GPS_RGBD/meshes/neo11_propeller_ccw.dae</uri>
                     </mesh>
                 </geometry>
                 <material>
@@ -487,7 +487,7 @@
                 <geometry>
                     <mesh>
                         <scale>1 1 1</scale>
-                        <uri>robots/X4_GPS_RGBD/meshes/neo11_propeller_cw.dae</uri>
+                        <uri>file://REPLACE_RESOURCE_PATH/robots/X4_GPS_RGBD/meshes/neo11_propeller_cw.dae</uri>
                     </mesh>
                 </geometry>
                 <material>
@@ -554,7 +554,7 @@
                 <geometry>
                     <mesh>
                         <scale>1 1 1</scale>
-                        <uri>robots/X4_GPS_RGBD/meshes/neo11_propeller_ccw.dae</uri>
+                        <uri>file://REPLACE_RESOURCE_PATH/robots/X4_GPS_RGBD/meshes/neo11_propeller_ccw.dae</uri>
                     </mesh>
                 </geometry>
                 <material>
@@ -622,7 +622,7 @@
                 <geometry>
                     <mesh>
                         <scale>1 1 1</scale>
-                        <uri>robots/X4_GPS_RGBD/meshes/neo11_propeller_cw.dae</uri>
+                        <uri>file://REPLACE_RESOURCE_PATH/robots/X4_GPS_RGBD/meshes/neo11_propeller_cw.dae</uri>
                     </mesh>
                 </geometry>
                 <material>
@@ -690,7 +690,7 @@
                 <geometry>
                     <mesh>
                         <scale>1 1 1</scale>
-                        <uri>robots/X4_GPS_RGBD/meshes/neo11_propeller_ccw.dae</uri>
+                        <uri>file://REPLACE_RESOURCE_PATH/robots/X4_GPS_RGBD/meshes/neo11_propeller_ccw.dae</uri>
                     </mesh>
                 </geometry>
                 <material>
@@ -759,7 +759,7 @@
                 <geometry>
                     <mesh>
                         <scale>1 1 1</scale>
-                        <uri>robots/X4_GPS_RGBD/meshes/neo11_propeller_cw.dae</uri>
+                        <uri>file://REPLACE_RESOURCE_PATH/robots/X4_GPS_RGBD/meshes/neo11_propeller_cw.dae</uri>
                     </mesh>
                 </geometry>
                 <material>
@@ -792,7 +792,7 @@
         </joint>
 
         <link name="base_link/camera_front">
-            <pose frame="">0.2 0 0.05 0 0 0</pose>
+            <pose frame="">0.2 0 -0.05 0 0 0</pose>
             <inertial>
                 <pose frame="">0 0 0 0 0 0</pose>
                 <mass>0.005</mass>

@@ -99,6 +99,9 @@ def generate_launch_description():
     with open(sdf_file, 'r') as input_file:
         robot_description = input_file.read()
 
+    # replace the resource path since I've installed the models manually
+    robot_description = robot_description.replace('REPLACE_RESOURCE_PATH', os.getenv('GZ_SIM_RESOURCE_PATH'))
+
     # create a parameter to hold the robot description from the file
     robot_state_publisher = create_node_description(
                 package='robot_state_publisher',
@@ -135,6 +138,14 @@ def generate_launch_description():
                     'topic': pyexp(SingleSubstitution('/{@}/robot_description', "{@}", ns))}],
                  output='screen')
 
+    pose_tf_publisher = create_node_description(
+                package='multi-robot-simulations',
+                namespace=ns,
+                executable='multi_robot_simulation_main',
+                output='screen',
+                remappings=[("/pose", pyexp(SingleSubstitution('/{@}/pose', '{@}', ns)))]
+    )
+
     return LaunchDescription([
         x,
         y,
@@ -143,5 +154,6 @@ def generate_launch_description():
         robot_state_publisher,
         robot_joint_state_publisher,
         ros_bridge_node,
+        pose_tf_publisher,
         spawn
     ])

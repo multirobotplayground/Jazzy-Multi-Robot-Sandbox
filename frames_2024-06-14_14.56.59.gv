@@ -1,0 +1,13 @@
+digraph G {
+"robot_1/base_link" -> "robot_1/sensor_rack"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"robot_1/sensor_rack" -> "robot_1/sensor_rack/front_lidar"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"robot_1/sensor_rack" -> "robot_1/sensor_rack/imu_sensor"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"robot_1/base_link" -> "robot_1/front_left_wheel_link"[label=" Broadcaster: default_authority\nAverage rate: 10.2\nBuffer length: 5.0\nMost recent transform: 1718387819.866977\nOldest transform: 1718387814.867081\n"];
+"robot_1/base_link" -> "robot_1/front_right_wheel_link"[label=" Broadcaster: default_authority\nAverage rate: 10.2\nBuffer length: 5.0\nMost recent transform: 1718387819.866977\nOldest transform: 1718387814.867081\n"];
+"robot_1/base_link" -> "robot_1/rear_left_wheel_link"[label=" Broadcaster: default_authority\nAverage rate: 10.2\nBuffer length: 5.0\nMost recent transform: 1718387819.866977\nOldest transform: 1718387814.867081\n"];
+"robot_1/base_link" -> "robot_1/rear_right_wheel_link"[label=" Broadcaster: default_authority\nAverage rate: 10.2\nBuffer length: 5.0\nMost recent transform: 1718387819.866977\nOldest transform: 1718387814.867081\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 1718387819.8705904"[ shape=plaintext ] ;
+}->"robot_1/base_link";
+}

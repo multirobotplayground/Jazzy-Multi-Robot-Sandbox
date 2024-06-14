@@ -46,7 +46,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>robots/CTU_CRAS_NORLAB_HUSKY_SENSOR_CONFIG_1/meshes/base_link.dae</uri>
+            <uri>file://REPLACE_RESOURCE_PATH/robots/CTU_CRAS_NORLAB_HUSKY_SENSOR_CONFIG_1/meshes/base_link.dae</uri>
           </mesh>
         </geometry>
       </visual>
@@ -55,7 +55,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>robots/CTU_CRAS_NORLAB_HUSKY_SENSOR_CONFIG_1/meshes/bumper.dae</uri>
+            <uri>file://REPLACE_RESOURCE_PATH/robots/CTU_CRAS_NORLAB_HUSKY_SENSOR_CONFIG_1/meshes/bumper.dae</uri>
           </mesh>
         </geometry>
       </visual>
@@ -64,7 +64,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>robots/CTU_CRAS_NORLAB_HUSKY_SENSOR_CONFIG_1/meshes/bumper.dae</uri>
+            <uri>file://REPLACE_RESOURCE_PATH/robots/CTU_CRAS_NORLAB_HUSKY_SENSOR_CONFIG_1/meshes/bumper.dae</uri>
           </mesh>
         </geometry>
       </visual>
@@ -73,7 +73,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>robots/CTU_CRAS_NORLAB_HUSKY_SENSOR_CONFIG_1/meshes/top_chassis.dae</uri>
+            <uri>file://REPLACE_RESOURCE_PATH/robots/CTU_CRAS_NORLAB_HUSKY_SENSOR_CONFIG_1/meshes/top_chassis.dae</uri>
           </mesh>
         </geometry>
       </visual>
@@ -106,7 +106,7 @@
         <pose frame=''>0 0 0 0 -0 0</pose>
         <geometry>
           <mesh>
-            <uri>robots/CTU_CRAS_NORLAB_HUSKY_SENSOR_CONFIG_1/meshes/sensor_rack_lowres_shallow_laser.dae</uri>
+            <uri>file://REPLACE_RESOURCE_PATH/robots/CTU_CRAS_NORLAB_HUSKY_SENSOR_CONFIG_1/meshes/sensor_rack_lowres_shallow_laser.dae</uri>
             <scale>1 1 1</scale>
           </mesh>
         </geometry>
@@ -876,7 +876,7 @@
     <joint name='front_lidar_JOINT' type='fixed'>
       <parent>sensor_rack</parent>
       <child>sensor_rack/front_lidar</child>
-      <pose frame="">0.507 0.0 0.6029 0 0.17 0</pose>
+      <pose frame="">0.225 0 0.43 0 0.17 0</pose>
     </joint>
 
     <link name='sensor_rack/imu_sensor'/>
@@ -931,7 +931,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>robots/CTU_CRAS_NORLAB_HUSKY_SENSOR_CONFIG_1/meshes/wheel.dae</uri>
+            <uri>file://REPLACE_RESOURCE_PATH/robots/CTU_CRAS_NORLAB_HUSKY_SENSOR_CONFIG_1/meshes/wheel.dae</uri>
           </mesh>
         </geometry>
       </visual>
@@ -999,7 +999,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>robots/CTU_CRAS_NORLAB_HUSKY_SENSOR_CONFIG_1/meshes/wheel.dae</uri>
+            <uri>file://REPLACE_RESOURCE_PATH/robots/CTU_CRAS_NORLAB_HUSKY_SENSOR_CONFIG_1/meshes/wheel.dae</uri>
           </mesh>
         </geometry>
       </visual>
@@ -1067,7 +1067,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>robots/CTU_CRAS_NORLAB_HUSKY_SENSOR_CONFIG_1/meshes/wheel.dae</uri>
+            <uri>file://REPLACE_RESOURCE_PATH/robots/CTU_CRAS_NORLAB_HUSKY_SENSOR_CONFIG_1/meshes/wheel.dae</uri>
           </mesh>
         </geometry>
       </visual>
@@ -1135,7 +1135,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>robots/CTU_CRAS_NORLAB_HUSKY_SENSOR_CONFIG_1/meshes/wheel.dae</uri>
+            <uri>file://REPLACE_RESOURCE_PATH/robots/CTU_CRAS_NORLAB_HUSKY_SENSOR_CONFIG_1/meshes/wheel.dae</uri>
           </mesh>
         </geometry>
       </visual>
@@ -1175,8 +1175,6 @@
         <max_angular_velocity>1</max_angular_velocity>
         <min_angular_velocity>-1</min_angular_velocity>
     </plugin>
-
-    <plugin filename="ignition-gazebo-navsat-system"  name="ignition::gazebo::systems::NavSat"></plugin>
     
     <plugin name="ignition::gazebo::systems::PosePublisher" filename="ignition-gazebo-pose-publisher-system">
         <publish_link_pose>false</publish_link_pose>
