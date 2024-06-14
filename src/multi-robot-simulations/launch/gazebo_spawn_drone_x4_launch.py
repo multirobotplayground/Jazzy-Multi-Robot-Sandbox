@@ -77,7 +77,7 @@ def generate_launch_description():
     global_localization_bridge = SingleSubstitution("/model/{@}/pose@geometry_msgs/msg/Pose[gz.msgs.Pose",
                                                     "{@}",
                                                     ns)
-        
+
     # Setup gz_bridge node
     ros_bridge_node = create_node_description(
                         package='ros_gz_bridge',
@@ -147,6 +147,14 @@ def generate_launch_description():
                     'y': y_val,
                     'topic': pyexp(SingleSubstitution('/{@}/robot_description', "{@}", ns))}],
                  output='screen')
+    
+    pose_tf_publisher = create_node_description(
+                package='multi-robot-simulations',
+                namespace=ns,
+                executable='multi_robot_simulation_main',
+                output='screen',
+                remappings=[("/pose", pyexp(SingleSubstitution('/{@}/pose', '{@}', ns)))]
+    )
 
     return LaunchDescription([
         x,
@@ -156,5 +164,6 @@ def generate_launch_description():
         robot_state_publisher,
         robot_joint_state_publisher,
         ros_bridge_node,
+        pose_tf_publisher,
         spawn
     ])
