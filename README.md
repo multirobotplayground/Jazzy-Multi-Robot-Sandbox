@@ -5,8 +5,6 @@ This is a package for ROS Noetic that implements an intermittent communication m
 ## Table of Contents
 
 1. [Motivation and Contents](docs/motivation.md)
-   1. Letter to the Community 
-   2. Intended Target Audience
 2. [Configuring your Working Environment](docs/working_environment.md)
    1. ROS 2 Jazzy
    2. Tmux Terminal Basic Setup
