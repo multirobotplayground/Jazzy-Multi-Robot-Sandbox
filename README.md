@@ -6,20 +6,12 @@ This is a package for ROS Noetic that implements an intermittent communication m
 
 1. [Motivation and Contents](docs/motivation.md)
 2. [Configuring your Working Environment](docs/working_environment.md)
-   1. ROS 2 Jazzy
-   2. Tmux Terminal Basic Setup
+4. [Usage](docs/usage.md)
 3. [Available Simulation and Robots](docs/robots.md)
    1. Clearpath Husky
    2. X2 UGV
    3. X4 UAV
-4. [Usage](docs/usage.md)
-   1. Launch Files
-   2. Rviz Configuration Files
-   3. Nodes and Topics
-   4. Transformation Trees
-   5. Robot Namespaces
-5. [Contributing Guidelines](docs/contributing.md)
-   1. Commit Guidelines
+4. [Contributing](docs/contributing.md)
 
 ## Publications
 

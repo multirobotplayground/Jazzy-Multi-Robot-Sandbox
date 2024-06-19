@@ -4,7 +4,6 @@
   - [Target Audience](#target-audience)
   - [Letter to the Community](#letter-to-the-community)
 
-
 ## [Target Audience](#target-audience-link)
 
 I have used some of my expertise to configure and assemble these simulations using ROS 2 Jazzy and Ubuntu 24.04, as this is a major barrier for most professionals, students, and professors who have crossed paths with me. It requires expertise and a deep understanding of operating systems, simulation architectures, transformation trees, event-based architectures, coding, algebra, networking, and many other fields that are uncommon for one person to master. Therefore, this project is intended for anyone interested in working with mobile robotics, specifically in multi-robot settings, who doesn't have the time or budget to assemble this base themselves. Below, I share some experiences and explain why I decided to opt for the Open Source initiative.
@@ -19,4 +18,4 @@ Another significant problem that anyone with a basic intellect can realize is th
 
 Furthermore, to avoid letting this statement be thrown out without further discussion, one should note that interests must be satisfied for this world to work. This is an argument you can extrapolate on if you wish, and it implies that people are inclined to further their agendas by stepping over others without facing consequences. Consequently, even though I am from an emerging country in a very competitive environment with a nonexistent budget and a wage that is disproportionate to my efforts and expertise, I am glad to share some content with the community that could be useful.
 
-Finally, I would like to ask you, if any of this content is useful to you, please at least mention this repository as required by the adopted license terms. If I can help you with anything, please let me known and I will be very glad and look forward to any collaboration.
+Finally, I would like to ask you, if any of this content is useful to you, please at least mention this repository as required by the adopted license terms. If I can help you with anything, please let me known and I will be very glad and look forward to our collaboration.
