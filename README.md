@@ -1,19 +1,18 @@
 # Multi-robot-Intermittent-Rendezvous
 
-This is a package for ROS Noetic that implements an intermittent communication mechanism for multiple robots to accomplish tasks. Soon it is going to be migrated to a ROS 2 version.
+This package for ROS 2 Jazzy Jalisco and Ubuntu 24.04 has a deployment that allows you to work with multiple robots in Ignition Gazebo. It provides you an environment for heterogeneous robots, UAVS and UGVS, that publishes the correct transformation trees and topics to controll mobile robots out-of-the-box. It might help you to further your research or development faster without prior knowledge necessary to configure simulations within the ROS 2 environment, such as operational systems, computer networks, parallel computing, simulations architectures, linear algebra, and so on.
 
 ## Table of Contents
 
 1. [Motivation and Contents](docs/motivation.md)
 2. [Configuring your Working Environment](docs/working_environment.md)
-4. [Usage](docs/usage.md)
-3. [Available Simulation and Robots](docs/robots.md)
-   1. Clearpath Husky
-   2. X2 UGV
-   3. X4 UAV
-4. [Contributing](docs/contributing.md)
+3. [Usage](docs/usage.md)
+4. [Available Simulation and Robots](docs/robots.md)
+5. [Contributing](docs/contributing.md)
 
 ## Publications
+
+If this package is somehow useful to you, consider reading this [letter](movitation.md) and mentioning this ongoing research.
 
 > A. R. da Silva, L. Chaimowicz, T. C. Silva, and A. Hsieh, Communication-Constrained Multi-Robot Exploration with Intermittent Rendezvous. 2023.
 

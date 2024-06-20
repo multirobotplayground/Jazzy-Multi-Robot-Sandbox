@@ -1,5 +1,9 @@
 # Usage
 
+Before using the system, make sure that you followed the steps to configure ROS 2 Jazzy Jalisco from [here](working-environment.md).
+
+**Dificulty: easy**
+
 ## Launch Files
 
 * Launch file 1: this launch file do this and that.
