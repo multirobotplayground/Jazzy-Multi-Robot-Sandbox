@@ -16,9 +16,9 @@ I believe this is mostly true because people may feel a little bit better knowin
 
 The statement I pose here seem a bit radical, however, I would like to clarify that these views are not entirely mine, and I could support them with examples. I believe that this treacherous environment could be inherent to human nature, just like the need to eat, breathe, and drink water, and is exacerbated by the lack of funding, lack of appreciation for one’s expertise and experiences, people constantly trying to steal expertise for personal gain of any sort, lack of honesty and sincerity, and lack of intellectual maturity, which amplify selfish behaviors that are harmful to society.
 
-Furthermore, to avoid letting this statement be thrown out without further discussion, one should note that interests must be satisfied for this world to work. This is an argument you can extrapolate on if you wish, and it implies that people are inclined to further their agendas by stepping over others without facing consequences. Consequently, as someone from an emerging country in a very competitive environment with a nonexistent budget and a wage that is disproportionate to my efforts and expertise, I feel simply tired in this environment.
+Furthermore, to avoid letting this statement be thrown out without further discussion, one should note that interests must be satisfied for this world to work. This is an argument you can extrapolate on if you wish, and it implies that people are inclined to further their agendas by stepping over others without facing consequences. Consequently, as someone from an emerging country in a very competitive environment with a nonexistent budget and a wage that is disproportionate to my efforts and expertise, I don't have better words to say that I'm simply tired.
 
-Finally, if you have the intention to reach me with any stupid and selfish discussion regarding your beautiful life and relevant experiences or business, here is a compreensive list of my former bosses or people who I have had the pleasure to work with in these last 15 years and that provided me with a nurturing environment with meaninful discussions about science and other matters.
+Finally, if you have the intention to reach me with any discussion guided by hiddem self-interest regarding your beautiful life and relevant experiences, business, or opportunities, here is a compilation from my curriculum of my former bosses or people who I have had the pleasure to work with in these last 15 years and that provided me with a nurturing environment with meaninful discussions about science and other matters.
 
 - Dr. Ben Goertzel
 - Dr. Vijay Kumar
@@ -33,6 +33,6 @@ Finally, if you have the intention to reach me with any stupid and selfish discu
 - Dr. Rosilane Mota
 - Dr. Thales Costa
 
-So be aware that I’m going to expect a lot from your history as if you were one of these wonderful people who have contributed to mine!
+So be aware that I'm going to expect a lot from your history as if you were one of these wonderful people who have significantly and positively contributed to mine!
 
 Finally, I would like to ask you, if any of this content is useful to you, please at least mention this repository as required by the adopted license terms. If I can help you with anything, please let me known and I will be very glad and look forward to our collaboration.
