@@ -123,4 +123,4 @@ In summary, you need to follow these steps:
 
 ## [Next Steps](#next-steps)
 
-  Now your environment should be ready to run the simulations from this repository and also to help you starting your journey.
+  Now your environment should be ready to run the simulations from this repository and also to help you starting your journey. [Click here](usage.md) for the next steps.
