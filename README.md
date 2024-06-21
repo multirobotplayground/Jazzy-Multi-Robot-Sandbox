@@ -4,10 +4,10 @@ This package for ROS 2 Jazzy Jalisco and Ubuntu 24.04 has a deployment that allo
 
 ## Table of Contents
 
-1. [Motivation and Contents](docs/motivation.md)
-2. [Configuring your Working Environment](docs/working_environment.md)
+1. [Motivation](docs/motivation.md)
+2. [Setup](docs/working_environment.md)
 3. [Usage](docs/usage.md)
-4. [Available Simulation and Robots](docs/robots.md)
+4. [Robots](docs/robots.md)
 5. [Contributing](docs/contributing.md)
 
 ## Publications
