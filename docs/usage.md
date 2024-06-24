@@ -33,7 +33,7 @@ Before running the simulation, make sure you followed the steps I've described i
 
 If everything worked correctly, you should see the following scene:
 
-![Ignition](images/ign.png "ignition")
+![Ignition](images/ign.jpg)
 
 I encourage you to explore the scene tree and also to open the Rviz configuration files I've setup for this launch file.
 
