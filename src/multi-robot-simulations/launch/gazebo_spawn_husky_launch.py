@@ -2,7 +2,7 @@
 import os
 import re
 
-from ament_index_python.packages import get_package_share_directory
+# from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 
 from launch_ros.actions import Node as create_node_description
@@ -66,33 +66,41 @@ def generate_launch_description():
     odometry_bridge = SingleSubstitution("/model/{@}/odometry@nav_msgs/msg/Odometry[gz.msgs.Odometry",
                                          "{@}", 
                                          ns)
+    global_localization_bridge = SingleSubstitution("/model/{@}/pose@geometry_msgs/msg/Pose[gz.msgs.Pose",
+                                                    "{@}",
+                                                    ns)
     
     # Setup gz_bridge node
     ros_bridge_node = create_node_description(
                         package='ros_gz_bridge',
                         namespace='ros_gz_bridge',
                         executable='parameter_bridge',
-                        name='sim',
+                        name=pyexp(SingleSubstitution('{@}_gz_bridge', '{@}', ns)),
                         parameters=[],
                         arguments=[pyexp(cmd_vel_bridge),
                                    pyexp(point_cloud_bridge),
                                    pyexp(lidar_scan_bridge),
                                    pyexp(imu_bridge),
-                                   pyexp(odometry_bridge)
+                                   pyexp(odometry_bridge),
+                                   pyexp(global_localization_bridge)
                                 ],
                         remappings=[
                             (pyexp(SingleSubstitution('/model/{@}/cmd_vel', '{@}', ns)), pyexp(SingleSubstitution('/{@}/cmd_vel', '{@}', ns))),
                             (pyexp(SingleSubstitution('/world/empty/model/{@}/link/sensor_rack/sensor/front_lidar/scan/points', '{@}', ns)), pyexp(SingleSubstitution('/{@}/lidar/points', "{@}", ns))),
                             (pyexp(SingleSubstitution('/world/empty/model/{@}/link/sensor_rack/sensor/front_lidar/scan', "{@}", ns)), pyexp(SingleSubstitution('/{@}/lidar/scan', "{@}", ns))),
                             (pyexp(SingleSubstitution('/world/empty/model/{@}/link/sensor_rack/sensor/imu_sensor/imu', "{@}", ns)), pyexp(SingleSubstitution('/{@}/imu', "{@}", ns))),
-                            (pyexp(SingleSubstitution('/model/{@}/odometry', "{@}", ns)), pyexp(SingleSubstitution('/{@}/odometry', "{@}", ns)))
+                            (pyexp(SingleSubstitution('/model/{@}/odometry', "{@}", ns)), pyexp(SingleSubstitution('/{@}/odometry', "{@}", ns))),
+                            (pyexp(SingleSubstitution('/model/{@}/pose', "{@}", ns)), pyexp(SingleSubstitution('/{@}/pose', "{@}", ns)))
                         ],
     )
 
     # read robot description file
-    husky_sdf_file = os.path.join(os.getenv('GZ_SIM_RESOURCE_PATH'), 'robots', 'CTU_CRAS_NORLAB_HUSKY_SENSOR_CONFIG_1', 'model.sdf')
-    with open(husky_sdf_file, 'r') as input_file:
+    sdf_file = os.path.join(os.getenv('GZ_SIM_RESOURCE_PATH'), 'robots', 'CTU_CRAS_NORLAB_HUSKY_SENSOR_CONFIG_1', 'model.sdf')
+    with open(sdf_file, 'r') as input_file:
         robot_description = input_file.read()
+
+    # replace the resource path since I've installed the models manually
+    robot_description = robot_description.replace('REPLACE_RESOURCE_PATH', os.getenv('GZ_SIM_RESOURCE_PATH'))
 
     # create a parameter to hold the robot description from the file
     robot_state_publisher = create_node_description(
@@ -130,6 +138,14 @@ def generate_launch_description():
                     'topic': pyexp(SingleSubstitution('/{@}/robot_description', "{@}", ns))}],
                  output='screen')
 
+    pose_tf_publisher = create_node_description(
+                package='multi-robot-simulations',
+                namespace=ns,
+                executable='multi_robot_simulation_main',
+                output='screen',
+                remappings=[("/pose", pyexp(SingleSubstitution('/{@}/pose', '{@}', ns)))]
+    )
+
     return LaunchDescription([
         x,
         y,
@@ -138,5 +154,6 @@ def generate_launch_description():
         robot_state_publisher,
         robot_joint_state_publisher,
         ros_bridge_node,
+        pose_tf_publisher,
         spawn
     ])

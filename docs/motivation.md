@@ -1,0 +1,5 @@
+# Motivation and Contents
+
+I have used some of my expertise to configure and assemble these simulations using ROS 2 Jazzy and Ubuntu 24.04, as this is a major barrier for most professionals, students, and professors who have crossed paths with me. It requires expertise and a deep understanding of operating systems, simulation architectures, transformation trees, event-based architectures, coding, algebra, networking, and many other fields that are uncommon for one person to master. Therefore, this project is intended for anyone interested in working with mobile robotics, specifically in multi-robot settings, who doesn't have the time or budget to assemble this base themselves.
+
+I would like to ask you, if any of this content is useful to you, please at least mention this repository as required by the adopted license terms. If I can help you with anything, please let me known and I will be very glad and look forward to our collaboration.
