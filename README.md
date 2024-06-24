@@ -38,7 +38,7 @@ If this package is somehow useful to you, consider reading this [letter](docs/mo
 
 ## [License](#license)
 
-All content from this repository is released under a [BSD 4-clause license](LICENSE).
+All content from this repository is released under a anti-ai modified [BSD 4-clause license](LICENSE).
 
 Author/Maintainer:
 
