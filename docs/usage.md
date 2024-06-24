@@ -2,16 +2,9 @@
 
 - [Table of Contents](#table-of-contents)
   - [Usage](#usage)
-  - [Running the Main Launch File](#running-the-main-launch-file)
   - [Main Launch File](#main-launch-file)
-    - [gazebo\_multi\_robot\_bringup\_launch.py](#gazebo_multi_robot_bringup_launchpy)
   - [Example Launch Files](#example-launch-files)
-    - [gazebo\_single\_robot\_gz\_bridge\_config\_file\_launch.py](#gazebo_single_robot_gz_bridge_config_file_launchpy)
-    - [gazebo\_single\_robot\_gz\_bridge\_no\_condig\_file\_launch.py](#gazebo_single_robot_gz_bridge_no_condig_file_launchpy)
   - [Robot Spawn Launch Files](#robot-spawn-launch-files)
-    - [gazebo\_spawn\_drone\_x4\_launch.py](#gazebo_spawn_drone_x4_launchpy)
-    - [gazebo\_spawn\_husky\_launch.py](#gazebo_spawn_husky_launchpy)
-    - [gazebo\_spawn\_x2\_launch.py](#gazebo_spawn_x2_launchpy)
   - [Rviz Configuration Files](#rviz-configuration-files)
   - [Communicating with the Robots](#communicating-with-the-robots)
   - [Adding More Robots](#adding-more-robots)
@@ -19,27 +12,24 @@
 
 ## [Usage](#usage)
 
-Before using the system, make sure that you followed the steps to configure ROS 2 Jazzy Jalisco from [here](working-environment.md).
-
-## [Running the Main Launch File](#running-the-main-launch-file)
-
 Before running the simulation, make sure you followed the steps I've described in the [working environment](working_environment.md) and that Ubuntu 24.04 and ROS 2 Jazzy Jalisco are properly installed and follow these steps.
 
-1. Enter the ```Multi-robot-Sandbox``` folder in your terminal.
-2. Compile the package and source its contents so your system can locate it.
+1. Open a terminal or use ```tmux```.
+2. Enter the ```Multi-robot-Sandbox``` folder in the terminal I`ve oppened.
+3. Compile the package and source its contents so your system can locate it.
 
     ```bash
     colcon build
     source install/local_setup.bash
     ```
 
-3. Run the main simulation launch file.
+4. Run the main simulation launch file.
 
     ```bash
     ros2 launch multi-robot-simulations gazebo_multi_robot_bringup_launch.py
     ```
 
-4. Click on the play button on the botton left of the simulator.
+5. Click on the play button on the botton left of the simulator.
 
 If everything worked correctly, you should see the following scene:
 
@@ -49,37 +39,18 @@ I encourage you to explore the scene tree and also to open the Rviz configuratio
 
 ## [Main Launch File](#main-launch-file)
 
-There is one main launch file in the ```src/multi-robot-simulations/launch``` folder that you can use to start your experiments or as a basis for any project you have. Unfortunately, ROS 2 launch architecture with Python has yet a long to before being easy-to-use and has some inconsistencies with substitutions, however, I've managed to code these files in such a way that they expect the robots' namespaces and resources paths to be injected into robots' *sdf* files and nodes to corretly configure their transformations, topics, bridge, and model resources, as I've descrived [here](robots.md). The main launch file is the following.
-
-### [gazebo_multi_robot_bringup_launch.py](#gazebo_multi_robot_bringup_launchpy)
-
-This is the main launch file brings up an environment with 2 Clearpath Husky robots, 2 X2 UGVs, and 2 X4 UAVs. Each robot will run its own odom publisher that I've prepared for this package. Furthermore, each robot will run its own ros-gazebo-bridge to expose a specific set of topics from Ignition Gazebo to ROS 2 Jazzy. This launch file also makes intensive use of substitutions to properly setup robots' namespaces and resources paths for the transfromations, topics, and visulization, which should spare you extra headache.
+- [gazebo_multi_robot_bringup_launch.py](../src/multi-robot-simulations/launch/gazebo_multi_robot_bringup_launch.py)
 
 ## [Example Launch Files](#example-launch-files)
 
-I've configured two example launch files using Python that you can use as you like.
-
-### [gazebo_single_robot_gz_bridge_config_file_launch.py](#gazebo_single_robot_gz_bridge_config_file_launchpy)
-
-This is a launch example using configuration files for a single robot without substitution.
-
-### [gazebo_single_robot_gz_bridge_no_condig_file_launch.py](#gazebo_single_robot_gz_bridge_no_condig_file_launchpy)
-
-This is a launch example without using a configuration file for a single robot without substitution.
+- [gazebo_single_robot_gz_bridge_config_file_launch.py](../src/multi-robot-simulations/launch/gazebo_single_robot_gz_bridge_config_file_launch.py)
+- [gazebo_single_robot_gz_bridge_no_config_file_launch.py](../src/multi-robot-simulations/launch/gazebo_single_robot_gz_bridge_no_config_file_launch.py)
 
 ## [Robot Spawn Launch Files](#robot-spawn-launch-files)
 
-### [gazebo_spawn_drone_x4_launch.py](#gazebo_spawn_drone_x4_launchpy)
-
-This launch file spawns a X4 UAV drone with the correct transforms and namespaces.
-
-### [gazebo_spawn_husky_launch.py](#gazebo_spawn_husky_launchpy)
-
-This launch file spawns a Husky robot with the correct transforms and namespaces.
-
-### [gazebo_spawn_x2_launch.py](#gazebo_spawn_x2_launchpy)
-
-This launch file spawns a X2 UGV drone with the correct transforms and namespaces.
+- [gazebo_spawn_drone_x4_launch.py](../src/multi-robot-simulations/launch/gazebo_spawn_drone_x4_launch.py)
+- [gazebo_spawn_husky_launch.py](../src/multi-robot-simulations/launch/gazebo_spawn_husky_launch.py)
+- [gazebo_spawn_x2_launch.py](../src/multi-robot-simulations/launch/gazebo_spawn_x2_launch.py)
 
 ## [Rviz Configuration Files](#rviz-configuration-files)
 
@@ -87,9 +58,9 @@ There is one configuration file for each robot I've configured in the main launc
 
 To run them, do the following.
 
-1. Ensure that the simulation is running as [described](#running-the-main-launch-file).
-2. Open a new terminal.
-3. Open RViz 2 with the following command in your new terminal.
+1. Ensure that the simulation is running as [described](#usage).
+2. Open a new terminal or use ```tmux```.
+3. Open RViz 2 with the following command in your new tmux partition.
 
     ```bash
     rviz2
@@ -105,9 +76,9 @@ If everything works correctly, you should see something similar to this.
 
 To communicate with the robots through ROS 2, you can check the available topics by running the following.
 
-1. Ensure that the simulation is running as [described](#running-the-main-launch-file).
-2. Open a new terminal.
-3. Run the following command on your new terminal.
+1. Ensure that the simulation is running as [described](#usage).
+2. Open a new terminal or use ```tmux```.
+3. Run the following command on your new tmux partition.
 
     ```bash
     ros2 topic list
@@ -126,7 +97,11 @@ If everything was done correctly, you should see the following topics in your te
 /robot_1/odometry
 /robot_1/pose
 /robot_1/robot_description
-/robot_2/joint_states
+/robot_2/cmd_vel
+/robot_2/imu
+/robot_2/lidar/points
+/robot_2/lidar/scan
+/robot_2/odometry
 /robot_2/pose
 /robot_2/robot_description
 /robot_3/cmd_vel
@@ -174,13 +149,13 @@ Since robots are properly configured with their namepsace, you should be able to
 
 ## [Adding More Robots](#adding-more-robots)
 
-To add more robots simply run one of the robot spawn launch files I've configured specifying a namespace different from the ones from the robots already running. For example, if you wanna add an extra Husky under the namespace robot_7 at x=3, y,3, z=0.5, run the following.
+To add more robots simply run one of the robot spawn launch files I've configured specifying a namespace different from the ones from the robots already running. For example, if you wanna add an extra Husky under the namespace robot_7 at x=3, y,3, z=0.5, run the following command in a new terminal or with ```tmux```.
 
 ```bash
 ros2 launch multi-robot-simulations gazebo_spawn_husky_launch.py namespace:=robot_7 x:=3.0 y:=3.0 z:=0.5
 ```
 
-if the robots loads correctly, the launch file should handle the transformations and parametrization stuff for you, publishing the correct topics under the specified namespace. You should see the following in your Ignition Gazebo.
+if the robot is loaded correctly, the launch file should handle the transformations and parametrization stuff for you, publishing the correct topics under the specified namespace. You should see the following in your Ignition Gazebo.
 
 ![new_robot](images/new_robot.png "New robot")
 
