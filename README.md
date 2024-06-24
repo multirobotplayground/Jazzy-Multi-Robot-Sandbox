@@ -1,4 +1,4 @@
-# Multi-robot-Intermittent-Rendezvous
+# Multi-robot-Sandbox
 
 This package for ROS 2 Jazzy Jalisco and Ubuntu 24.04 has a deployment that allows you to work with multiple robots in Ignition Gazebo. It provides you an environment for heterogeneous robots, UAVS and UGVS, that publishes the correct transformation trees and topics to controll mobile robots out-of-the-box. It might help you to further your research or development faster without prior knowledge necessary to configure simulations within the ROS 2 environment, such as operational systems, computer networks, parallel computing, simulations architectures, linear algebra, and so on.
 
@@ -8,7 +8,8 @@ This package for ROS 2 Jazzy Jalisco and Ubuntu 24.04 has a deployment that allo
 2. [Setup](docs/working_environment.md)
 3. [Usage](docs/usage.md)
 4. [Robots](docs/robots.md)
-5. [Contributing](docs/contributing.md)
+5. [Nodes](docs/nodes.md)
+6. [Contributing](docs/contributing.md)
 
 ## Publications
 
