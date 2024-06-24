@@ -2,8 +2,7 @@
 
 - [Motivation](docs/motivation.md)
 - [Setup](docs/working_environment.md)
-- [Usage](#usage)
-- [Packages](#packages)
+- [Usage](docs/usage.md)
 - [Robots](docs/robots.md)
 - [Contributing](docs/contributing.md)
 
@@ -14,10 +13,6 @@ This package for ROS 2 Jazzy Jalisco and Ubuntu 24.04 has a deployment that allo
 ## [Packages](#packages)
 
 - [multi-robot-simulations](docs/multi-robot-simulations.md)
-
-## [Usage](#usage)
-
-- [using this workspace](docs/usage.md)
 
 ## [Publications](#publications)
 
