@@ -1,9 +1,9 @@
 # [Table of Contents](#table-of-contents)
 
 - [Motivation](docs/motivation.md)
-- [Packages](#packages)
-- [Usage](#usage)
 - [Setup](docs/working_environment.md)
+- [Usage](#usage)
+- [Packages](#packages)
 - [Robots](docs/robots.md)
 - [Contributing](docs/contributing.md)
 
@@ -21,7 +21,7 @@ This package for ROS 2 Jazzy Jalisco and Ubuntu 24.04 has a deployment that allo
 
 ## [Publications](#publications)
 
-If this package is somehow useful to you, consider reading this [letter](movitation.md) and mentioning this ongoing research.
+If this package is somehow useful to you, consider reading this [letter](docs/movitation.md) and mentioning this ongoing research.
 
 > A. R. da Silva, L. Chaimowicz, T. C. Silva, and A. Hsieh, Communication-Constrained Multi-Robot Exploration with Intermittent Rendezvous. 2023.
 
@@ -40,7 +40,14 @@ If this package is somehow useful to you, consider reading this [letter](movitat
 
 All content from this repository is released under a [BSD 4-clause license](LICENSE).
 
-Author/Maintainer: Alysson Ribeiro da Silva, <multirobotplayground@gmail.com> <alysson.ribeiro.silva@gmail.com>
+Author/Maintainer:
+
+- [Alysson Ribeiro da Silva](https://alysson.thegeneralsolution.com/)
+
+emails:
+
+- <multirobotplayground@gmail.com>
+- <alysson.ribeiro.silva@gmail.com>
 
 ## [Bug & Feature Requests](#bug--feature-requests)
 
