@@ -1,7 +1,5 @@
 # Contributing
 
-## Commit Guidelines
-
 Write commits with two components:
 
 1. description in imperative mood without ending with a period.

@@ -1,13 +1,10 @@
-# Usage
+# Table of Contents
 
-Before using the system, make sure that you followed the steps to configure ROS 2 Jazzy Jalisco from [here](working-environment.md).
-
-**Dificulty: medium**
-
-- [Usage](#usage)
+- [Table of Contents](#table-of-contents)
+  - [Usage](#usage)
   - [Running the Main Launch File](#running-the-main-launch-file)
   - [Main Launch File](#main-launch-file)
-    - [gazebo\_multi\_robot\_bringup\_launch.py:](#gazebo_multi_robot_bringup_launchpy)
+    - [gazebo\_multi\_robot\_bringup\_launch.py](#gazebo_multi_robot_bringup_launchpy)
   - [Example Launch Files](#example-launch-files)
     - [gazebo\_single\_robot\_gz\_bridge\_config\_file\_launch.py](#gazebo_single_robot_gz_bridge_config_file_launchpy)
     - [gazebo\_single\_robot\_gz\_bridge\_no\_condig\_file\_launch.py](#gazebo_single_robot_gz_bridge_no_condig_file_launchpy)
@@ -20,7 +17,11 @@ Before using the system, make sure that you followed the steps to configure ROS 
   - [Adding More Robots](#adding-more-robots)
   - [Extra](#extra)
 
-## [Running the Main Launch File](#running-main-launch-file)
+## [Usage](#usage)
+
+Before using the system, make sure that you followed the steps to configure ROS 2 Jazzy Jalisco from [here](working-environment.md).
+
+## [Running the Main Launch File](#running-the-main-launch-file)
 
 Before running the simulation, make sure you followed the steps I've described in the [working environment](working_environment.md) and that Ubuntu 24.04 and ROS 2 Jazzy Jalisco are properly installed and follow these steps.
 
@@ -31,6 +32,7 @@ Before running the simulation, make sure you followed the steps I've described i
     colcon build
     source install/local_setup.bash
     ```
+
 3. Run the main simulation launch file.
 
     ```bash
@@ -45,23 +47,23 @@ If everything worked correctly, you should see the following scene:
 
 I encourage you to explore the scene tree and also to open the Rviz configuration files I've setup for this launch file.
 
-## [Main Launch File](#launch-files-link)
+## [Main Launch File](#main-launch-file)
 
 There is one main launch file in the ```src/multi-robot-simulations/launch``` folder that you can use to start your experiments or as a basis for any project you have. Unfortunately, ROS 2 launch architecture with Python has yet a long to before being easy-to-use and has some inconsistencies with substitutions, however, I've managed to code these files in such a way that they expect the robots' namespaces and resources paths to be injected into robots' *sdf* files and nodes to corretly configure their transformations, topics, bridge, and model resources, as I've descrived [here](robots.md). The main launch file is the following.
 
-### [gazebo_multi_robot_bringup_launch.py](#gazebo_multi_robot_bringup_launchpy):
+### [gazebo_multi_robot_bringup_launch.py](#gazebo_multi_robot_bringup_launchpy)
 
 This is the main launch file brings up an environment with 2 Clearpath Husky robots, 2 X2 UGVs, and 2 X4 UAVs. Each robot will run its own odom publisher that I've prepared for this package. Furthermore, each robot will run its own ros-gazebo-bridge to expose a specific set of topics from Ignition Gazebo to ROS 2 Jazzy. This launch file also makes intensive use of substitutions to properly setup robots' namespaces and resources paths for the transfromations, topics, and visulization, which should spare you extra headache.
 
-## [Example Launch Files](#launch-files-link)
+## [Example Launch Files](#example-launch-files)
 
 I've configured two example launch files using Python that you can use as you like.
 
-### [gazebo_single_robot_gz_bridge_config_file_launch.py](#gazebo_single_robot_gz_bridge_config_file_launch)
+### [gazebo_single_robot_gz_bridge_config_file_launch.py](#gazebo_single_robot_gz_bridge_config_file_launchpy)
 
 This is a launch example using configuration files for a single robot without substitution.
 
-### [gazebo_single_robot_gz_bridge_no_condig_file_launch.py](#gazebo_single_robot_gz_bridge_no_condig_file_launch)
+### [gazebo_single_robot_gz_bridge_no_condig_file_launch.py](#gazebo_single_robot_gz_bridge_no_condig_file_launchpy)
 
 This is a launch example without using a configuration file for a single robot without substitution.
 
@@ -79,13 +81,13 @@ This launch file spawns a Husky robot with the correct transforms and namespaces
 
 This launch file spawns a X2 UGV drone with the correct transforms and namespaces.
 
-## [Rviz Configuration Files](#rviz-link)
+## [Rviz Configuration Files](#rviz-configuration-files)
 
 There is one configuration file for each robot I've configured in the main launch file. They are located at ```src/multi-robot-simulations/config/rviz``` folder.
 
 To run them, do the following.
 
-1. Ensure that the simulation is running as [described](#running-main-launch-file).
+1. Ensure that the simulation is running as [described](#running-the-main-launch-file).
 2. Open a new terminal.
 3. Open RViz 2 with the following command in your new terminal.
 
@@ -99,11 +101,11 @@ If everything works correctly, you should see something similar to this.
 
 ![Rviz](images/rviz.png "Rviz")
 
-## [Communicating with the Robots](#communicating-with-the-robots-link)
+## [Communicating with the Robots](#communicating-with-the-robots)
 
 To communicate with the robots through ROS 2, you can check the available topics by running the following.
 
-1. Ensure that the simulation is running as [described](#running-main-launch-file).
+1. Ensure that the simulation is running as [described](#running-the-main-launch-file).
 2. Open a new terminal.
 3. Run the following command on your new terminal.
 
