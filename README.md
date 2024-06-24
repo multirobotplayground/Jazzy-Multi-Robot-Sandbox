@@ -25,16 +25,16 @@ If this package is somehow useful to you, consider reading this [letter](docs/mo
 
 > A. R. da Silva, L. Chaimowicz, T. C. Silva, and A. Hsieh, Communication-Constrained Multi-Robot Exploration with Intermittent Rendezvous. 2023.
 
-      ```text
-      @misc{dasilva2023communicationconstrained,
-            title={Communication-Constrained Multi-Robot Exploration with Intermittent Rendezvous}, 
-            author={Alysson Ribeiro da Silva and Luiz Chaimowicz and Thales Costa Silva and Ani Hsieh},
-            year={2023},
-            eprint={2309.13494},
-            archivePrefix={arXiv},
-            primaryClass={cs.RO}
-      }
-      ```
+```text
+@misc{dasilva2023communicationconstrained,
+      title={Communication-Constrained Multi-Robot Exploration with Intermittent Rendezvous}, 
+      author={Alysson Ribeiro da Silva and Luiz Chaimowicz and Thales Costa Silva and Ani Hsieh},
+      year={2023},
+      eprint={2309.13494},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO}
+}
+```
 
 ## [License](#license)
 
