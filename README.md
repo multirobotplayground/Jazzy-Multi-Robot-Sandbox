@@ -21,7 +21,7 @@ This package for ROS 2 Jazzy Jalisco and Ubuntu 24.04 has a deployment that allo
 
 ## [Publications](#publications)
 
-If this package is somehow useful to you, consider reading this [letter](docs/movitation.md) and mentioning this ongoing research.
+If this package is somehow useful to you, consider reading this [letter](docs/motivation.md) and mentioning this ongoing research.
 
 > A. R. da Silva, L. Chaimowicz, T. C. Silva, and A. Hsieh, Communication-Constrained Multi-Robot Exploration with Intermittent Rendezvous. 2023.
 
