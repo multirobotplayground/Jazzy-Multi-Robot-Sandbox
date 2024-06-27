@@ -1,4 +1,4 @@
-![X2 RViz](docs/images/x2_rviz.png "X2 Robot Rviz.")
+![X2 RViz](docs/images/x4_rviz.png "X4 Robot Rviz.")
 
 # [Table of Contents](#table-of-contents)
 
