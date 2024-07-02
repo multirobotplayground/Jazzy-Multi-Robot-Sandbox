@@ -1,6 +1,6 @@
 # pose_tf_publisher
 
-This node gets the pose of a robot and creates a Odom frame as a static transform. It publishes it as a static transform so RViz can look for the correct transform and visualize the correct point clounds and related sensor messages that depends on a global reference frame. For some reason, when I publish this as a dynamic transform, it is unable to find it in the transformation tree.
+This node retrieves the pose of a robot and creates an Odom frame as a static transform. It publishes this as a static transform so RViz can find the correct transform and visualize the correct point clouds and related sensor messages that depend on a global reference frame. For some reason, when I publish this as a dynamic transform, it is not found in the transformation tree.
 
 ## Parameters
 
