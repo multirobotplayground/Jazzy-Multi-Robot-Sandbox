@@ -9,15 +9,15 @@
 
 ## [Available Robots](#available-robots)
 
-This workspace is ready to work with 2 different UGV and 1 type of UAV in Gazebo Ignition. All robots were adapted to work properly within the simulations provided, this is due to the fact that the way they are published in Fuel might not be appropriate for out-of-the-box use, given that Gazebo Ignition and Rviz see the models and topics in a different way.
+This workspace is ready to work with two different UGVs and one type of UAV in Ignition Gazebo. All robots have been adapted to function correctly within the provided simulations. This adaptation is necessary because the way they are published in Fuel might not be appropriate for out-of-the-box use, given that Ignition Gazebo and RViz interpret models and topics differently.
 
-All robots were downloaded from [fuel](https://app.gazebosim.org/fuel/models). I've adapted them to work out-of-the-box with ROS 2 Jazzy Jalisco and Ignition Gazebo using ros-gazebo-bridge with parameterized namespaces, resources paths, and properly configuring the necessary topics to have full controll over them.
+All robots were downloaded from Fuel. I have adapted them to work out-of-the-box with ROS 2 Jazzy Jalisco and Ignition Gazebo using the ROS-Gazebo bridge. This includes parameterized namespaces, resource paths, and properly configuring the necessary topics to have full control over them.
 
 ## [Transform trees and sensors](#transform-trees-and-sensors)
 
-The transformation tree is one important part of the system and it might break all your experiments if not properly configured. Unfortunately, ROS 2 has yet a long road to fix some inconsistencies regarding how the namespaces are handled by sensors and transforms defined via nodes and from the .sdf files that defines a robot.
+The transformation tree is a crucial part of the system, and improper configuration can disrupt your experiments. Unfortunately, ROS 2 still has inconsistencies regarding how namespaces are handled by sensors and transforms defined via nodes and the .sdf files that define a robot.
 
-For the purpose of a better usability, in this project I've configured all robots with a transformation tree from a parameterized namespace assigned during launch. I've added a static transform for ground truth pose in a odom frame, which allows you to correctly use and visualize the 3D and 2D lidars, the 3D model, and robots' models in softwares like [RViz2](https://github.com/ros2/rviz), and makes them ready for experimentation in complex scenarios.
+To improve usability, I have configured all robots in this project with a transformation tree from a parameterized namespace assigned during launch. I added a static transform for ground truth pose in an odom frame, allowing you to correctly use and visualize the 3D and 2D lidars, the 3D model, and robots' models in software like RViz2. This setup makes them ready for experimentation in complex scenarios.
 
 ## [Clearpath Husky](#clearpath-husky)
 
