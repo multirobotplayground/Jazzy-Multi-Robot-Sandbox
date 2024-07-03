@@ -28,15 +28,15 @@ This package for ROS 2 Jazzy Jalisco and Ubuntu 24.04 facilitates working with m
 
 ## [Publications](#publications)
 
-If this package is somehow useful to you, consider reading this [letter](docs/motivation.md) and mentioning this ongoing research.
+If this package is somehow useful to you, consider reading this [letter](docs/motivation.md) and mentioning this research accepted at IROS.
 
-> A. R. da Silva, L. Chaimowicz, T. C. Silva, and A. Hsieh, Communication-Constrained Multi-Robot Exploration with Intermittent Rendezvous. 2023.
+> A. R. da Silva, L. Chaimowicz, T. C. Silva, and A. Hsieh, Communication-Constrained Multi-Robot Exploration with Intermittent Rendezvous. 2024.
 
 ```text
-@misc{dasilva2023communicationconstrained,
+@misc{dasilva2024communicationconstrained,
       title={Communication-Constrained Multi-Robot Exploration with Intermittent Rendezvous}, 
       author={Alysson Ribeiro da Silva and Luiz Chaimowicz and Thales Costa Silva and Ani Hsieh},
-      year={2023},
+      year={2024},
       eprint={2309.13494},
       archivePrefix={arXiv},
       primaryClass={cs.RO}
