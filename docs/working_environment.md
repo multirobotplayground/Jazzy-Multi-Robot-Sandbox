@@ -2,6 +2,7 @@
 
 - [Table of Contents](#table-of-contents)
   - [Working Environment](#working-environment)
+  - [Disclaimer About Docker](#disclaimer-about-docker)
   - [Steps to Install Ubuntu 24.04](#steps-to-install-ubuntu-2404)
   - [Steps to Install ROS 2 Jazzy Jalisco](#steps-to-install-ros-2-jazzy-jalisco)
   - [Steps to Install and Configure Tmux and Git](#steps-to-install-and-configure-tmux-and-git)
@@ -10,6 +11,8 @@
 ## [Working Environment](#working-environment)
 
 This workspace was tested on June 19, 2024, on several different desktop computers and laptops of varying ages, and it worked on the first attempt. It assumes that you have previous experience installing operating systems on your personal computer and understand tools such as git, curl, bash, and tmux, specifically how to run commands in a terminal.
+
+## [Disclaimer About Docker](#disclaimer-about-docker)
 
 All simulations in this workspace are intended to run on native Ubuntu 24.04. While many students and professionals might prefer to use Docker and install ROS in a container, I believe that the additional system architecture layer introduced by Docker is detrimental to understanding, mainly because ROS itself can be very complicated for the inexperienced explorer, as I’ve explained here. Another reason is that when working with mobile robots, we often need to visualize what is happening. Unfortunately, there is no easy way to make the graphics card driver communicate with the native system if they are different (e.g., a container running Ubuntu 20.04 with a host machine running Ubuntu 24.04 with different glibc libraries), which results in very clunky simulations.
 
