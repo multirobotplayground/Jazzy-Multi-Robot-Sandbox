@@ -68,21 +68,18 @@ In summary, you need to follow these steps:
 6. Add an entry at the start of your .bashrc file to make your system be able to see where ROS programs are installed and the resources provided in this workspace.
 
     ```text
-    source /opt/ros/jazzy/setup.bash
+    sed -i '1i export GZ_SIM_RESOURCE_PATH = PATH_TO_RESOURCES' ~/.bashrc
+    sed -i '1i source /opt/ros/jazzy/setup.bash' ~/.bashrc
     ```
 
     the starting of your .bashrc file should look something like this
 
     ```bash
+    source /opt/ros/jazzy/setup.bash
+    export GZ_SIM_RESOURCE_PATH = PATH_TO_RESOURCES
     # ~/.bashrc: executed by bash(1) for non-login shells.
     # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
     # for examples
-
-    # sourcing ROS related setup
-    source /opt/ros/jazzy/setup.bash
-
-    # exporting resources directory for RViz and Ignotion Gazebo
-    export GZ_SIM_RESOURCE_PATH = PATH_TO_RESOURCES
 
     # If not running interactively, don't do anything
     case $- in
