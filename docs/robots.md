@@ -31,11 +31,11 @@ I've configured the Husky robot with:
 
 ![Husky robot](images/husky.png "Husky Robot in the Ignition Gazebo")
 
-I've configured the transformation tree as follows.
+The transformation tree as follows.
 
 ![Husky TF tree](images/husky_tf.png "Husky Robot TF tree.")
 
-I've provided a basic RViz file to visualize this robot, its transforms, and model.
+I've also provided a basic RViz file to visualize this robot, its transforms, and model.
 
 ![Husky RViz](images/husky_rviz.png "Husky Robot Rviz.")
 
@@ -51,7 +51,7 @@ I've configured the X2 UGV with:
 
 ![X2 robot](images/x2.png "X2 Robot in the Ignition Gazebo")
 
-I've configured the transformation tree as follows.
+The transformation tree looks as follows.
 
 ![X2 TF tree](images/x2_tf.png "X2 Robot TF")
 
@@ -70,7 +70,7 @@ Differently, I've configured the X4 UAV with:
 
 ![X4 robot](images/x4.png "X4 Robot in the Ignition Gazebo")
 
-I've configured the transformation tree as follows.
+The transformation tree as follows.
 
 ![X4 TF tree](images/x4_tf.png "X4 Robot TF")
 

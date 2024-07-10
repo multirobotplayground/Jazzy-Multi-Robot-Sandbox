@@ -91,7 +91,7 @@ In summary, you need to follow these steps:
     esac
     ```
 
-    In this case, your MUST replace ```<PATH_TO_RESORRCES``` with the path of the ```Multi-robot-Sandbox/gazebo_resources``` from this workspace. This allows both, Ignition Gazebo and RViz to see the available resources
+    In this case, your MUST replace ```PATH_TO_RESORRCES``` with the path of the ```Multi-robot-Sandbox/gazebo_resources``` from this workspace. This allows both, Ignition Gazebo and RViz to see the available resources
     and load the models accordingly. Specifically, I`ve configured the launch files to dynamically set this path inside the ```.sdf``` model files so both programs can handle them appropriately.
 
 ## [Steps to Install and Configure Tmux and Git](#steps-to-install-and-configure-tmux-and-git)
@@ -119,6 +119,24 @@ In summary, you need to follow these steps:
 4. Copy the following configuration into a file named ```~/.tmux.conf```
 
     ```bash
+    set -g @plugin 'o0th/tmux-nova'
+
+    set -g @nova-nerdfonts true
+    set -g @nova-nerdfonts-left 
+    set -g @nova-nerdfonts-right 
+
+    set -g @nova-segment-mode "#{?client_prefix,Ω,ω}"
+    set -g @nova-segment-mode-colors "#50fa7b #282a36"
+
+    set -g @nova-segment-whoami "#(whoami)@#h"
+    set -g @nova-segment-whoami-colors "#50fa7b #282a36"
+
+    set -g @nova-pane "#I#{?pane_in_mode,  #{pane_mode},}  #W"
+
+    set -g @nova-rows 0
+    set -g @nova-segments-0-left "mode"
+    set -g @nova-segments-0-right "whoami"
+
     # List of plugins
     set -g @plugin 'tmux-plugins/tpm'
     set -g @plugin 'tmux-plugins/tmux-sensible'
@@ -127,6 +145,14 @@ In summary, you need to follow these steps:
     # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
     run '~/.tmux/plugins/tpm/tpm'
     ```
+
+5. Open tmux by typing ```tmux``` in a terminal.
+
+6. Enter command mode with ```ctr+b```.
+   
+7. Install plugins with ```shift+i``` while in command mode.
+
+8. Install a ```patched font``` from [here](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/AurulentSansMono.zip) and make it default in your terminal. I also recommend turning off the ```Use colors from system theme```.
 
 ## [Next Steps](#next-steps)
 
