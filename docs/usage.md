@@ -15,7 +15,7 @@
 Before running the simulation, make sure you followed the steps I've described in the [working environment](working_environment.md) and that Ubuntu 24.04 and ROS 2 Jazzy Jalisco are properly installed and follow these steps.
 
 1. Open a terminal or use ```tmux```.
-2. Enter the ```Multi-robot-Sandbox``` folder in the terminal I`ve oppened.
+2. Enter the ```ROS-Jazzy-Multi-robot-Sandbox``` folder in the terminal I`ve oppened.
 3. Compile the package and source its contents so your system can locate it.
 
     ```bash
