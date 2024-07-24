@@ -12,7 +12,9 @@
 
 ## [ROS-Jazzy-Multi-robot-Sandbox](#ros-jazzy-multi-robot-sandbox)
 
-This package for ROS 2 Jazzy Jalisco and Ubuntu 24.04 facilitates working with multiple robots in Ignition Gazebo. It provides an environment for heterogeneous robots, UAVs, and UGVs, publishing the correct transformation trees and topics to control mobile robots out-of-the-box. It can help you advance your research or development more quickly without needing prior knowledge to configure simulations within the ROS 2 environment, including operational systems, computer networks, parallel computing, simulation architectures, linear algebra, and more.
+This workspace is a sandbox for multi-robot research.
+
+Initially, it includes a stack for ROS 2 Jazzy Jalisco and Ubuntu 24.04 that facilitates working with multiple robots in Ignition Gazebo. It provides an environment for heterogeneous robots, UAVs, and UGVs, publishing the correct transformation trees and topics to control mobile robots out-of-the-box. It can help you advance your research or development more quickly without needing prior knowledge to configure simulations within the ROS 2 environment, including operational systems, computer networks, parallel computing, simulation architectures, linear algebra, and more.
 
 ## [What to Expect?](#what-to-expect)
 
@@ -36,7 +38,7 @@ This package for ROS 2 Jazzy Jalisco and Ubuntu 24.04 facilitates working with m
 
 ## [Publications](#publications)
 
-If this package is somehow useful to you, consider reading this [letter](docs/motivation.md) and mentioning this research accepted at IROS.
+If this workspace is somehow useful to you, consider reading this [letter](docs/motivation.md) and mentioning this research accepted at IROS.
 
 > A. R. da Silva, L. Chaimowicz, T. C. Silva, and A. Hsieh, Communication-Constrained Multi-Robot Exploration with Intermittent Rendezvous. 2024.
 
