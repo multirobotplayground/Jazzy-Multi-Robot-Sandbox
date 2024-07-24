@@ -29,15 +29,21 @@ I've configured the Husky robot with:
 - Odometry
 - Ground truth pose
 
-![Husky robot](images/husky.png "Husky Robot in the Ignition Gazebo")
+<p align="center">
+  <img src="images/husky.png" alt="drawing" style="width:700px;"/>
+</p>
 
 The transformation tree as follows.
 
-![Husky TF tree](images/husky_tf.png "Husky Robot TF tree.")
+<p align="center">
+  <img src="images/husky_tf.png" alt="drawing" style="width:1000px;"/>
+</p>
 
 I've also provided a basic RViz file to visualize this robot, its transforms, and model.
 
-![Husky RViz](images/husky_rviz.png "Husky Robot Rviz.")
+<p align="center">
+  <img src="images/husky_rviz.png" alt="drawing" style="width:700px;"/>
+</p>
 
 ## [X2 UGV](#x2-ugv)
 
@@ -49,15 +55,21 @@ I've configured the X2 UGV with:
 - Odometry
 - Ground truth pose
 
-![X2 robot](images/x2.png "X2 Robot in the Ignition Gazebo")
+<p align="center">
+  <img src="images/x2.png" alt="drawing" style="width:700px;"/>
+</p>
 
 The transformation tree looks as follows.
 
-![X2 TF tree](images/x2_tf.png "X2 Robot TF")
+<p align="center">
+  <img src="images/x2_tf.png" alt="drawing" style="width:1000px;"/>
+</p>
 
 I've provided a basic RViz file to visualize this robot, its transforms, and model.
 
-![X2 RViz](images/x2_rviz.png "X2 Robot Rviz.")
+<p align="center">
+  <img src="images/x2_rviz.png" alt="drawing" style="width:700px;"/>
+</p>
 
 ## [X4 UAV](#x4-uav)
 
@@ -68,12 +80,18 @@ Differently, I've configured the X4 UAV with:
 - Odometry
 - Ground truth pose
 
-![X4 robot](images/x4.png "X4 Robot in the Ignition Gazebo")
+<p align="center">
+  <img src="images/x4.png" alt="drawing" style="width:700px;"/>
+</p>
 
 The transformation tree as follows.
 
-![X4 TF tree](images/x4_tf.png "X4 Robot TF")
+<p align="center">
+  <img src="images/x4_tf.png" alt="drawing" style="width:1000px;"/>
+</p>
 
 I've provided a basic RViz file to visualize this robot, its transforms, and model.
 
-![X4 RViz](images/x4_rviz.png "X4 Robot Rviz.")
+<p align="center">
+  <img src="images/x4_rviz.png" alt="drawing" style="width:700px;"/>
+</p>

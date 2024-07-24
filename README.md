@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/images/sandbox_project_logo.png" alt="drawing" style="width:500px;"/>
+</p>
+
 # [Table of Contents](#table-of-contents)
 
 - [Motivation](docs/motivation.md)
@@ -14,11 +18,15 @@ This package for ROS 2 Jazzy Jalisco and Ubuntu 24.04 facilitates working with m
 
 ### UGVs and UAV from Fuel already configured to work with ROS Jazzy in Ubuntu 24.04 and Ignition Gazebo to accelerate your work or research.
 
-![robots](docs/images/robots_full.png)
+<p align="center">
+  <img src="docs/images/robots_full.png" alt="drawing" style="width:700px;"/>
+</p>
 
 ### Parameterized namespaces through python launch files for correct transform trees and integration with ```gazebo_ros_bridge```.
 
-![multi](docs/images/husky_rviz.png)
+<p align="center">
+  <img src="docs/images/husky_rviz.png" alt="drawing" style="width:700px;"/>
+</p>
 
 ### Out-of-the-box for you ROS 2 Jazzy environment for ```Multi-robot applications``` and a seamless integration with visualization softwares like RViz2 to further accelerate your development.
 
