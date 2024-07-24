@@ -33,7 +33,9 @@ Before running the simulation, make sure you followed the steps I've described i
 
 If everything worked correctly, you should see the following scene:
 
-![Ignition](images/ign.jpg)
+<p align="center">
+  <img src="images/ign.jpg" alt="drawing" style="width:1000px;"/>
+</p>
 
 I encourage you to explore the scene tree and also to open the Rviz configuration files I've setup for this launch file.
 
@@ -70,7 +72,9 @@ To run them, do the following.
 
 If everything works correctly, you should see something similar to this.
 
-![Rviz](images/rviz.png "Rviz")
+<p align="center">
+  <img src="images/rviz.png" alt="drawing" style="width:1000px;"/>
+</p>
 
 ## [Communicating with the Robots](#communicating-with-the-robots)
 
@@ -157,7 +161,9 @@ ros2 launch multi-robot-simulations gazebo_spawn_husky_launch.py namespace:=robo
 
 if the robot is loaded correctly, the launch file should handle the transformations and parametrization stuff for you, publishing the correct topics under the specified namespace. You should see the following in your Ignition Gazebo.
 
-![new_robot](images/new_robot.png "New robot")
+<p align="center">
+  <img src="images/new_robot.png" alt="drawing" style="width:1000px;"/>
+</p>
 
 You should also see the following extra topics available to communicate with your robot if you run the command ```ros2 topic list``` in a terminal.
 
