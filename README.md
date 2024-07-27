@@ -2,35 +2,6 @@
   <img src="docs/images/sandbox_project_logo.png" alt="drawing" style="width:500px;"/>
 </p>
 
-# Support
-
-<sub><sub><span style="color:red">This project is currently without funding. Your support is very important to help my opperations and to pay my bills.</span><sub><sub>
-
-Support Open Source mobile robots projects for search and rescue in natural disasters, which is my main motivation. Your donation will make a huge difference!
-
-[![Donate](docs/images/Donate-PayPal-green-usd.png)](https://www.paypal.com/donate/?business=YWAAG5LVWXBQC&no_recurring=0&item_name=Support+Open+Source+mobile+robots+projects+for+search+and+rescue+in+natural+disasters.+Your+donation+can+change+lives%21&currency_code=USD)
-[![Donate](docs/images/Donate-PayPal-green-brl.png)](https://www.paypal.com/donate/?business=YWAAG5LVWXBQC&no_recurring=0&item_name=Support+Open+Source+mobile+robots+projects+for+search+and+rescue+in+natural+disasters.+Your+donation+can+change+lives%21&currency_code=BRL)
-
-## Features Roadmap
-
-| Feature | Status |
-|-|-|
-| Enhance Documentation | <span style="color:green">in-progress</span> |
-| [ROS Adapt Algorithms From ROS 1 Noetic](https://github.com/Ophien/ROS-Noetic-Multi-robot-Sandbox) | <span style="color:green">in-progress</span> |
-| [Add Real World Deployment](https://youtu.be/8FP3UK7kpRA?feature=shared) | |
-| Youtube Channel | |
-| Add Robust Testing | |
-| Add Probabilistic-based Global Planner | |
-| Add Pose Graph-base Mapping | |
-| Add Pose Graph Merging | |
-| Add Heterogeneous Robot Teams Support | |
-| Add Human Computer Interfaces for Ground Teams | |
-| Add Mission Assignment and Inspector | |
-| Add Other Baselines and Algorithms | |
-| Add Other Coordination Methods | |
-| [Add More Realistic Maps and Environments for Fuel](https://app.gazebosim.org/fuel/models) | |
-| [Add Safety Mechanisms for Navigation and Traffic Avoidance](https://youtu.be/HSFmGdI0TAY?si=gvVgttymSCMpddl7) | |
-
 # [Table of Contents](#table-of-contents)
 
 - [Motivation](docs/motivation.md)
@@ -65,22 +36,33 @@ Initially, it includes a stack for ROS 2 Jazzy Jalisco and Ubuntu 24.04 that fac
 
 - [multi-robot-simulations](docs/multi-robot-simulations.md)
 
-## [Publications](#publications)
+## [Features Roadmap](#features-roadmap)
 
-If this workspace is somehow useful to you, consider reading this [letter](docs/motivation.md) and mentioning this research accepted at IROS.
+| Feature | Status |
+|-|-|
+| Enhance Documentation | <span style="color:green">in-progress</span> |
+| [ROS Adapt Algorithms From ROS 1 Noetic](https://github.com/Ophien/ROS-Noetic-Multi-robot-Sandbox) | <span style="color:green">in-progress</span> |
+| [Add Real World Deployment](https://youtu.be/8FP3UK7kpRA?feature=shared) | |
+| Youtube Channel | |
+| Add Robust Testing | |
+| Add Probabilistic-based Global Planner | |
+| Add Pose Graph-base Mapping | |
+| Add Pose Graph Merging | |
+| Add Heterogeneous Robot Teams Support | |
+| Add Human Computer Interfaces for Ground Teams | |
+| Add Mission Assignment and Inspector | |
+| Add Other Baselines and Algorithms | |
+| Add Other Coordination Methods | |
+| [Add More Realistic Maps and Environments for Fuel](https://app.gazebosim.org/fuel/models) | |
+| [Add Safety Mechanisms for Navigation and Traffic Avoidance](https://youtu.be/HSFmGdI0TAY?si=gvVgttymSCMpddl7) | |
+| Unity3D integration | |
 
-> A. R. da Silva, L. Chaimowicz, T. C. Silva, and A. Hsieh, Communication-Constrained Multi-Robot Exploration with Intermittent Rendezvous. 2024.
+## [Support this Project](#support-this-project)
 
-```text
-@misc{dasilva2024communicationconstrained,
-      title={Communication-Constrained Multi-Robot Exploration with Intermittent Rendezvous}, 
-      author={Alysson Ribeiro da Silva and Luiz Chaimowicz and Thales Costa Silva and Ani Hsieh},
-      year={2024},
-      eprint={2309.13494},
-      archivePrefix={arXiv},
-      primaryClass={cs.RO}
-}
-```
+Support Open Source mobile robots projects for search and rescue in natural disasters, which is my main motivation. Your donation will make a huge difference!
+
+[![Donate](docs/images/Donate-PayPal-green-usd.png)](https://www.paypal.com/donate/?business=YWAAG5LVWXBQC&no_recurring=0&item_name=Support+Open+Source+mobile+robots+projects+for+search+and+rescue+in+natural+disasters.+Your+donation+can+change+lives%21&currency_code=USD)
+[![Donate](docs/images/Donate-PayPal-green-brl.png)](https://www.paypal.com/donate/?business=YWAAG5LVWXBQC&no_recurring=0&item_name=Support+Open+Source+mobile+robots+projects+for+search+and+rescue+in+natural+disasters.+Your+donation+can+change+lives%21&currency_code=BRL)
 
 ## [License](#license)
 
