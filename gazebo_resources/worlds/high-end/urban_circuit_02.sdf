@@ -1,27 +1,59 @@
-<?xml version="1.0" ?>
-<!--
-  Generated with the tile_tsv.py script:
-    tile_tsv.py urban_circuit_02.tsv -\-graph-file urban_circuit_02.dot -\-world-file urban_circuit_02.sdf -\-world-name urban_circuit_02 -\-scale_x 40 -\-scale_y 40 -\-urban -\-y0 24 -\-x0 -136.05 -\-z0 0.92 -\-level_type row_col -\-levels_buf 9
--->
-<sdf version="1.6">
-  <world name="urban_circuit_02">
-
-    <physics name="1ms" type="ode">
-      <max_step_size>0.004</max_step_size>
-      <real_time_factor>1.0</real_time_factor>
+<sdf version='1.10'>
+  <world name='empty'>
+    <physics name='1ms' type='ignored'>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
     </physics>
+    <plugin name='gz::sim::systems::Physics' filename='gz-sim-physics-system'/>
+    <plugin name='gz::sim::systems::UserCommands' filename='gz-sim-user-commands-system'/>
+    <plugin name='gz::sim::systems::SceneBroadcaster' filename='gz-sim-scene-broadcaster-system'/>
+    <plugin name='gz::sim::systems::Contact' filename='gz-sim-contact-system'/>
 
+    <plugin
+      filename="gz-sim-imu-system"
+      name="gz::sim::systems::Imu">
+    </plugin>
+
+    <plugin
+      filename="gz-sim-sensors-system"
+      name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    
+    <plugin
+      filename="gz-sim-scene-broadcaster-system"
+      name="gz::sim::systems::SceneBroadcaster">
+    </plugin>
+    
+    <gravity>0 0 -9.8000000000000007</gravity>
+    <magnetic_field>5.5644999999999998e-06 2.2875799999999999e-05 -4.2388400000000002e-05</magnetic_field>
+    <atmosphere type='adiabatic'/>
     <scene>
-      <ambient>0.1 0.1 0.1 1.0</ambient>
-      <background>0 0 0 1.0</background>
-      <grid>false</grid>
-      <origin_visual>false</origin_visual>
+      <ambient>0.400000006 0.400000006 0.400000006 1</ambient>
+      <background>0.699999988 0.699999988 0.699999988 1</background>
+      <shadows>true</shadows>
     </scene>
 
-    <atmosphere type="adiabatic">
-       <temperature>288</temperature>
-       <temperature_gradient>0.6</temperature_gradient>
-    </atmosphere>
+    <light name='sun' type='directional'>
+      <pose>0 0 10 0 0 0</pose>
+      <cast_shadows>true</cast_shadows>
+      <intensity>1</intensity>
+      <direction>-0.5 0.10000000000000001 -0.90000000000000002</direction>
+      <diffuse>0.800000012 0.800000012 0.800000012 1</diffuse>
+      <specular>0.200000003 0.200000003 0.200000003 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <linear>0.01</linear>
+        <constant>0.90000000000000002</constant>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <spot>
+        <inner_angle>0</inner_angle>
+        <outer_angle>0</outer_angle>
+        <falloff>0</falloff>
+      </spot>
+    </light>
 
     <!-- The staging area -->
     <include>
@@ -231,10 +263,5 @@
       <uri>https://fuel.ignitionrobotics.org/1.0/OpenRobotics/models/Urban Service Room Centered Lights</uri>
       <pose>23.950000 -96.000000 -9.080000 0 0 3.141593</pose>
     </include>
-
-    <wind>
-      <linear_velocity>0.000000 0.000000 0.000000</linear_velocity>
-    </wind>
-
   </world>
 </sdf>
