@@ -1,0 +1,3 @@
+[submodule "src/pointcloud_ground_segmentation"]
+	path = src/pointcloud_ground_segmentation
+	url = git@github.com:multirobotplayground/pointcloud_ground_segmentation.git

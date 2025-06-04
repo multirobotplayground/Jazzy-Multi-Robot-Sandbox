@@ -13,6 +13,7 @@ find_package(rclcpp REQUIRED)
 find_package(tf2_ros REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
+find_package(sensor_msgs REQUIRED)
 
 ####################
 # libraries
@@ -21,7 +22,7 @@ add_library(multi_robot_library src/PoseTFPublisher.cpp)
 target_include_directories(multi_robot_library PUBLIC
    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
    $<INSTALL_INTERFACE:include>)
-ament_target_dependencies(multi_robot_library rclcpp tf2_ros std_msgs geometry_msgs)
+ament_target_dependencies(multi_robot_library rclcpp tf2_ros std_msgs geometry_msgs sensor_msgs)
 
 ####################
 # executables

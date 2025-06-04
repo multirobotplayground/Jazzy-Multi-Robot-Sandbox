@@ -304,7 +304,7 @@
                         </vertical>
                     </scan>
                     <range>
-                        <min>0.05</min>
+                        <min>1.0</min>
                         <max>300</max>
                         <resolution>0.01</resolution>
                     </range>
@@ -557,10 +557,13 @@
             <min_linear_acceleration>-1</min_linear_acceleration>
             <max_angular_acceleration>2</max_angular_acceleration>
             <min_angular_acceleration>-2</min_angular_acceleration>
-            <max_linear_velocity>2.0</max_linear_velocity>
-            <min_linear_velocity>-2.0</min_linear_velocity>
-            <max_angular_velocity>1</max_angular_velocity>
-            <min_angular_velocity>-1</min_angular_velocity>
+            <max_linear_velocity>5.0</max_linear_velocity>
+            <min_linear_velocity>-5.0</min_linear_velocity>
+            <max_angular_velocity>5</max_angular_velocity>
+            <min_angular_velocity>-5</min_angular_velocity>
+            <update_rate>50</update_rate>
+            <update_frequency>50</update_frequency>
+            <publish_tf>false</publish_tf>
         </plugin>
 
         <plugin filename="ignition-gazebo-navsat-system"  name="ignition::gazebo::systems::NavSat"></plugin>
@@ -571,6 +574,14 @@
             <publish_visual_pose>false</publish_visual_pose>
             <publish_nested_model_pose>true</publish_nested_model_pose>
             <update_frequency>20</update_frequency>
+        </plugin>
+
+        <plugin name="gz::sim::systems::JointStatePublisher" filename="gz-sim-joint-state-publisher-system">
+            <joint_name>front_left_wheel_joint</joint_name>
+            <joint_name>rear_left_wheel_joint</joint_name>
+            <joint_name>front_right_wheel_joint</joint_name>
+            <joint_name>rear_right_wheel_joint</joint_name>
+            <update_rate>50</update_rate>
         </plugin>
     </model>
 </sdf>

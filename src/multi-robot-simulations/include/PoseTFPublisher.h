@@ -20,24 +20,27 @@
 #include "std_msgs/msg/string.hpp"
 #include "geometry_msgs/msg/pose.hpp"
 #include "tf2_ros/static_transform_broadcaster.h"
+#include "tf2_ros/transform_broadcaster.h"
+#include "geometry_msgs/msg/pose_stamped.hpp"
 
 class PoseTFPublisher : public rclcpp::Node {
     public:
         PoseTFPublisher();
         ~PoseTFPublisher();
-        void PoseSubscriber(geometry_msgs::msg::Pose::UniquePtr msg);
+        void PoseSubscriber(geometry_msgs::msg::PoseStamped::UniquePtr msg);
         void Update();
         
     private:
         int aFrequency;
+        rclcpp::Time aStartingTimeStamp;
         bool aHasPose;
-        geometry_msgs::msg::Pose aPose;
+        geometry_msgs::msg::PoseStamped aPose;
         std::string aOdomFrame;
         std::string aChildFrame;
         std::string aPoseTopic;
         std::string aNamespace;
         std::string aAbsoluteTopicPath;
         rclcpp::TimerBase::SharedPtr apTimer;
-        rclcpp::Subscription<geometry_msgs::msg::Pose>::SharedPtr apPoseSubscriber;
+        rclcpp::Subscription<geometry_msgs::msg::PoseStamped>::SharedPtr apPoseSubscriber;
         std::shared_ptr<tf2_ros::StaticTransformBroadcaster> aTFBroadcaster;
 };

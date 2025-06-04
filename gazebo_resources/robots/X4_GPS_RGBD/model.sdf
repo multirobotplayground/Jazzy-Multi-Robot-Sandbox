@@ -1010,5 +1010,14 @@
             <update_frequency>20</update_frequency>
         </plugin>
         
+        <plugin name="gz::sim::systems::JointStatePublisher" filename="gz-sim-joint-state-publisher-system">
+            <joint_name>rotor_0_joint</joint_name>
+            <joint_name>rotor_1_joint</joint_name>
+            <joint_name>rotor_2_joint</joint_name>
+            <joint_name>rotor_3_joint</joint_name>
+            <joint_name>rotor_4_joint</joint_name>
+            <joint_name>rotor_5_joint</joint_name>
+            <update_rate>50</update_rate>
+        </plugin>
     </model>
 </sdf>
