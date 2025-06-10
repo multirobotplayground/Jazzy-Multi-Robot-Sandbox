@@ -29,24 +29,30 @@
 
 ## [Features Roadmap](#features-roadmap)
 
+Here's a look at what's coming up, what's in progress, and what's already done for this project:
+
 | Feature | Status |
-|-|-|
-| Enhance Documentation | <span style="color:yellow">in-progress</span> |
-| [ROS Adapt Algorithms From ROS 1 Noetic](https://github.com/Ophien/ROS-Noetic-Multi-robot-Sandbox) | <span style="color:yellow">in-progress</span> |
-| [Add Real World Deployment](https://youtu.be/8FP3UK7kpRA?feature=shared) | <span style="color:red">stalled</span> |
-| Youtube Channel | <span style="color:red">stalled</span> |
-| Add Robust Testing | <span style="color:red">stalled</span> |
-| Add Probabilistic-based Global Planner | <span style="color:green">Done</span> |
-| Add Pose Graph-base Mapping | <span style="color:green">Done</span> |
-| Add Pose Graph Merging | <span style="color:yellow">in-progress</span> |
-| Add Heterogeneous Robot Teams Support | <span style="color:green">Done</span> |
-| Add Human Computer Interfaces for Ground Teams | <span style="color:red">stalled</span> |
-| Add Mission Assignment and Inspector | <span style="color:red">stalled</span> |
-| Add Other Baselines and Algorithms | <span style="color:yellow">in-progress</span> |
-| Add Other Coordination Methods | <span style="color:yellow">in-progress</span> |
-| [Add More Realistic Maps and Environments for Fuel](https://app.gazebosim.org/fuel/models) | <span style="color:green">Done</span> |
-| [Add Safety Mechanisms for Navigation and Traffic Avoidance](https://youtu.be/HSFmGdI0TAY?si=gvVgttymSCMpddl7) | <span style="color:yellow">in-progress</span> |
-| Unity3D integration | <span style="color:red">stalled</span> |
+|---|---|
+| Enhance Documentation | 🟡 In Progress |
+| [ROS Adapt Algorithms From ROS 1 Noetic](https://github.com/Ophien/ROS-Noetic-Multi-robot-Sandbox) | 🟡 In Progress |
+| [Add Real World Deployment](https://youtu.be/8FP3UK7kpRA?feature=shared) | 🔴 Stalled |
+| Youtube Channel | 🔴 Stalled |
+| Add Robust Testing | 🔴 Stalled |
+| Add Probabilistic-based Global Planner | 🟢 Done |
+| Add Pose Graph-based Mapping | 🟢 Done |
+| Add Pose Graph Merging | 🟡 In Progress |
+| Add Heterogeneous Robot Teams Support | 🟢 Done |
+| Add Human Computer Interfaces for Ground Teams | 🔴 Stalled |
+| Add Mission Assignment and Inspector | 🔴 Stalled |
+| Add Other Baselines and Algorithms | 🟡 In Progress |
+| Add Other Coordination Methods | 🟡 In Progress |
+| [Add More Realistic Maps and Environments for Fuel](https://app.gazebosim.org/fuel/models) | 🟢 Done |
+| [Add Safety Mechanisms for Navigation and Traffic Avoidance](https://youtu.be/HSFmGdI0TAY?si=gvVgttymSCMpddl7) | 🟡 In Progress |
+| Unity3D integration | 🔴 Stalled |
+
+**Legend:**  
+🟢 Done &nbsp;&nbsp; 🟡 In Progress &nbsp;&nbsp; 🔴 Stalled
+
 
 ## [Support this Project](#support-this-project)
 
