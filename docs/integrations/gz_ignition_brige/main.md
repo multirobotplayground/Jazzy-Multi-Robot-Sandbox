@@ -13,6 +13,43 @@ The purpose of this demonstration is to show how:
 
 Follow the steps described in our [setup](docs/working_environment.md) tutorial to configure your machine before running these demonstrations.
 
+### [Repository Setup Instructions](#repository-setup-instructions)
+
+Once your environment is ready, follow these steps to set up the project:
+
+1. **Clone the repository:**  
+  Download the project files to your computer.
+  ```bash
+  git clone https://github.com/multirobotplayground/Jazzy-Multi-Robot-Sandbox.git
+  cd Jazzy-Multi-Robot-Sandbox
+  ```
+
+2. **Initialize submodules:**  
+  Some dependencies are included as submodules. This command fetches them.
+  ```bash
+  git submodule update --init --remote
+  ```
+
+3. **Source ROS 2 environment:**  
+  Make sure your terminal session is using the correct ROS 2 distribution (here, `jazzy`).
+  ```bash
+  source /opt/ros/jazzy/setup.bash
+  ```
+
+4. **Build the workspace:**  
+  Compile all packages in the repository.
+  ```bash
+  colcon build
+  ```
+
+5. **Source the workspace:**  
+  Update your environment so ROS 2 can find the newly built packages.
+  ```bash
+  source install/setup.bash
+  ```
+
+After completing these steps, your workspace will be ready to run the multi-robot simulations and integrations described in this guide.
+
 ## [Namespacing with Configuration File](#namespacing-with-configuration-file)
 
 - Run the [gz_bridge_config_file_launch.py](../../../src/multi-robot-simulations/launch/integrations/gz_ignition_bridge/gz_bridge_config_file_launch.py) launch file from the [multi-robot-simulations](../../../src/multi-robot-simulations) package.

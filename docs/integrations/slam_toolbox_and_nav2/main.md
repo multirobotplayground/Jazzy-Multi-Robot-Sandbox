@@ -1,6 +1,7 @@
 ## Table of Contents
 - [Multi-robot Slam Toolbox and Nav2 Integration](#multi-robot-slam-toolbox-and-nav2-integration)
 - [Setup](#setup)
+    - [Repository Setup Instructions](#repository-setup-instructions)
 - [Slam-Toolbox and Nav2 Integration](#slam-toolbox-and-nav2-integration)
 - [ROS Nav 2](#ros-nav-2)
 - [Slam Toolbox](#slam-toolbox)
@@ -15,6 +16,43 @@ This guide demonstrates how to integrate Slam Toolbox and Nav2 for multi-robot s
 # [Setup](#setup)
 
 Before running the demonstrations, follow the instructions in our [setup guide](docs/working_environment.md) to properly configure your environment.
+
+### [Repository Setup Instructions](#repository-setup-instructions)
+
+Once your environment is ready, follow these steps to set up the project:
+
+1. **Clone the repository:**  
+  Download the project files to your computer.
+  ```bash
+  git clone https://github.com/multirobotplayground/Jazzy-Multi-Robot-Sandbox.git
+  cd Jazzy-Multi-Robot-Sandbox
+  ```
+
+2. **Initialize submodules:**  
+  Some dependencies are included as submodules. This command fetches them.
+  ```bash
+  git submodule update --init --remote
+  ```
+
+3. **Source ROS 2 environment:**  
+  Make sure your terminal session is using the correct ROS 2 distribution (here, `jazzy`).
+  ```bash
+  source /opt/ros/jazzy/setup.bash
+  ```
+
+4. **Build the workspace:**  
+  Compile all packages in the repository.
+  ```bash
+  colcon build
+  ```
+
+5. **Source the workspace:**  
+  Update your environment so ROS 2 can find the newly built packages.
+  ```bash
+  source install/setup.bash
+  ```
+
+After completing these steps, your workspace will be ready to run the multi-robot simulations and integrations described in this guide.
 
 # [Slam-Toolbox and Nav2 Integration](#slam-toolbox-and-nav2-integration)
 
