@@ -1,15 +1,32 @@
-# Contributing
+# Contributing Guidelines
 
-Write commits with two components:
+We welcome contributions of any kind to improve this project. To ensure clarity and consistency, please follow these commit message guidelines:
 
-1. description in imperative mood without ending with a period.
-2. sequence of structured paragraphs with detailed explanation of what you have changed.
+## Commit Message Format
 
-Example:
+Each commit message should contain the following two components:
 
-```text
+1. **A brief description in the imperative mood** (e.g., *Add feature*, *Fix bug*, *Update documentation*).  
+   - Use the imperative form (e.g., *Add* instead of *Added* or *Adding*)  
+   - Do not end the subject line with a period  
+   - Keep it concise and focused on what the commit does
+
+2. **One or more structured paragraphs** explaining the *what*, *why*, and optionally *how*.  
+   - The first paragraph should explain what has changed and why  
+   - Additional paragraphs can describe implementation details, edge cases, or links to related issues or discussions  
+   - Use blank lines to separate paragraphs for readability
+
+## Example Commit Message
+
+```
 Remove unused function
 
-The function was unecessary, because of this and that.
-Something will be added according to the new roadmap as specified during the meeting.
+The function was unnecessary due to a refactor that rendered it obsolete.
+Removing it improves code clarity and prevents confusion.
+
+This change is aligned with the new roadmap and simplifies the codebase as discussed in the last team meeting.
 ```
+
+By following this structure, your contributions will be easier to review, understand, and maintain.
+
+Thank you for helping improve this project!

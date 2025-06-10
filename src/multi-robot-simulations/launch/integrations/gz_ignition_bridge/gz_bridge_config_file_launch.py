@@ -53,7 +53,8 @@ def generate_launch_description():
                         remappings=[
                         ],
                         parameters=[
-                            {'config_file': PathJoinSubstitution([project_package_dir, 'config', 'integrations', 'gz_ignition_bridge', get_set_argument_val('config_file')])}
+                            {'config_file': PathJoinSubstitution([project_package_dir, 'config', 
+                                                                  'integrations', 'gz_ignition_bridge', LaunchConfiguration('config_file')])}
                         ]  
                     )
     

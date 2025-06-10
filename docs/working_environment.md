@@ -2,7 +2,6 @@
 
 - [Table of Contents](#table-of-contents)
   - [Working Environment](#working-environment)
-  - [Disclaimer About Docker](#disclaimer-about-docker)
   - [Steps to Install Ubuntu 24.04](#steps-to-install-ubuntu-2404)
   - [Steps to Install ROS 2 Jazzy Jalisco](#steps-to-install-ros-2-jazzy-jalisco)
   - [Steps to Install and Configure Tmux and Git](#steps-to-install-and-configure-tmux-and-git)
@@ -11,10 +10,6 @@
 ## [Working Environment](#working-environment)
 
 This workspace was tested on June 19, 2024, on several different desktop computers and laptops of varying ages, and it worked on the first attempt. It assumes that you have previous experience installing operating systems on your personal computer and understand tools such as git, curl, bash, and tmux, specifically how to run commands in a terminal.
-
-## [Disclaimer About Docker](#disclaimer-about-docker)
-
-All simulations in this workspace are intended to run on native Ubuntu 24.04. While many students and professionals might prefer to use Docker and install ROS in a container, I believe that the additional system architecture layer introduced by Docker is detrimental to understanding, mainly because ROS itself can be very complicated for the inexperienced explorer.
 
 In summary, I've divided this tutorial into three parts:
 
@@ -156,4 +151,4 @@ In summary, you need to follow these steps:
 
 ## [Next Steps](#next-steps)
 
-  Now your environment should be ready to run the simulations from this repository and also to help you starting your journey. [Click here](usage.md) for the next steps.
+  Now your environment should be ready to run the simulations from this repository and also to help you starting your journey.

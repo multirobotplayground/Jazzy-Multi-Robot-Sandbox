@@ -2,71 +2,62 @@
   <img src="docs/images/sandbox_project_logo.png" alt="drawing" style="width:500px;"/>
 </p>
 
-# [Table of Contents](#table-of-contents)
+# [Demonstrations](#table-of-contents)
 
-- [Motivation](docs/motivation.md)
-- [Setup](docs/working_environment.md)
-- [Usage](docs/usage.md)
-- [Robots](docs/robots.md)
-- [Contributing](docs/contributing.md)
+- [Ignition Simulator Namespacing](docs/integrations/gz_ignition_brige/main.md)
+- [Heterogeneous Teams](docs/integrations/heterogeneous_teams/main.md)
+- [Multi-robot Slam_toolbox and Nav2](docs/integrations/slam_toolbox_and_nav2/main.md)
 
-## [ROS-Jazzy-Multi-robot-Sandbox](#ros-jazzy-multi-robot-sandbox)
+## [What to Expect from this Repository?](#what-to-expect)
 
-This workspace is a sandbox for multi-robot research.
-
-Initially, it includes a stack for ROS 2 Jazzy Jalisco and Ubuntu 24.04 that facilitates working with multiple robots in Ignition Gazebo. It provides an environment for heterogeneous robots, UAVs, and UGVs, publishing the correct transformation trees and topics to control mobile robots out-of-the-box. It can help you advance your research or development more quickly without needing prior knowledge to configure simulations within the ROS 2 environment, including operational systems, computer networks, parallel computing, simulation architectures, linear algebra, and more.
-
-## [What to Expect?](#what-to-expect)
-
-### UGVs and UAV from Fuel already configured to work with ROS Jazzy in Ubuntu 24.04 and Ignition Gazebo to accelerate your work or research.
+- Demonstrations on how to work with multiple robots in ROS 2.
+- Multi-robot exploration and related algorithms
+- Multi-robot intermittent map sharing and planned rendezvous for the assigned mission
 
 <p align="center">
-  <img src="docs/images/robots_full.png" alt="drawing" style="width:700px;"/>
+  <img src="docs/images/huskys_4.png" width="500"/>
+  <img src="docs/images/huskys_3.png" width="500"/>
 </p>
 
-### Parameterized namespaces through python launch files for correct transform trees and integration with ```gazebo_ros_bridge```.
+> Click on the image below for a demonstration. Or watch through this link: [https://www.youtube.com/watch?v=4ULRDRlOOw4](https://www.youtube.com/watch?v=4ULRDRlOOw4)
 
 <p align="center">
-  <img src="docs/images/husky_rviz.png" alt="drawing" style="width:700px;"/>
+  <a href="https://www.youtube.com/watch?v=4ULRDRlOOw4" target="_blank">
+    <img src="https://img.youtube.com/vi/4ULRDRlOOw4/0.jpg" alt="YouTube Video" width="560"/>
+  </a>
 </p>
-
-### Out-of-the-box for you ROS 2 Jazzy environment for ```Multi-robot applications``` and a seamless integration with visualization softwares like RViz2 to further accelerate your development.
-
-## [Packages](#packages)
-
-- [multi-robot-simulations](docs/multi-robot-simulations.md)
 
 ## [Features Roadmap](#features-roadmap)
 
 | Feature | Status |
 |-|-|
-| Enhance Documentation | <span style="color:green">in-progress</span> |
-| [ROS Adapt Algorithms From ROS 1 Noetic](https://github.com/Ophien/ROS-Noetic-Multi-robot-Sandbox) | <span style="color:green">in-progress</span> |
-| [Add Real World Deployment](https://youtu.be/8FP3UK7kpRA?feature=shared) | |
-| Youtube Channel | |
-| Add Robust Testing | |
-| Add Probabilistic-based Global Planner | |
-| Add Pose Graph-base Mapping | |
-| Add Pose Graph Merging | |
-| Add Heterogeneous Robot Teams Support | |
-| Add Human Computer Interfaces for Ground Teams | |
-| Add Mission Assignment and Inspector | |
-| Add Other Baselines and Algorithms | |
-| Add Other Coordination Methods | |
-| [Add More Realistic Maps and Environments for Fuel](https://app.gazebosim.org/fuel/models) | |
-| [Add Safety Mechanisms for Navigation and Traffic Avoidance](https://youtu.be/HSFmGdI0TAY?si=gvVgttymSCMpddl7) | |
-| Unity3D integration | |
+| Enhance Documentation | <span style="color:yellow">in-progress</span> |
+| [ROS Adapt Algorithms From ROS 1 Noetic](https://github.com/Ophien/ROS-Noetic-Multi-robot-Sandbox) | <span style="color:yellow">in-progress</span> |
+| [Add Real World Deployment](https://youtu.be/8FP3UK7kpRA?feature=shared) | <span style="color:red">stalled</span> |
+| Youtube Channel | <span style="color:red">stalled</span> |
+| Add Robust Testing | <span style="color:red">stalled</span> |
+| Add Probabilistic-based Global Planner | <span style="color:green">Done</span> |
+| Add Pose Graph-base Mapping | <span style="color:green">Done</span> |
+| Add Pose Graph Merging | <span style="color:yellow">in-progress</span> |
+| Add Heterogeneous Robot Teams Support | <span style="color:green">Done</span> |
+| Add Human Computer Interfaces for Ground Teams | <span style="color:red">stalled</span> |
+| Add Mission Assignment and Inspector | <span style="color:red">stalled</span> |
+| Add Other Baselines and Algorithms | <span style="color:yellow">in-progress</span> |
+| Add Other Coordination Methods | <span style="color:yellow">in-progress</span> |
+| [Add More Realistic Maps and Environments for Fuel](https://app.gazebosim.org/fuel/models) | <span style="color:green">Done</span> |
+| [Add Safety Mechanisms for Navigation and Traffic Avoidance](https://youtu.be/HSFmGdI0TAY?si=gvVgttymSCMpddl7) | <span style="color:yellow">in-progress</span> |
+| Unity3D integration | <span style="color:red">stalled</span> |
 
 ## [Support this Project](#support-this-project)
 
-Support Open Source mobile robots projects for search and rescue in natural disasters, which is my main motivation. Your donation will make a huge difference!
+Support this open-source project.
 
 [![Donate](docs/images/Donate-PayPal-green-usd.png)](https://www.paypal.com/donate/?business=YWAAG5LVWXBQC&no_recurring=0&item_name=Support+Open+Source+mobile+robots+projects+for+search+and+rescue+in+natural+disasters.+Your+donation+can+change+lives%21&currency_code=USD)
 [![Donate](docs/images/Donate-PayPal-green-brl.png)](https://www.paypal.com/donate/?business=YWAAG5LVWXBQC&no_recurring=0&item_name=Support+Open+Source+mobile+robots+projects+for+search+and+rescue+in+natural+disasters.+Your+donation+can+change+lives%21&currency_code=BRL)
 
 ## [License](#license)
 
-All content from this repository is released under a modified [GPLv3 license](LICENSE).
+All content from this repository is released under a [GPLv3 license](LICENSE).
 
 Author/Maintainer:
 
