@@ -1,6 +1,13 @@
 ## Table of Contents
 
 - [Ignition Simulator Demonstration](#ignition-simulator-demonstration)
+  - [Setup](#setup)
+    - [Repository Setup Instructions](#repository-setup-instructions)
+  - [Namespacing with Configuration File](#namespacing-with-configuration-file)
+  - [Namespacing without a Configuration File](#namespacing-without-a-configuration-file)
+  - [Checking the Topics and Transforms](#checking-the-topics-and-transforms)
+  - [Support this Project](#support-this-project)
+  - [License](#license)
 
 # [Ignition Simulator Demonstration](#ignition-simulator-demonstration)
 
