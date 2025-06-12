@@ -1,4 +1,4 @@
-# Jazzy-Multi-Robot-Sandbox for multi-robot research using ROS Noetic
+# Jazzy-Multi-Robot-Sandbox for multi-robot research using ROS 2
 # Copyright (C) 2025 Alysson Ribeiro da Silva
 #
 # This program is free software: you can redistribute it and/or modify
@@ -35,7 +35,7 @@ def generate_launch_description():
         launch_arguments={
             'render_engine': 'ogre2',
             'use_sim_time': 'True',
-            'gz_args': ['-r ', LaunchConfiguration('world')],
+            'gz_args': ['-r ', '-s ', LaunchConfiguration('world')],
              'on_exit_shutdown': 'true' # -r run unpaused, -s runs without gui
             }.items()
     )
@@ -48,7 +48,9 @@ def generate_launch_description():
             'namespace': 'robot_1',
             'x': '0.0',
             'y': '-18.0',
-            'z': '1.05'
+            'z': '1.05',
+            'slam_config_file': 'robot_1_slam.yaml',
+            'nav2_config_file': 'robot_1_nav2.yaml'
         }.items()
     )
 
@@ -58,7 +60,9 @@ def generate_launch_description():
             'namespace': 'robot_2',
             'x': '-5.0',
             'y': '-18.0',
-            'z': '1.15'
+            'z': '1.15',
+            'slam_config_file': 'robot_2_slam.yaml',
+            'nav2_config_file': 'robot_2_nav2.yaml'
         }.items()
     )
 
