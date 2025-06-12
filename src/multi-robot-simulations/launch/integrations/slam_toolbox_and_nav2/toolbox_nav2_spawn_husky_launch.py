@@ -1,4 +1,4 @@
-# Jazzy-Multi-Robot-Sandbox for multi-robot research using ROS Noetic
+# Jazzy-Multi-Robot-Sandbox for multi-robot research using ROS 2
 # Copyright (C) 2025 Alysson Ribeiro da Silva
 #
 # This program is free software: you can redistribute it and/or modify
@@ -26,95 +26,53 @@ from launch_ros.events.lifecycle import ChangeState
 from lifecycle_msgs.msg import Transition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.actions import IncludeLaunchDescription, DeclareLaunchArgument, EmitEvent, LogInfo, RegisterEventHandler
-from launch.substitutions import AndSubstitution, NotSubstitution, LaunchConfiguration, PathJoinSubstitution, PythonExpression as pyexp
+from launch.substitutions import AndSubstitution, NotSubstitution, LaunchConfiguration, PathJoinSubstitution
 from launch_ros.descriptions import ParameterFile
 from nav2_common.launch import RewrittenYaml
 
-def SingleSubstitution(string, token, substitution_obj):
-    ss = re.split("(" + token + ")", string)
-    cmd_list = []
-    for i in range(len(ss)):
-        obj = ss[i]
-
-        add = ''
-        if i < len(ss)-1:
-            add = '+'
-
-        if obj != token:
-            obj = "'" + obj + "'" + add
-            cmd_list.append(obj)
-        else:
-            before = "'"
-            after = "'" + add
-            cmd_list.append(before)
-            cmd_list.append(substitution_obj)
-            cmd_list.append(after)
-
-    return cmd_list
-
-
 def generate_launch_description(): 
-    robot_namespace = DeclareLaunchArgument('namespace', default_value='robot_0')
-    x = DeclareLaunchArgument('x', default_value='0.0')
-    y = DeclareLaunchArgument('y', default_value='0.0')
-    z = DeclareLaunchArgument('z', default_value='0.2')
-    
+    arg_robot_namespace = DeclareLaunchArgument('namespace', default_value='robot_0')
+    arg_x = DeclareLaunchArgument('x', default_value='0.0')
+    arg_y = DeclareLaunchArgument('y', default_value='0.0')
+    arg_z = DeclareLaunchArgument('z', default_value='0.2')
+    arg_slam_config_file = DeclareLaunchArgument('slam_config_file', default_value='robot_1_slam.yaml')
+    arg_nav2_config_file = DeclareLaunchArgument('nav2_config_file', default_value='robot_1_nav2.yaml')
+    arg_declare_autostart_cmd = DeclareLaunchArgument('autostart', default_value='true')
+    arg_declare_use_lifecycle_manager = DeclareLaunchArgument('use_lifecycle_manager', default_value='false')
+
     ns = LaunchConfiguration('namespace')
     x_val = LaunchConfiguration('x')
     y_val = LaunchConfiguration('y')
     z_val = LaunchConfiguration('z')
-
+    autostart = LaunchConfiguration('autostart')
+    use_lifecycle_manager = LaunchConfiguration('use_lifecycle_manager')
     use_sim_time = LaunchConfiguration('use_sim_time', default='true')
     default_tf_hz = LaunchConfiguration('default_tf_hz', default=50.0)
+    slam_config_file = LaunchConfiguration('slam_config_file', default='robot_1_slam.yaml')
+    nav2_config_file = LaunchConfiguration('nav2_config_file', default='robot_1_nav2.yaml')
 
-    # Must find a better way to do this substituition, since this is rather naive
-    cmd_vel_bridge = SingleSubstitution("/model/{@}/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist", 
-                                        "{@}", 
-                                        ns)
-    point_cloud_bridge = SingleSubstitution("/world/empty/model/{@}/link/sensor_rack/sensor/front_lidar/scan/points@"\
-                                            "sensor_msgs/msg/PointCloud2[gz.msgs.PointCloudPacked", 
-                                            "{@}", 
-                                            ns)
-    lidar_scan_bridge = SingleSubstitution("/world/empty/model/{@}/link/sensor_rack/sensor/front_lidar/scan@"\
-                                           "sensor_msgs/msg/LaserScan[gz.msgs.LaserScan",
-                                           "{@}", 
-                                            ns)
-    imu_bridge = SingleSubstitution("/world/empty/model/{@}/link/sensor_rack/sensor/imu_sensor/imu@"\
-                                    "sensor_msgs/msg/Imu[gz.msgs.IMU",
-                                    "{@}", 
-                                    ns)
-    odometry_bridge = SingleSubstitution("/model/{@}/odometry@nav_msgs/msg/Odometry[gz.msgs.Odometry",
-                                         "{@}", 
-                                         ns)
-    global_localization_bridge = SingleSubstitution("/model/{@}/pose@geometry_msgs/msg/PoseStamped[gz.msgs.Pose",
-                                                    "{@}",
-                                                    ns)
-    joint_states = SingleSubstitution("/world/empty/model/{@}/joint_state@sensor_msgs/msg/JointState[gz.msgs.Model",
-                                                    "{@}",
-                                                    ns)
-    
     ros_bridge_node = Node(
                         package='ros_gz_bridge',
                         namespace='ros_gz_bridge',
                         executable='parameter_bridge',
-                        name=pyexp(SingleSubstitution('{@}_gz_bridge', '{@}', ns)),
+                        name=[ns, '_gz_bridge'],
                         parameters=[{'use_sim_time': use_sim_time}],
-                        arguments=[pyexp(cmd_vel_bridge),
-                                   pyexp(point_cloud_bridge),
-                                   pyexp(lidar_scan_bridge),
-                                   pyexp(imu_bridge),
-                                   pyexp(odometry_bridge),
-                                   pyexp(global_localization_bridge),
-                                   pyexp(joint_states)
+                        arguments=[['/model/', ns, '/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist'],
+                                   ['/world/empty/model/', ns, '/link/sensor_rack/sensor/front_lidar/scan/points@sensor_msgs/msg/PointCloud2[gz.msgs.PointCloudPacked'],
+                                   ['/world/empty/model/', ns, '/link/sensor_rack/sensor/front_lidar/scan@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan'],
+                                   ['/world/empty/model/', ns, '/link/sensor_rack/sensor/imu_sensor/imu@sensor_msgs/msg/Imu[gz.msgs.IMU'],
+                                   ['/model/', ns, '/odometry@nav_msgs/msg/Odometry[gz.msgs.Odometry'],
+                                   ['/model/', ns, '/pose@geometry_msgs/msg/PoseStamped[gz.msgs.Pose'],
+                                   ['/world/empty/model/', ns, '/joint_state@sensor_msgs/msg/JointState[gz.msgs.Model']
                                 ],
                         remappings=[
-                            (pyexp(SingleSubstitution('/model/{@}/cmd_vel', '{@}', ns)), pyexp(SingleSubstitution('/{@}/cmd_vel', '{@}', ns))),
-                            (pyexp(SingleSubstitution('/world/empty/model/{@}/link/sensor_rack/sensor/front_lidar/scan/points', '{@}', ns)), pyexp(SingleSubstitution('/{@}/lidar/points', "{@}", ns))),
-                            (pyexp(SingleSubstitution('/world/empty/model/{@}/link/sensor_rack/sensor/front_lidar/scan', "{@}", ns)), pyexp(SingleSubstitution('/{@}/lidar/scan', "{@}", ns))),
-                            (pyexp(SingleSubstitution('/world/empty/model/{@}/link/sensor_rack/sensor/imu_sensor/imu', "{@}", ns)), pyexp(SingleSubstitution('/{@}/imu', "{@}", ns))),
-                            (pyexp(SingleSubstitution('/model/{@}/odometry', "{@}", ns)), pyexp(SingleSubstitution('/{@}/odometry', "{@}", ns))),
-                            (pyexp(SingleSubstitution('/model/{@}/pose', "{@}", ns)), pyexp(SingleSubstitution('/{@}/pose', "{@}", ns))),
-                            (pyexp(SingleSubstitution('/world/empty/model/{@}/joint_state', "{@}", ns)), pyexp(SingleSubstitution('/{@}/joint_states', "{@}", ns)))
+                            (['/model/', ns, '/cmd_vel'],['/', ns , '/cmd_vel']),
+                            (['/world/empty/model/', ns, '/link/sensor_rack/sensor/front_lidar/scan/points'], ['/', ns, '/lidar/points']),
+                            (['/world/empty/model/', ns, '/link/sensor_rack/sensor/front_lidar/scan'],['/', ns, '/lidar/scan']),
+                            (['/world/empty/model/', ns, '/link/sensor_rack/sensor/imu_sensor/imu'],['/', ns, '/imu']),
+                            (['/model/', ns, '/odometry'],['/', ns, '/odometry']),
+                            (['/model/', ns, '/pose'],['/', ns, '/pose']),
+                            (['/world/empty/model/', ns, '/joint_state'],['/', ns, '/joint_states']),
                         ],
     )
 
@@ -130,7 +88,7 @@ def generate_launch_description():
                 name='robot_state_publisher',
                 output='screen',
                 parameters=[{'robot_description': robot_description,
-                             'frame_prefix': pyexp(SingleSubstitution('{@}/', "{@}", ns)),
+                             'frame_prefix': [ns, '/'],
                              'use_sim_time': use_sim_time,
                              'publish_frequency': default_tf_hz}],
                 arguments=[])
@@ -138,12 +96,12 @@ def generate_launch_description():
     common_frame_publisher = Node(
                 package='tf2_ros',
                 executable='static_transform_publisher',
-                name="common_frame",
+                name='common_frame',
                 output='screen',
                 namespace=ns,
                 remappings=[],
                 parameters=[{'use_sim_time': use_sim_time}],
-                arguments=["0", "0", "0", "0", "0", "0", 'global', pyexp(SingleSubstitution('{@}/map', "{@}", ns))])
+                arguments=['0', '0', '0', '0', '0', '0', 'global', [ns, '/map']])
 
     spawn = Node(
                 package='ros_gz_sim',
@@ -155,26 +113,16 @@ def generate_launch_description():
                     'x': x_val,
                     'z': z_val,
                     'y': y_val,
-                    'topic': pyexp(SingleSubstitution('/{@}/robot_description', "{@}", ns)),
+                    'topic': ['/', ns, '/robot_description'],
                     'use_sim_time': use_sim_time}],
                  output='screen')
 
-    autostart = LaunchConfiguration('autostart')
-    use_lifecycle_manager = LaunchConfiguration("use_lifecycle_manager")
-
-    declare_autostart_cmd = DeclareLaunchArgument(
-        'autostart', default_value='true',
-        description='Automatically startup the slamtoolbox. '
-                    'Ignored when use_lifecycle_manager is true.')
-    declare_use_lifecycle_manager = DeclareLaunchArgument(
-        'use_lifecycle_manager', default_value='false',
-        description='Enable bond connection during node activation')
-
     param_substitutions = {'autostart': autostart}
-    slam_config_file = pyexp(SingleSubstitution('{@}_slam.yaml', '{@}', ns))
     configured_params = ParameterFile(
         RewrittenYaml(
-            source_file=PathJoinSubstitution([get_package_share_directory("multi-robot-simulations"), 
+            # <<<<<<<<<<<<<<<<<< HERE IS THE CASE WHERE THE NATIVE SUBSTITUTION FAILS >>>>>>>>>>>>>>>>>>>>>>>>
+            # MUST FORCE PYTHON EXPRESSION FOR THE FILE PATH
+            source_file=PathJoinSubstitution([get_package_share_directory('multi-robot-simulations'), 
                                               'config', 'integrations', 'slam_toolbox_and_nav2', slam_config_file]),
             root_key=ns,
             param_rewrites=param_substitutions,
@@ -191,8 +139,8 @@ def generate_launch_description():
             'use_sim_time': use_sim_time
           }
         ],
-        remappings=[("/map", pyexp(SingleSubstitution('/{@}/map', '{@}', ns))),
-                    ("/pose", pyexp(SingleSubstitution('/{@}/pose_slam', '{@}', ns)))],
+        remappings=[('/map', ['/', ns, '/map']),
+                    ('/pose', ['/', ns, '/pose_slam'])],
         package='slam_toolbox',
         executable='async_slam_toolbox_node',
         name='slam_toolbox',
@@ -211,10 +159,10 @@ def generate_launch_description():
     activate_slam_node_event = RegisterEventHandler(
         OnStateTransition(
             target_lifecycle_node=start_async_slam_toolbox_node,
-            start_state="configuring",
-            goal_state="inactive",
+            start_state='configuring',
+            goal_state='inactive',
             entities=[
-                LogInfo(msg="[LifecycleLaunch] Slamtoolbox node is activating."),
+                LogInfo(msg='[LifecycleLaunch] Slamtoolbox node is activating.'),
                 EmitEvent(event=ChangeState(
                     lifecycle_node_matcher=matches_action(start_async_slam_toolbox_node),
                     transition_id=Transition.TRANSITION_ACTIVATE
@@ -231,20 +179,20 @@ def generate_launch_description():
                 output='screen',
                 name='odom_publisher',
                 parameters=[{'use_sim_time': use_sim_time,
-                             "hz": 50}],
-                remappings=[("/pose", pyexp(SingleSubstitution('/{@}/pose', '{@}', ns))),]
+                             'hz': 50}],
+                remappings=[('/pose', ['/', ns, '/pose'])]
     )
 
-    param_file = pyexp(SingleSubstitution('{@}_nav2.yaml', '{@}', ns))
     nav_launch_path = os.path.join(get_package_share_directory('multi-robot-simulations'), 'launch', 
                                    'integrations', 'slam_toolbox_and_nav2', 'nav2_launch.py')
     nav2_launch = IncludeLaunchDescription(
                         PythonLaunchDescriptionSource(nav_launch_path), 
                         launch_arguments={
                             'namespace': ns,
+                            # THIS MUST BE A STRING
                             'use_sim_time': 'True',
                             'params_file': PathJoinSubstitution([get_package_share_directory('multi-robot-simulations'), 
-                                                                 'config', 'integrations', 'slam_toolbox_and_nav2', param_file]),
+                                                                 'config', 'integrations', 'slam_toolbox_and_nav2', nav2_config_file]),
                         }.items()
     )
 
@@ -254,6 +202,7 @@ def generate_launch_description():
                         PythonLaunchDescriptionSource(ground_segmentation_path), 
                         launch_arguments={
                             'namespace': ns,
+                            # THIS MUST BE A STRING
                             'use_sim_time': 'True'
                         }.items()
     )
@@ -266,17 +215,19 @@ def generate_launch_description():
         output='screen',
         parameters=[{'use_sim_time': use_sim_time,
                      'max_height': 2.0}],
-        remappings=[(pyexp(SingleSubstitution('/{@}/cloud_in', '{@}', ns)), pyexp(SingleSubstitution('/{@}/segmented_cloud_pure', '{@}', ns))),
-                    (pyexp(SingleSubstitution('/{@}/scan', '{@}', ns)), pyexp(SingleSubstitution('/{@}/lidar/projected_cloud_scan', '{@}', ns)))]        
+        remappings=[(['/', ns, '/cloud_in'], ['/',ns,'/segmented_cloud_pure']),
+                    (['/', ns, '/scan'], ['/', ns, '/lidar/projected_cloud_scan'])]  
     )
 
     return LaunchDescription([
-        x,
-        y,
-        z,
-        robot_namespace,
-        declare_autostart_cmd,
-        declare_use_lifecycle_manager,
+        arg_x,
+        arg_y,
+        arg_z,
+        arg_slam_config_file,
+        arg_nav2_config_file,
+        arg_robot_namespace,
+        arg_declare_autostart_cmd,
+        arg_declare_use_lifecycle_manager,
         common_frame_publisher,
         pose_tf_publisher,
         spawn,

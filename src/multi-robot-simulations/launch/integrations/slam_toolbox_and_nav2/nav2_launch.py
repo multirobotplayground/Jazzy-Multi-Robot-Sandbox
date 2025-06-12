@@ -1,4 +1,4 @@
-# Jazzy-Multi-Robot-Sandbox for multi-robot research using ROS Noetic
+# Jazzy-Multi-Robot-Sandbox for multi-robot research using ROS 2
 # Copyright (C) 2025 Alysson Ribeiro da Silva
 #
 # This program is free software: you can redistribute it and/or modify
@@ -25,28 +25,6 @@ from launch_ros.actions import SetParameter, Node
 from launch_ros.descriptions import ParameterFile
 from nav2_common.launch import RewrittenYaml
 
-def SingleSubstitution(string, token, substitution_obj):
-    ss = re.split("(" + token + ")", string)
-    cmd_list = []
-    for i in range(len(ss)):
-        obj = ss[i]
-
-        add = ''
-        if i < len(ss)-1:
-            add = '+'
-
-        if obj != token:
-            obj = "'" + obj + "'" + add
-            cmd_list.append(obj)
-        else:
-            before = "'"
-            after = "'" + add
-            cmd_list.append(before)
-            cmd_list.append(substitution_obj)
-            cmd_list.append(after)
-
-    return cmd_list
-
 def generate_launch_description():
     bringup_dir = get_package_share_directory('multi-robot-simulations')
     
@@ -70,47 +48,7 @@ def generate_launch_description():
         'docking_server',
     ]
 
-    param_substitutions = {'autostart': 'True',
-                    'amcl.ros_parameters.base_frame_id': pyexp(SingleSubstitution('{@}/base_link', '{@}', ns)),
-                    'amcl.ros_parameters.global_frame_id': pyexp(SingleSubstitution('{@}/map', '{@}', ns)),
-                    'amcl.ros_parameters.odom_frame_id': pyexp(SingleSubstitution('{@}/odom', '{@}', ns)),
-                    'amcl.ros_parameters.scan_topic': pyexp(SingleSubstitution('/{@}/lidar/scan', '{@}', ns)),
-                    'bt_navigator.ros_parameters.global_frame': pyexp(SingleSubstitution('{@}/map', '{@}', ns)),
-                    'bt_navigator.ros_parameters.robot_base_frame': pyexp(SingleSubstitution('{@}/base_link', '{@}', ns)),
-                    'bt_navigator.ros_parameters.odom_topic': pyexp(SingleSubstitution('{@}/odom', '{@}', ns)),
-                    'local_costmap.local_costmap.ros_parameters.global_frame': pyexp(SingleSubstitution('{@}/odom', '{@}', ns)),
-                    'local_costmap.local_costmap.ros_parameters.robot_base_frame': pyexp(SingleSubstitution('{@}/base_link', '{@}', ns)),
-                    'local_costmap.local_costmap.ros_parameters.voxel_layer.scan.topic': pyexp(SingleSubstitution('/{@}/lidar/scan', '{@}', ns)),
-                    'global_costmap.global_costmap.ros_parameters.global_frame': pyexp(SingleSubstitution('{@}/map', '{@}', ns)),
-                    'global_costmap.global_costmap.ros_parameters.robot_base_frame': pyexp(SingleSubstitution('{@}/base_link', '{@}', ns)),
-                    'global_costmap.global_costmap.ros_parameters.obstacle_layer.scan.topic': pyexp(SingleSubstitution('/{@}/lidar/scan', '{@}', ns)),
-                    'behavior_server.ros_parameters.local_costmap_topic': pyexp(SingleSubstitution('/{@}/local_costmap/costmap_raw', '{@}', ns)),
-                    'behavior_server.ros_parameters.global_costmap_topic': pyexp(SingleSubstitution('/{@}/global_costmap/costmap_raw', '{@}', ns)),
-                    'behavior_server.ros_parameters.local_footprint_topic': pyexp(SingleSubstitution('/{@}/global_costmap/published_footprint', '{@}', ns)),
-                    'behavior_server.ros_parameters.local_frame': pyexp(SingleSubstitution('{@}/odom', '{@}', ns)),
-                    'behavior_server.ros_parameters.global_frame': pyexp(SingleSubstitution('{@}/map', '{@}', ns)),
-                    'behavior_server.ros_parameters.robot_base_frame': pyexp(SingleSubstitution('{@}/base_link', '{@}', ns)),
-                    'velocity_smoother.ros_parameters.odom_topic': pyexp(SingleSubstitution('/{@}/odom', '{@}', ns)),
-                    'collision_monitor.ros__parameters.base_frame_id': pyexp(SingleSubstitution('{@}/base_link', '{@}', ns)),
-                    'collision_monitor.ros__parameters.odom_frame_id': pyexp(SingleSubstitution('{@}/odom', '{@}', ns)),
-                    'collision_monitor.ros__parameters.cmd_vel_in_topic': pyexp(SingleSubstitution('/{@}/cmd_vel_nav', '{@}', ns)),
-                    'collision_monitor.ros__parameters.cmd_vel_out_topic': pyexp(SingleSubstitution('/{@}/cmd_vel', '{@}', ns)),
-                    'collision_monitor.ros__parameters.state_topic': pyexp(SingleSubstitution('/{@}/collision_monitor_state', '{@}', ns)),
-                    'collision_monitor.ros__parameters.FootprintApproach.footprint_topic': pyexp(SingleSubstitution('/{@}/local_costmap/published_footpprint', '{@}', ns)),
-                    'collision_monitor.ros__parameters.FootprintApproach.scan.topic': pyexp(SingleSubstitution('/{@}/lidar/scan', '{@}', ns)),
-                    'docking_server.ros__parameters.base_frame': pyexp(SingleSubstitution('{@}/base_link', '{@}', ns)),
-                    'docking_server.ros__parameters.fixed_frame': pyexp(SingleSubstitution('{@}/odom', '{@}', ns)),
-                    'docking_server.ros__parameters.controller.costmap_topic': pyexp(SingleSubstitution('/{@}/local_costmap/costmap_raw', '{@}', ns)),
-                    'docking_server.ros__parameters.controller.footprint_topic': pyexp(SingleSubstitution('/{@}/local_costmap/published_footprint', '{@}', ns)),
-                    'loopback_simulator.ros__parameters.base_frame_id': pyexp(SingleSubstitution('{@}/base_link', '{@}', ns)),
-                    'loopback_simulator.ros__parameters.odom_frame_id': pyexp(SingleSubstitution('{@}/odom', '{@}', ns)),
-                    'loopback_simulator.ros__parameters.map_frame_id': pyexp(SingleSubstitution('{@}/map', '{@}', ns)),
-                    'loopback_simulator.ros__parameters.scan_frame_id': pyexp(SingleSubstitution('{@}/base_link', '{@}', ns)),
-                    'slam_toolbox.ros_parameters.odom_frame': pyexp(SingleSubstitution('{@}/odom', '{@}', ns)),
-                    'slam_toolbox.ros_parameters.map_frame': pyexp(SingleSubstitution('{@}/map', '{@}', ns)),
-                    'slam_toolbox.ros_parameters.base_frame': pyexp(SingleSubstitution('{@}/base_link', '{@}', ns)),
-                    'slam_toolbox.ros_parameters.scan_topic': pyexp(SingleSubstitution('/{@}/lidar/scan', '{@}', ns))
-                    }
+    param_substitutions = {}
 
     configured_params = ParameterFile(
         RewrittenYaml(
@@ -184,9 +122,9 @@ def generate_launch_description():
                 parameters=[configured_params,
                             {'use_sim_time': True}],
                 arguments=['--ros-args', '--log-level', log_level],
-                remappings=[(pyexp(SingleSubstitution('/{@}/tf', '{@}', ns)), '/tf'), 
-                            (pyexp(SingleSubstitution('/{@}/tf_static', '{@}', ns)), 'tf_static'),
-                            ('/cmd_vel', pyexp(SingleSubstitution('/{@}/cmd_vel_nav', '{@}', ns)))]
+                remappings=[(['/', ns, '/tf'], '/tf'), 
+                            (['/', ns, '/tf_static'], 'tf_static'),
+                            ('/cmd_vel', ['/', ns, '/cmd_vel_nav'])]
             ),
             Node(
                 package='nav2_smoother',
@@ -198,8 +136,8 @@ def generate_launch_description():
                 respawn_delay=2.0,
                 parameters=[configured_params],
                 arguments=['--ros-args', '--log-level', log_level],
-                remappings=[(pyexp(SingleSubstitution('/{@}/tf', '{@}', ns)), '/tf'), 
-                            (pyexp(SingleSubstitution('/{@}/tf_static', '{@}', ns)), 'tf_static')],
+                remappings=[(['/', ns, '/tf'], '/tf'), 
+                            (['/', ns, '/tf_static'], 'tf_static')],
             ),
             Node(
                 package='nav2_planner',
@@ -212,8 +150,8 @@ def generate_launch_description():
                 parameters=[configured_params,
                             {'use_sim_time': True}],
                 arguments=['--ros-args', '--log-level', log_level],
-                remappings=[(pyexp(SingleSubstitution('/{@}/tf', '{@}', ns)), '/tf'), 
-                            (pyexp(SingleSubstitution('/{@}/tf_static', '{@}', ns)), 'tf_static')]
+                remappings=[(['/', ns, '/tf'], '/tf'), 
+                            (['/', ns, '/tf_static'], 'tf_static')]
             ),
             Node(
                 package='nav2_behaviors',
@@ -225,9 +163,9 @@ def generate_launch_description():
                 respawn_delay=2.0,
                 parameters=[configured_params],
                 arguments=['--ros-args', '--log-level', log_level],
-                remappings=[(pyexp(SingleSubstitution('/{@}/tf', '{@}', ns)), '/tf'), 
-                            (pyexp(SingleSubstitution('/{@}/tf_static', '{@}', ns)), 'tf_static'),
-                            ('cmd_vel', 'cmd_vel_nav')],
+                remappings=[(['/', ns, '/tf'], '/tf'), 
+                            (['/', ns, '/tf_static'], 'tf_static'),
+                            (['/', ns, '/cmd_vel'], 'cmd_vel_nav')],
             ),
             Node(
                 package='nav2_bt_navigator',
@@ -239,9 +177,9 @@ def generate_launch_description():
                 respawn_delay=2.0,
                 parameters=[configured_params],
                 arguments=['--ros-args', '--log-level', log_level],
-                remappings=[(pyexp(SingleSubstitution('/{@}/tf', '{@}', ns)), '/tf'), 
-                            (pyexp(SingleSubstitution('/{@}/tf_static', '{@}', ns)), 'tf_static'),
-                            ('/cmd_vel', pyexp(SingleSubstitution('/{@}/cmd_vel', '{@}', ns)))],
+                remappings=[(['/', ns, '/tf'], '/tf'), 
+                            (['/', ns, '/tf_static'], 'tf_static'),
+                            (['/', ns, '/cmd_vel'], 'cmd_vel_nav')],
             ),
             Node(
                 package='nav2_waypoint_follower',
@@ -253,8 +191,8 @@ def generate_launch_description():
                 respawn_delay=2.0,
                 parameters=[configured_params],
                 arguments=['--ros-args', '--log-level', log_level],
-                remappings=[(pyexp(SingleSubstitution('/{@}/tf', '{@}', ns)), '/tf'), 
-                            (pyexp(SingleSubstitution('/{@}/tf_static', '{@}', ns)), 'tf_static')],
+                remappings=[(['/', ns, '/tf'], '/tf'), 
+                            (['/', ns, '/tf_static'], 'tf_static')],
             ),
             Node(
                 package='nav2_velocity_smoother',
@@ -266,8 +204,8 @@ def generate_launch_description():
                 respawn_delay=2.0,
                 parameters=[configured_params],
                 arguments=['--ros-args', '--log-level', log_level],
-                remappings=[(pyexp(SingleSubstitution('/{@}/tf', '{@}', ns)), '/tf'), 
-                            (pyexp(SingleSubstitution('/{@}/tf_static', '{@}', ns)), 'tf_static')]
+                remappings=[(['/', ns, '/tf'], '/tf'), 
+                            (['/', ns, '/tf_static'], 'tf_static')]
                 + [('cmd_vel', 'cmd_vel_nav')],
             ),
             Node(
@@ -280,8 +218,8 @@ def generate_launch_description():
                 respawn_delay=2.0,
                 parameters=[configured_params],
                 arguments=['--ros-args', '--log-level', log_level],
-                remappings=[(pyexp(SingleSubstitution('/{@}/tf', '{@}', ns)), '/tf'), 
-                            (pyexp(SingleSubstitution('/{@}/tf_static', '{@}', ns)), 'tf_static')],
+                remappings=[(['/', ns, '/tf'], '/tf'), 
+                            (['/', ns, '/tf_static'], 'tf_static')],
             ),
             Node(
                 package='opennav_docking',
@@ -293,8 +231,8 @@ def generate_launch_description():
                 respawn_delay=2.0,
                 parameters=[configured_params],
                 arguments=['--ros-args', '--log-level', log_level],
-                remappings=[(pyexp(SingleSubstitution('/{@}/tf', '{@}', ns)), '/tf'), 
-                            (pyexp(SingleSubstitution('/{@}/tf_static', '{@}', ns)), 'tf_static')],
+                remappings=[(['/', ns, '/tf'], '/tf'), 
+                            (['/', ns, '/tf_static'], 'tf_static')],
             ),
             Node(
                 package='nav2_lifecycle_manager',

@@ -1,4 +1,4 @@
-# Jazzy-Multi-Robot-Sandbox for multi-robot research using ROS Noetic
+# Jazzy-Multi-Robot-Sandbox for multi-robot research using ROS 2
 # Copyright (C) 2024 Alysson Ribeiro da Silva
 #
 # This program is free software: you can redistribute it and/or modify
@@ -19,29 +19,7 @@ import re
 from launch import LaunchDescription
 from launch_ros.actions import Node
 from launch.actions import DeclareLaunchArgument
-from launch.substitutions import LaunchConfiguration, PythonExpression as pyexp
-
-def SingleSubstitution(string, token, substitution_obj):
-    ss = re.split("(" + token + ")", string)
-    cmd_list = []
-    for i in range(len(ss)):
-        obj = ss[i]
-
-        add = ''
-        if i < len(ss)-1:
-            add = '+'
-
-        if obj != token:
-            obj = "'" + obj + "'" + add
-            cmd_list.append(obj)
-        else:
-            before = "'"
-            after = "'" + add
-            cmd_list.append(before)
-            cmd_list.append(substitution_obj)
-            cmd_list.append(after)
-
-    return cmd_list
+from launch.substitutions import LaunchConfiguration
 
 def generate_launch_description(): 
     robot_namespace = DeclareLaunchArgument('namespace', default_value='robot_0')
@@ -58,53 +36,36 @@ def generate_launch_description():
     default_tf_hz = LaunchConfiguration('default_tf_hz', default=50.0)
 
     # Must find a better way to do this substituition, since this is rather naive
-    cmd_vel_bridge = SingleSubstitution("/model/{@}/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist", 
-                                        "{@}", 
-                                        ns)
-    point_cloud_bridge = SingleSubstitution("/world/empty/model/{@}/link/sensor_rack/sensor/front_lidar/scan/points@"\
-                                            "sensor_msgs/msg/PointCloud2[gz.msgs.PointCloudPacked", 
-                                            "{@}", 
-                                            ns)
-    lidar_scan_bridge = SingleSubstitution("/world/empty/model/{@}/link/sensor_rack/sensor/front_lidar/scan@"\
-                                           "sensor_msgs/msg/LaserScan[gz.msgs.LaserScan",
-                                           "{@}", 
-                                            ns)
-    imu_bridge = SingleSubstitution("/world/empty/model/{@}/link/sensor_rack/sensor/imu_sensor/imu@"\
-                                    "sensor_msgs/msg/Imu[gz.msgs.IMU",
-                                    "{@}", 
-                                    ns)
-    odometry_bridge = SingleSubstitution("/model/{@}/odometry@nav_msgs/msg/Odometry[gz.msgs.Odometry",
-                                         "{@}", 
-                                         ns)
-    global_localization_bridge = SingleSubstitution("/model/{@}/pose@geometry_msgs/msg/PoseStamped[gz.msgs.Pose",
-                                                    "{@}",
-                                                    ns)
-    joint_states = SingleSubstitution("/world/empty/model/{@}/joint_state@sensor_msgs/msg/JointState[gz.msgs.Model",
-                                                    "{@}",
-                                                    ns)
-    
+    cmd_vel_bridge = ['/model/', ns, '/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist']
+    point_cloud_bridge = ['/world/empty/model/', ns, '/link/sensor_rack/sensor/front_lidar/scan/points@sensor_msgs/msg/PointCloud2[gz.msgs.PointCloudPacked']
+    lidar_scan_bridge = ['/world/empty/model/', ns, '/link/sensor_rack/sensor/front_lidar/scan@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan']
+    imu_bridge = ['/world/empty/model/', ns, '/link/sensor_rack/sensor/imu_sensor/imu@sensor_msgs/msg/Imu[gz.msgs.IMU']
+    odometry_bridge = ['/model/', ns, '/odometry@nav_msgs/msg/Odometry[gz.msgs.Odometry']
+    global_localization_bridge = ['/model/', ns, '/pose@geometry_msgs/msg/PoseStamped[gz.msgs.Pose']
+    joint_states = ['/world/empty/model/', ns, '/joint_state@sensor_msgs/msg/JointState[gz.msgs.Model']
+
     ros_bridge_node = Node(
                         package='ros_gz_bridge',
                         namespace='ros_gz_bridge',
                         executable='parameter_bridge',
-                        name=pyexp(SingleSubstitution('{@}_gz_bridge', '{@}', ns)),
+                        name=[ns, '_gz_bridge'],
                         parameters=[{'use_sim_time': use_sim_time}],
-                        arguments=[pyexp(cmd_vel_bridge),
-                                   pyexp(point_cloud_bridge),
-                                   pyexp(lidar_scan_bridge),
-                                   pyexp(imu_bridge),
-                                   pyexp(odometry_bridge),
-                                   pyexp(global_localization_bridge),
-                                   pyexp(joint_states)
+                        arguments=[cmd_vel_bridge,
+                                   point_cloud_bridge,
+                                   lidar_scan_bridge,
+                                   imu_bridge,
+                                   odometry_bridge,
+                                   global_localization_bridge,
+                                   joint_states
                                 ],
                         remappings=[
-                            (pyexp(SingleSubstitution('/model/{@}/cmd_vel', '{@}', ns)), pyexp(SingleSubstitution('/{@}/cmd_vel', '{@}', ns))),
-                            (pyexp(SingleSubstitution('/world/empty/model/{@}/link/sensor_rack/sensor/front_lidar/scan/points', '{@}', ns)), pyexp(SingleSubstitution('/{@}/lidar/points', "{@}", ns))),
-                            (pyexp(SingleSubstitution('/world/empty/model/{@}/link/sensor_rack/sensor/front_lidar/scan', "{@}", ns)), pyexp(SingleSubstitution('/{@}/lidar/scan', "{@}", ns))),
-                            (pyexp(SingleSubstitution('/world/empty/model/{@}/link/sensor_rack/sensor/imu_sensor/imu', "{@}", ns)), pyexp(SingleSubstitution('/{@}/imu', "{@}", ns))),
-                            (pyexp(SingleSubstitution('/model/{@}/odometry', "{@}", ns)), pyexp(SingleSubstitution('/{@}/odometry', "{@}", ns))),
-                            (pyexp(SingleSubstitution('/model/{@}/pose', "{@}", ns)), pyexp(SingleSubstitution('/{@}/pose', "{@}", ns))),
-                            (pyexp(SingleSubstitution('/world/empty/model/{@}/joint_state', "{@}", ns)), pyexp(SingleSubstitution('/{@}/joint_states', "{@}", ns)))
+                            (['/model/', ns, '/cmd_vel'], ['/', ns, '/cmd_vel']),
+                            (['/world/empty/model/', ns, '/link/sensor_rack/sensor/front_lidar/scan/points'], ['/', ns, '/lidar/points']),
+                            (['/world/empty/model/', ns, '/link/sensor_rack/sensor/front_lidar/scan'], ['/', ns, '/lidar/scan']),
+                            (['/world/empty/model/', ns, '/link/sensor_rack/sensor/imu_sensor/imu'], ['/', ns, '/imu']),
+                            (['/model/', ns, '/odometry'], ['/', ns, '/odometry']),
+                            (['/model/', ns, '/pose'], ['/', ns, '/pose']),
+                            (['/world/empty/model/', ns, '/joint_state'], ['/', ns, '/joint_states'])
                         ],
     )
 
@@ -120,7 +81,7 @@ def generate_launch_description():
                 name='robot_state_publisher',
                 output='screen',
                 parameters=[{'robot_description': robot_description,
-                             'frame_prefix': pyexp(SingleSubstitution('{@}/', "{@}", ns)),
+                             'frame_prefix': [ns, '/'],
                              'use_sim_time': use_sim_time,
                              'publish_frequency': default_tf_hz}],
                 arguments=[])
@@ -135,7 +96,7 @@ def generate_launch_description():
                     'x': x_val,
                     'z': z_val,
                     'y': y_val,
-                    'topic': pyexp(SingleSubstitution('/{@}/robot_description', "{@}", ns)),
+                    'topic': ['/', ns, '/robot_description'],
                     'use_sim_time': use_sim_time}],
                  output='screen')
 
@@ -147,7 +108,7 @@ def generate_launch_description():
                 name='odom_publisher',
                 parameters=[{'use_sim_time': use_sim_time,
                              "hz": 50}],
-                remappings=[("/pose", pyexp(SingleSubstitution('/{@}/pose', '{@}', ns))),]
+                remappings=[("/pose", ['/', ns, '/pose'])]
     )
 
     return LaunchDescription([

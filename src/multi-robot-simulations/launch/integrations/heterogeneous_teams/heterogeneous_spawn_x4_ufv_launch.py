@@ -1,4 +1,4 @@
-# Jazzy-Multi-Robot-Sandbox for multi-robot research using ROS Noetic
+# Jazzy-Multi-Robot-Sandbox for multi-robot research using ROS 2
 # Copyright (C) 2024 Alysson Ribeiro da Silva
 #
 # This program is free software: you can redistribute it and/or modify
@@ -56,66 +56,43 @@ def generate_launch_description():
     default_tf_hz = LaunchConfiguration('default_tf_hz', default=50.0)
 
     # GZ TOPIC BRIDGE WITH SUBSTITUTION
-    cmd_vel_bridge = SingleSubstitution("/model/{@}/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist", 
-                                        "{@}", 
-                                        ns)
-    point_cloud_bridge = SingleSubstitution("/world/empty/model/{@}/link/base_link/sensor/camera_front/points@"\
-                                            "sensor_msgs/msg/PointCloud2[gz.msgs.PointCloudPacked", 
-                                            "{@}", 
-                                            ns)
-    camera_depth_image_bridge = SingleSubstitution("/world/empty/model/{@}/link/base_link/sensor/camera_front/depth_image@"\
-                                             "sensor_msgs/msg/Image[gz.msgs.Image",
-                                             "{@}",
-                                             ns)
-    camera_image_bridge = SingleSubstitution("/world/empty/model/{@}/link/base_link/sensor/camera_front/image@"\
-                                             "sensor_msgs/msg/Image[gz.msgs.Image",
-                                             "{@}",
-                                             ns)
-    camera_info_bridge = SingleSubstitution("/world/empty/model/{@}/link/base_link/sensor/camera_front/camera_info@"
-                                            "sensor_msgs/msg/CameraInfo[gz.msgs.CameraInfo",
-                                            "{@}",
-                                            ns)
-    imu_bridge = SingleSubstitution("/world/empty/model/{@}/link/base_link/sensor/imu_sensor/imu@"\
-                                    "sensor_msgs/msg/Imu[gz.msgs.IMU",
-                                    "{@}", 
-                                    ns)
-    odometry_bridge = SingleSubstitution("/model/{@}/odometry@nav_msgs/msg/Odometry[gz.msgs.Odometry",
-                                         "{@}", 
-                                         ns)
-    global_localization_bridge = SingleSubstitution("/model/{@}/pose@geometry_msgs/msg/PoseStamped[gz.msgs.Pose",
-                                                    "{@}",
-                                                    ns)
-    joint_states = SingleSubstitution("/world/empty/model/{@}/joint_state@sensor_msgs/msg/JointState[gz.msgs.Model",
-                                                    "{@}",
-                                                    ns)
-    
+    cmd_vel_bridge = ["/model/", ns, "/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist"]
+    point_cloud_bridge = ["/world/empty/model/", ns, "/link/base_link/sensor/camera_front/points@sensor_msgs/msg/PointCloud2[gz.msgs.PointCloudPacked"]
+    camera_depth_image_bridge = ["/world/empty/model/", ns, "/link/base_link/sensor/camera_front/depth_image@sensor_msgs/msg/Image[gz.msgs.Image"]
+    camera_image_bridge = ["/world/empty/model/", ns, "/link/base_link/sensor/camera_front/image@sensor_msgs/msg/Image[gz.msgs.Image"]
+    camera_info_bridge = ["/world/empty/model/", ns, "/link/base_link/sensor/camera_front/camera_info@sensor_msgs/msg/CameraInfo[gz.msgs.CameraInfo"]
+    imu_bridge = ["/world/empty/model/", ns, "/link/base_link/sensor/imu_sensor/imu@sensor_msgs/msg/Imu[gz.msgs.IMU"]
+    odometry_bridge = ["/model/", ns, "/odometry@nav_msgs/msg/Odometry[gz.msgs.Odometry"]
+    global_localization_bridge = ["/model/", ns, "/pose@geometry_msgs/msg/PoseStamped[gz.msgs.Pose"]
+    joint_states = ["/world/empty/model/", ns, "/joint_state@sensor_msgs/msg/JointState[gz.msgs.Model"]
+
     # Setup gz_bridge node
     ros_bridge_node = Node(
                         package='ros_gz_bridge',
                         namespace='ros_gz_bridge',
                         executable='parameter_bridge',
-                        name=pyexp(SingleSubstitution('{@}_gz_bridge', '{@}', ns)),
+                        name=[ns, '_gz_bridge'],
                         parameters=[],
-                        arguments=[pyexp(cmd_vel_bridge),
-                                   pyexp(point_cloud_bridge),
-                                   pyexp(camera_depth_image_bridge),
-                                   pyexp(camera_image_bridge),
-                                   pyexp(camera_info_bridge),
-                                   pyexp(imu_bridge),
-                                   pyexp(odometry_bridge),
-                                   pyexp(global_localization_bridge),
-                                   pyexp(joint_states)
+                        arguments=[cmd_vel_bridge,
+                                   point_cloud_bridge,
+                                   camera_depth_image_bridge,
+                                   camera_image_bridge,
+                                   camera_info_bridge,
+                                   imu_bridge,
+                                   odometry_bridge,
+                                   global_localization_bridge,
+                                   joint_states
                                 ],
                         remappings=[
-                            (pyexp(SingleSubstitution('/model/{@}/cmd_vel', '{@}', ns)), pyexp(SingleSubstitution('/{@}/cmd_vel', '{@}', ns))),
-                            (pyexp(SingleSubstitution('/world/empty/model/{@}/link/base_link/sensor/camera_front/depth_image', '{@}', ns)), pyexp(SingleSubstitution('/{@}/camera/depth_image', "{@}", ns))),
-                            (pyexp(SingleSubstitution('/world/empty/model/{@}/link/base_link/sensor/camera_front/image', '{@}', ns)), pyexp(SingleSubstitution('/{@}/camera/image', "{@}", ns))),
-                            (pyexp(SingleSubstitution('/world/empty/model/{@}/link/base_link/sensor/camera_front/camera_info', '{@}', ns)), pyexp(SingleSubstitution('/{@}/camera/camera_info', "{@}", ns))),
-                            (pyexp(SingleSubstitution('/world/empty/model/{@}/link/base_link/sensor/camera_front/points', '{@}', ns)), pyexp(SingleSubstitution('/{@}/camera/points', "{@}", ns))),
-                            (pyexp(SingleSubstitution('/world/empty/model/{@}/link/base_link/sensor/imu_sensor/imu', "{@}", ns)), pyexp(SingleSubstitution('/{@}/imu', "{@}", ns))),
-                            (pyexp(SingleSubstitution('/model/{@}/odometry', "{@}", ns)), pyexp(SingleSubstitution('/{@}/odometry', "{@}", ns))),
-                            (pyexp(SingleSubstitution('/model/{@}/pose', "{@}", ns)), pyexp(SingleSubstitution('/{@}/pose', "{@}", ns))),
-                            (pyexp(SingleSubstitution('/world/empty/model/{@}/joint_state', "{@}", ns)), pyexp(SingleSubstitution('/{@}/joint_states', "{@}", ns)))
+                            (['/model/', ns, '/cmd_vel'], ['/', ns, '/cmd_vel']),
+                            (['/world/empty/model/', ns, '/link/base_link/sensor/camera_front/depth_image'], ['/', ns, '/camera/depth_image']),
+                            (['/world/empty/model/', ns, '/link/base_link/sensor/camera_front/image'], ['/', ns, '/camera/image']),
+                            (['/world/empty/model/', ns, '/link/base_link/sensor/camera_front/camera_info'], ['/', ns, '/camera/camera_info']),
+                            (['/world/empty/model/', ns, '/link/base_link/sensor/camera_front/points'], ['/', ns, '/camera/points']),
+                            (['/world/empty/model/', ns, '/link/base_link/sensor/imu_sensor/imu'], ['/', ns, '/imu']),
+                            (['/model/', ns, '/odometry'], ['/', ns, '/odometry']),
+                            (['/model/', ns, '/pose'], ['/', ns, '/pose']),
+                            (['/world/empty/model/', ns, '/joint_state'], ['/', ns, '/joint_states'])
                         ],
     )
 
@@ -152,7 +129,7 @@ def generate_launch_description():
                     'x': x_val,
                     'z': z_val,
                     'y': y_val,
-                    'topic': pyexp(SingleSubstitution('/{@}/robot_description', "{@}", ns))}],
+                    'topic': ['/', ns, '/robot_description']}],
                  output='screen')
     
     pose_tf_publisher = Node(
@@ -162,7 +139,7 @@ def generate_launch_description():
                 output='screen',
                 parameters=[{'use_sim_time': use_sim_time,
                 "hz": 50}],
-                remappings=[("/pose", pyexp(SingleSubstitution('/{@}/pose', '{@}', ns)))]
+                remappings=[("/pose", ['/', ns, '/pose'])]
     )
 
     return LaunchDescription([
