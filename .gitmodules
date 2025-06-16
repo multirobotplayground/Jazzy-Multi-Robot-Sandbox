@@ -2,9 +2,6 @@
 	path = src/pointcloud_ground_segmentation
 	url = git@github.com:multirobotplayground/pointcloud_ground_segmentation.git
 	branch = dev
-[submodule "src/frontier_exploration"]
-	path = src/frontier_exploration
-	url = git@github.com:multirobotplayground/frontier_exploration.git
 [submodule "src/exploration_tools"]
 	path = src/exploration_tools
 	url = git@github.com:multirobotplayground/exploration_tools.git
