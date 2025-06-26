@@ -7,12 +7,14 @@
 - [Ignition Simulator Namespacing](docs/integrations/gz_ignition_brige/main.md)
 - [Heterogeneous Teams](docs/integrations/heterogeneous_teams/main.md)
 - [Multi-robot Slam_toolbox and Nav2](docs/integrations/slam_toolbox_and_nav2/main.md)
+- [Frontier Discovery](docs/integrations/frontier_discovery/main.md)
 
 ## [What to Expect from this Repository?](#what-to-expect)
 
 - Demonstrations on how to work with multiple robots in ROS 2.
 - Multi-robot exploration and related algorithms
 - Multi-robot intermittent map sharing and planned rendezvous for the assigned mission
+- Center of Masses Frontier Discovery
 
 <p align="center">
   <img src="docs/images/huskys_4.png" width="500"/>

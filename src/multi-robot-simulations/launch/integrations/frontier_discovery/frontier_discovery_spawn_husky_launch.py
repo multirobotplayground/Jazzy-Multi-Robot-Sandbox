@@ -214,7 +214,8 @@ def generate_launch_description():
         namespace=ns,
         output='screen',
         parameters=[{'use_sim_time': use_sim_time,
-                     'max_height': 2.0}],
+                     'max_height': 5.0,
+                     'min_height': -2.0}],
         remappings=[(['/', ns, '/cloud_in'], ['/',ns,'/segmented_cloud_pure']),
                     (['/', ns, '/scan'], ['/', ns, '/lidar/projected_cloud_scan'])]  
     )
@@ -227,12 +228,12 @@ def generate_launch_description():
         output='screen',
         parameters=[{
             'id': 0,  # Optionally set per-robot
-            'max_lidar_range': 10.0,
+            'max_lidar_range': 100.0,
             'rate': 2.0,
             'queue_size': 2,
             'use_sim_time': use_sim_time
         }],
-        remappings=[(['/', ns, '/c_space'], ['/',ns,'/filtered_occupancy_grid'])]
+        remappings=[(['/', ns, '/c_space'], ['/',ns,'/filtered_for_frontier_exploration'])]
     )
 
     occupancy_grid_filter_node = Node(
@@ -241,8 +242,21 @@ def generate_launch_description():
         namespace=ns,
         name='occupancy_grid_filter_node',
         output='screen',
-        parameters=[{'use_sim_time': use_sim_time}],
+        parameters=[{'use_sim_time': use_sim_time,
+                     'obstacle_inflation_radius_meters': 0.0}],
         remappings=[(['/', ns, '/input_occupancy_grid'], ['/', ns, '/map'])]
+    )
+
+    occupancy_grid_filter_frontiers_node = Node(
+        package='frontier_exploration',
+        executable='occupancy_grid_filter_node',
+        namespace=ns,
+        name='occupancy_grid_filter_node',
+        output='screen',
+        parameters=[{'use_sim_time': use_sim_time,
+                     'obstacle_inflation_radius_meters': 1.0}],
+        remappings=[(['/', ns, '/input_occupancy_grid'], ['/', ns, '/map']),
+                    (['/', ns, '/filtered_occupancy_grid'], ['/', ns, '/filtered_for_frontier_exploration'])]
     )
 
     return LaunchDescription([
@@ -266,5 +280,6 @@ def generate_launch_description():
         pointcloud_to_laserscan,
         ground_segmentation_launch,
         frontier_discovery_node,
-        occupancy_grid_filter_node
-    ])
+        occupancy_grid_filter_node,
+        occupancy_grid_filter_frontiers_node    
+        ])
