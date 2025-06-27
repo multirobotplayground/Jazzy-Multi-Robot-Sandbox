@@ -8,6 +8,7 @@
 - [Heterogeneous Teams](docs/integrations/heterogeneous_teams/main.md)
 - [Multi-robot Slam_toolbox and Nav2](docs/integrations/slam_toolbox_and_nav2/main.md)
 - [Frontier Discovery](docs/integrations/frontier_discovery/main.md)
+- [Frontier Exploration](docs/integrations/frontier_exploration/main.md)
 
 ## [What to Expect from this Repository?](#what-to-expect)
 
@@ -15,6 +16,7 @@
 - Multi-robot exploration and related algorithms
 - Multi-robot intermittent map sharing and planned rendezvous for the assigned mission
 - Center of Masses Frontier Discovery
+- Frontier Exploration with Randomized Policy
 
 <p align="center">
   <img src="docs/images/huskys_4.png" width="500"/>
