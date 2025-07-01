@@ -5,3 +5,7 @@
 [submodule "src/exploration_tools"]
 	path = src/exploration_tools
 	url = git@github.com:multirobotplayground/exploration_tools.git
+[submodule "src/communications"]
+	path = src/communications
+	url = git@github.com:multirobotplayground/communications.git
+	branch = dev
