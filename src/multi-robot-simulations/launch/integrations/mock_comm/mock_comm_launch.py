@@ -35,13 +35,13 @@ def generate_launch_description():
         launch_arguments={
             'render_engine': 'ogre2',
             'use_sim_time': 'True',
-            'gz_args': ['-r ','-s ', LaunchConfiguration('world')],
+            'gz_args': ['-r ', '-s ', LaunchConfiguration('world')],
              'on_exit_shutdown': 'true' # -r run unpaused, -s runs without gui
             }.items()
     )
 
     # husky spawn path
-    husky_launch_path = os.path.join(project_dir, 'launch', 'integrations', 'intermittent_comm', 'intermittent_comm_spawn_husky_launch.py')
+    husky_launch_path = os.path.join(project_dir, 'launch', 'integrations', 'exploration_policies', 'mock_comm_spawn_husky_launch.py')
     spawn_husky_1 = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(husky_launch_path),
         launch_arguments={
@@ -63,6 +63,30 @@ def generate_launch_description():
             'z': '1.05',
             'slam_config_file': 'robot_2_slam.yaml',
             'nav2_config_file': 'robot_2_nav2.yaml'
+        }.items()
+    )
+
+    spawn_husky_3 = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(husky_launch_path),
+        launch_arguments={
+            'namespace': 'robot_3',
+            'x': '0.0',
+            'y': '-16.0',
+            'z': '1.05',
+            'slam_config_file': 'robot_3_slam.yaml',
+            'nav2_config_file': 'robot_3_nav2.yaml'
+        }.items()
+    )
+
+    spawn_husky_4 = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(husky_launch_path),
+        launch_arguments={
+            'namespace': 'robot_4',
+            'x': '-2.0',
+            'y': '-16.0',
+            'z': '1.05',
+            'slam_config_file': 'robot_4_slam.yaml',
+            'nav2_config_file': 'robot_4_nav2.yaml'
         }.items()
     )
 
@@ -102,15 +126,52 @@ def generate_launch_description():
         remappings={('/cmd_vel', '/robot_1/cmd_vel')},
     )
 
-    rviz_node = Node(
+    rviz_node_1 = Node(
                         package='rviz2',
                         executable='rviz2',
-                        name='multi_robot_rviz',
+                        name='multi_robot_rviz_1',
                         namespace='',
                         parameters=[{'use_sim_time': True}],
-                        arguments=["-d", os.path.join(project_dir,'config', 'integrations', 'frontier_discovery', 'all_robots.rviz')],
+                        arguments=["-d", os.path.join(project_dir,'config', 'integrations', 'mock_comm', 'robot_1.rviz'),
+                                   '--ros-args', '--log-level', 'ERROR'],
                         remappings={('/goal_pose', '/robot_1/goal_pose'),
                                     ('/initialpose', '/robot_1/initialpose')}
+    )
+
+    rviz_node_2 = Node(
+                        package='rviz2',
+                        executable='rviz2',
+                        name='multi_robot_rviz_2',
+                        namespace='',
+                        parameters=[{'use_sim_time': True}],
+                        arguments=["-d", os.path.join(project_dir,'config', 'integrations', 'mock_comm', 'robot_2.rviz'),
+                                   '--ros-args', '--log-level', 'ERROR'],
+                        remappings={('/goal_pose', '/robot_2/goal_pose'),
+                                    ('/initialpose', '/robot_2/initialpose')}
+    )
+
+    rviz_node_3 = Node(
+                        package='rviz2',
+                        executable='rviz2',
+                        name='multi_robot_rviz_3',
+                        namespace='',
+                        parameters=[{'use_sim_time': True}],
+                        arguments=["-d", os.path.join(project_dir,'config', 'integrations', 'mock_comm', 'robot_3.rviz'),
+                                   '--ros-args', '--log-level', 'ERROR'],
+                        remappings={('/goal_pose', '/robot_3/goal_pose'),
+                                    ('/initialpose', '/robot_3/initialpose')}
+    )
+
+    rviz_node_4 = Node(
+                        package='rviz2',
+                        executable='rviz2',
+                        name='multi_robot_rviz_4',
+                        namespace='',
+                        parameters=[{'use_sim_time': True}],
+                        arguments=["-d", os.path.join(project_dir,'config', 'integrations', 'mock_comm', 'robot_4.rviz'),
+                                   '--ros-args', '--log-level', 'ERROR'],
+                        remappings={('/goal_pose', '/robot_4/goal_pose'),
+                                    ('/initialpose', '/robot_4/initialpose')}
     )
 
     return LaunchDescription([
@@ -119,7 +180,12 @@ def generate_launch_description():
         ros_bridge_node,
         spawn_husky_1,
         spawn_husky_2,
-        rviz_node,
+        spawn_husky_3,
+        # spawn_husky_4,
+        rviz_node_1,
+        rviz_node_2,
+        rviz_node_3,
+        # rviz_node_4,
         joy_driver_node,
         teleop_joy_node
     ])

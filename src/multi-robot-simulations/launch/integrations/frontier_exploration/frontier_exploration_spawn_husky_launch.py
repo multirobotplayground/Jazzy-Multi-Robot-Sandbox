@@ -221,7 +221,7 @@ def generate_launch_description():
     )
 
     frontier_discovery_node = Node(
-        package='frontier_exploration',
+        package='exploration_policies',
         executable='frontier_discovery_node',
         namespace=ns,
         name='frontier_discovery_node',
@@ -237,7 +237,7 @@ def generate_launch_description():
     )
 
     occupancy_grid_filter_node = Node(
-        package='frontier_exploration',
+        package='exploration_policies',
         executable='occupancy_grid_filter_node',
         namespace=ns,
         name='occupancy_grid_filter_node',
@@ -248,7 +248,7 @@ def generate_launch_description():
     )
 
     occupancy_grid_filter_frontiers_node = Node(
-        package='frontier_exploration',
+        package='exploration_policies',
         executable='occupancy_grid_filter_node',
         namespace=ns,
         name='occupancy_grid_filter_node',
@@ -260,10 +260,10 @@ def generate_launch_description():
     )
 
     frontier_exploration_node = Node(
-        package='frontier_exploration',
-        executable='frontier_exploration_node',
+        package='exploration_policies',
+        executable='bt_frontier_exploration_demo_node',
         namespace=ns,
-        name='frontier_exploration_node',
+        name='bt_frontier_exploration_demo_node',
         output='screen',
         parameters=[{'use_sim_time': use_sim_time}],
         remappings=[]
