@@ -39,6 +39,8 @@ def generate_launch_description():
     arg_nav2_config_file = DeclareLaunchArgument('nav2_config_file', default_value='robot_1_nav2.yaml')
     arg_declare_autostart_cmd = DeclareLaunchArgument('autostart', default_value='true')
     arg_declare_use_lifecycle_manager = DeclareLaunchArgument('use_lifecycle_manager', default_value='false')
+    arg_robots = DeclareLaunchArgument('robots', default_value='3')
+    arg_comm_dist = DeclareLaunchArgument('comm_dist', default_value='2')
 
     ns = LaunchConfiguration('namespace')
     x_val = LaunchConfiguration('x')
@@ -50,6 +52,8 @@ def generate_launch_description():
     default_tf_hz = LaunchConfiguration('default_tf_hz', default=50.0)
     slam_config_file = LaunchConfiguration('slam_config_file', default='robot_1_slam.yaml')
     nav2_config_file = LaunchConfiguration('nav2_config_file', default='robot_1_nav2.yaml')
+    robots = LaunchConfiguration('robots', default=3)
+    comm_dist = LaunchConfiguration('comm_dist',default=2)
 
     ros_bridge_node = Node(
                         package='ros_gz_bridge',
@@ -86,7 +90,7 @@ def generate_launch_description():
                 namespace=ns,
                 executable='robot_state_publisher',
                 name='robot_state_publisher',
-                output='log',
+                output='screen',
                 parameters=[{'robot_description': robot_description,
                              'frame_prefix': [ns, '/'],
                              'use_sim_time': use_sim_time,
@@ -97,7 +101,7 @@ def generate_launch_description():
                 package='tf2_ros',
                 executable='static_transform_publisher',
                 name='common_frame',
-                output='log',
+                output='screen',
                 namespace=ns,
                 remappings=[],
                 parameters=[{'use_sim_time': use_sim_time}],
@@ -115,7 +119,7 @@ def generate_launch_description():
                     'y': y_val,
                     'topic': ['/', ns, '/robot_description'],
                     'use_sim_time': use_sim_time}],
-                 output='log')
+                 output='screen')
 
     param_substitutions = {'autostart': autostart}
     configured_params = ParameterFile(
@@ -144,7 +148,7 @@ def generate_launch_description():
         package='slam_toolbox',
         executable='async_slam_toolbox_node',
         name='slam_toolbox',
-        output='log',
+        output='screen',
         namespace=ns
     )
 
@@ -176,7 +180,7 @@ def generate_launch_description():
                 package='multi-robot-simulations',
                 namespace=ns,
                 executable='multi_robot_simulation_main',
-                output='log',
+                output='screen',
                 name='odom_publisher',
                 parameters=[{'use_sim_time': use_sim_time,
                              'hz': 50}],
@@ -184,7 +188,7 @@ def generate_launch_description():
     )
 
     nav_launch_path = os.path.join(get_package_share_directory('multi-robot-simulations'), 'launch', 
-                                   'integrations', 'intermittent_comm', 'intermittent_comm_nav2_launch.py')
+                                   'integrations', 'slam_toolbox_and_nav2', 'nav2_launch.py')
     nav2_launch = IncludeLaunchDescription(
                         PythonLaunchDescriptionSource(nav_launch_path), 
                         launch_arguments={
@@ -212,68 +216,53 @@ def generate_launch_description():
         executable='pointcloud_to_laserscan_node',
         name='pointcloud_to_laserscan_node',
         namespace=ns,
-        output='log',
+        output='screen',
         parameters=[{'use_sim_time': use_sim_time,
-                     'max_height': 2.0,
+                     'max_height': 5.0,
                      'min_height': -2.0}],
         remappings=[(['/', ns, '/cloud_in'], ['/',ns,'/segmented_cloud_pure']),
                     (['/', ns, '/scan'], ['/', ns, '/lidar/projected_cloud_scan'])]  
     )
 
-    frontier_discovery_node = Node(
-        package='frontier_exploration',
-        executable='frontier_discovery_node',
-        namespace=ns,
-        name='frontier_discovery_node',
-        output='log',
-        parameters=[{
-            'id': 0,  # Optionally set per-robot
-            'max_lidar_range': 100.0,
-            'rate': 2.0,
-            'queue_size': 2,
-            'use_sim_time': use_sim_time
-        }],
-        remappings=[(['/', ns, '/c_space'], ['/',ns,'/filtered_for_frontier_exploration'])]
-    )
-
     occupancy_grid_filter_node = Node(
-        package='frontier_exploration',
+        package='exploration_policies',
         executable='occupancy_grid_filter_node',
         namespace=ns,
-        name='occupancy_grid_filter_node',
+        name='occupancy_grid_filter_for_global_costmap',
         output='log',
         parameters=[{'use_sim_time': use_sim_time,
                      'obstacle_inflation_radius_meters': 0.0}],
-        remappings=[(['/', ns, '/input_occupancy_grid'], ['/', ns, '/map'])]
+        remappings=[(['/', ns, '/input_occupancy_grid'], ['/', ns, '/merged_map'])],
+        arguments=['--ros-args', '--log-level', 'ERROR']
     )
 
-    occupancy_grid_filter_frontiers_node = Node(
-        package='frontier_exploration',
-        executable='occupancy_grid_filter_node',
+    mock_comm_node = Node(
+        package='mock_communication',
+        executable='mock_comm_node',
         namespace=ns,
-        name='occupancy_grid_filter_node',
-        output='log',
+        name='mock_comm_node',
+        output='screen',
         parameters=[{'use_sim_time': use_sim_time,
-                     'obstacle_inflation_radius_meters': 0.9}],
-        remappings=[(['/', ns, '/input_occupancy_grid'], ['/', ns, '/map']),
-                    (['/', ns, '/filtered_occupancy_grid'], ['/', ns, '/filtered_for_frontier_exploration'])]
+                     'robots': robots,
+                     'comm_dist': comm_dist}],
+        remappings=[]
     )
 
-    frontier_exploration_node = Node(
-        package='frontier_exploration',
-        executable='frontier_exploration_node',
+    map_service_node = Node(
+        package='map_stitching',
+        executable='map_service_node',
         namespace=ns,
-        name='frontier_exploration_node',
+        name='map_service_node',
         output='screen',
         parameters=[{'use_sim_time': use_sim_time}],
         remappings=[]
     )
 
-    mock_communication_node = Node(
-        package='mock_communication',
-        executable='mock_com_node',
+    map_stitching_node = Node(
+        package='map_stitching',
+        executable='map_stitching_node',
         namespace=ns,
-        name='mock_comm_node',
+        name='map_stitching_node',
         output='screen',
         parameters=[{'use_sim_time': use_sim_time}],
         remappings=[]
@@ -288,6 +277,8 @@ def generate_launch_description():
         arg_robot_namespace,
         arg_declare_autostart_cmd,
         arg_declare_use_lifecycle_manager,
+        arg_robots,
+        arg_comm_dist,
         common_frame_publisher,
         pose_tf_publisher,
         spawn,
@@ -299,9 +290,8 @@ def generate_launch_description():
         nav2_launch,
         pointcloud_to_laserscan,
         ground_segmentation_launch,
-        frontier_discovery_node,
         occupancy_grid_filter_node,
-        occupancy_grid_filter_frontiers_node,
-        frontier_exploration_node,
-        mock_communication_node
+        mock_comm_node,
+        map_service_node,
+        map_stitching_node
         ])

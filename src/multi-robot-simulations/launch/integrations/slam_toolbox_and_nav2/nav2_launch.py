@@ -105,7 +105,7 @@ def generate_launch_description():
     )
 
     declare_log_level_cmd = DeclareLaunchArgument(
-        'log_level', default_value='info', description='log level'
+        'log_level', default_value='error', description='log level'
     )
 
     load_nodes = GroupAction(
@@ -115,7 +115,7 @@ def generate_launch_description():
             Node(
                 package='nav2_controller',
                 executable='controller_server',
-                output='screen',
+                output='log',
                 respawn=use_respawn,
                 namespace=ns,
                 respawn_delay=2.0,
@@ -124,7 +124,7 @@ def generate_launch_description():
                 arguments=['--ros-args', '--log-level', log_level],
                 remappings=[(['/', ns, '/tf'], '/tf'), 
                             (['/', ns, '/tf_static'], 'tf_static'),
-                            ('/cmd_vel', ['/', ns, '/cmd_vel_nav'])]
+                            ('/cmd_vel', ['/', ns, '/cmd_vel_nav'])],
             ),
             Node(
                 package='nav2_smoother',
